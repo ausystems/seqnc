@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# editor / agent tooling
+.claude/
+
+# vercel
+.vercel/
+
+# node
+node_modules/
