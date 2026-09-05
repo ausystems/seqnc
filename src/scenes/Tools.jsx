@@ -4,7 +4,7 @@
 import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SceneHead, Lines } from '../ui/Reveal.jsx';
+import { SceneHead } from '../ui/Reveal.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
 import { reduced, finePointer } from '../engine/device.js';
 import { onFrame } from '../engine/input.js';
@@ -90,7 +90,7 @@ export default function Tools() {
             {c.items.map((it, i) => (
               <article key={it.title} className={`tools__panel ${i === 0 ? 'is-active' : ''}`}>
                 <span className="u tools__no">{String(i + 1).padStart(2, '0')} <i>/</i> {String(c.items.length).padStart(2, '0')}</span>
-                <h3 className="serif serif--i tools__title">{it.title}</h3>
+                <h3 className="dsp dsp--2 tools__title">{it.title}</h3>
                 <p className="small">{it.body}</p>
               </article>
             ))}
@@ -99,7 +99,6 @@ export default function Tools() {
         </div>
       </div>
 
-      <div className="wrap"><Lines className="note small">{c.note}</Lines></div>
     </section>
   );
 }

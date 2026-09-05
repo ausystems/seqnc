@@ -4,7 +4,7 @@
 import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SceneHead, Lines } from '../ui/Reveal.jsx';
+import { SceneHead } from '../ui/Reveal.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
 import { reduced } from '../engine/device.js';
 import { EASE } from '../engine/tokens.js';
@@ -41,12 +41,11 @@ export default function Why() {
         {c.items.map((it, i) => (
           <li key={it.name} className="why__cell">
             <span className="circ">{i + 1}</span>
-            <h3 className="dsp dsp--3">{it.name}</h3>
+            <h3 className="dsp dsp--2">{it.name}</h3>
             <p className="small">{it.body}</p>
           </li>
         ))}
       </ul>
-      <div className="wrap"><Lines className="note small">{c.note}</Lines></div>
     </section>
   );
 }

@@ -1,17 +1,19 @@
-/* Level 1 — the position.  The ink of the opening tears into paper.  The
-   statement fills the sheet; as the player scrolls, a rule strikes through
-   the last word and its letters shift.  A halftone sphere hangs beside it
-   and leans with the pointer. */
+/* The position.  Five tasks lie scattered, as if handled by hand; as the
+   player scrolls they settle into one neat stack.  The caption follows. */
 import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Label, Lines, Deck } from '../ui/Reveal.jsx';
+import { SceneHead } from '../ui/Reveal.jsx';
+import { Stack } from '../ui/Visuals.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
 import { reduced, DESKTOP, MOBILE } from '../engine/device.js';
-import { EASE } from '../engine/tokens.js';
 import { manifesto as c } from '../content/copy.js';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const SCATTER = [
+  [-150, -120, -18, 22], [130, -100, 14, -18], [-60, 60, -9, 12], [150, 110, 20, -8], [-140, 150, -14, 16],
+];
 
 export default function Manifesto() {
   const ref = useRef(null);
@@ -19,97 +21,48 @@ export default function Manifesto() {
 
   useGsap(ref, (ctx, el) => {
     const q = gsap.utils.selector(el);
-    const pin = q('.mani__pin')[0];
-    const lines = q('.mani__hl .hl__in');
-    const chars = q('.mani__ch');
-    const strike = q('.mani__line')[0];
-    const stats = q('.mani__stat');
-    const nums = q('.mani__num[data-count]');
-    if (reduced) return undefined;
-
-    gsap.set(q('.mani__hl'), { perspective: 900 });
-    gsap.set(lines, { yPercent: 104 });
-    ScrollTrigger.create({
-      trigger: el, start: 'top 70%', once: true,
-      onEnter: () => {
-        gsap.to(lines, { yPercent: 0, duration: 1.4, ease: EASE.out, stagger: 0.08 });
-      },
-    });
+    const cards = q('.stack__card'), caps = q('.mani__cap span'), stats = q('.mani__stat'), nums = q('[data-count]');
+    const rest = (i) => ({ x: '-50%', y: '-50%', xPercent: 0, yPercent: 0, rotate: 0, rotateY: -14, rotateX: 8, z: i * 6, translateY: -i * 8 });
+    cards.forEach((card, i) => gsap.set(card, { x: '-50%', y: '-50%', translateX: SCATTER[i][0], translateY: SCATTER[i][1], rotate: SCATTER[i][2], rotateY: SCATTER[i][3], rotateX: 0, z: 0 }));
+    gsap.set(caps[1], { opacity: 0, y: 8 });
+    if (reduced) { cards.forEach((card, i) => gsap.set(card, { translateX: 0, translateY: -i * 8, rotate: 0, rotateY: -14, rotateX: 8, z: i * 6 })); return undefined; }
 
     const build = () => {
-      const tl = gsap.timeline({ defaults: { ease: 'none' } });
-      tl.fromTo(strike, { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0)
-        .to(chars, {
-          opacity: 0.4, duration: 0.5, ease: 'power2.inOut', stagger: { each: 0.03, from: 'center' },
-        }, 0.18)
-        .fromTo(stats, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', stagger: 0.07 }, 0.3);
-      nums.forEach((n) => {
-        const target = +n.dataset.count, o = { v: 0 };
-        tl.to(o, { v: target, duration: 0.5, ease: 'power2.out', onUpdate: () => { n.textContent = Math.round(o.v); } }, 0.32);
-      });
+      const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+      cards.forEach((card, i) => tl.to(card, { translateX: 0, translateY: -i * 8, rotate: 0, rotateY: -14, rotateX: 8, z: i * 6, duration: 1 }, i * 0.08));
+      tl.to(caps[0], { opacity: 0, y: -8, duration: 0.3 }, 0.75)
+        .to(caps[1], { opacity: 1, y: 0, duration: 0.3 }, 0.85)
+        .fromTo(stats, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out' }, 0.7);
+      nums.forEach((n) => { const o = { v: 0 }; tl.to(o, { v: +n.dataset.count, duration: 0.6, ease: 'power2.out', onUpdate: () => { n.textContent = Math.round(o.v); } }, 0.7); });
       return tl;
     };
-
     const mm = gsap.matchMedia();
-    mm.add(DESKTOP, () => {
-      const tl = build();
-      ScrollTrigger.create({ trigger: el, start: 'top top', end: '+=120%', pin, scrub: 0.7, animation: tl, anticipatePin: 1 });
-    });
-    mm.add(MOBILE, () => {
-      const tl = build().pause();
-      tl.timeScale(0.55);
-      ScrollTrigger.create({ trigger: q('.mani__strike')[0], start: 'top 62%', once: true, onEnter: () => tl.play() });
-    });
-
+    mm.add(DESKTOP, () => { ScrollTrigger.create({ trigger: el, start: 'top top', end: '+=130%', pin: q('.mani__pin')[0], scrub: 0.8, animation: build(), anticipatePin: 1 }); });
+    mm.add(MOBILE, () => { const tl = build().pause(); tl.timeScale(0.5); ScrollTrigger.create({ trigger: q('.stack')[0], start: 'top 65%', once: true, onEnter: () => tl.play() }); });
     return () => mm.revert();
   });
 
-  const plain = c.heading.slice(0, -1), word = c.heading[c.heading.length - 1];
-
   return (
     <section ref={ref} id="what" className="scene mani" aria-labelledby="mani-h">
-      <div className="mani__pin wrap">
-        <div className="scene__meta">
-          <Label>{c.label}</Label>
-          <span className="u idx">01</span>
+      <div className="mani__pin wrap g12">
+        <div className="mani__copy">
+          <SceneHead label={c.label} heading={c.heading} sub={c.sub} headingId="mani-h" />
+          <ul className="mani__stats" aria-label="Key facts">
+            {c.stats.map((s) => {
+              const numeric = /^\d+$/.test(s.value);
+              return (
+                <li key={s.label} className="mani__stat">
+                  <span className="mani__val dsp"><span data-count={numeric ? s.value : undefined}>{numeric ? '0' : s.value}</span>{s.unit && <em>{s.unit}</em>}</span>
+                  <span className="small">{s.label}</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <div className="mani__row">
-          <div className="dsp-v">
-            <h2 id="mani-h" className="dsp dsp--1 mani__hl">
-              {plain.map((l) => <span key={l} className="hl"><span className="hl__in">{l}</span></span>)}
-              <span className="hl mani__strike">
-                <span className="hl__in">
-                  <span className="mani__word" aria-label={word}>
-                    {word.split('').map((ch, i) => <span key={i} className="mani__ch" aria-hidden="true">{ch}</span>)}
-                  </span>
-                  <i className="mani__line" aria-hidden="true" />
-                </span>
-              </span>
-            </h2>
-          </div>
+        <div className="mani__obj">
+          <Stack labels={c.cards} />
+          <p className="mani__cap u"><span>{c.captions[0]}</span><span>{c.captions[1]}</span></p>
         </div>
-        <Deck className="mani__sub">{c.sub}</Deck>
-
-        <ul className="mani__stats" aria-label="Key facts">
-          {c.stats.map((s) => {
-            const numeric = /^\d+$/.test(s.value);
-            return (
-              <li key={s.label} className="mani__stat">
-                <span className="u u--dim">{s.label}</span>
-                <span className="mani__val dsp">
-                  <span className="mani__num" data-count={numeric ? s.value : undefined}>{numeric ? '0' : s.value}</span>
-                  {s.unit && <span className="mani__unit">{s.unit}</span>}
-                </span>
-                <span className="small">{s.note}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      <div className="mani__after wrap g12">
-        <Lines className="mani__lead deck" delay={0}>{c.body[0]}</Lines>
-        <Lines className="mani__p body" delay={0.15}>{c.body[1]}</Lines>
       </div>
     </section>
   );

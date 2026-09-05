@@ -8,27 +8,22 @@ Three.js shader for the depth field beneath the page.
 
 ## Design system
 
-Paper and ink. A medium-cream page, condensed heavy uppercase display type
-(Archivo, width axis), a serif second voice (Instrument Serif) for deck lines
-and interjections, Inter for utility text. Black bands with torn edges invert
-the palette; bracketed `[ labels ]`, stacked rule bands, circled numbers and
-hairline ledgers give the structure. One whisper of lavender — under the
-pointer in the depth field, on the tools sheet, and around the cursor in the
-footer wordmark.
-
-The hero's isometric cube-grid background is `public/grid.js`, loaded untouched.
+Light room, dark objects. A neutral off-white page, Archivo for display type
+in sentence case, Inter for everything else, one ink and three greys. The
+hero is a small Three.js scene of matte cubes; the section illustrations are
+white interfaces floating in shallow CSS 3D. Motion is slow and quiet, and
+`prefers-reduced-motion` keeps every composition static.
 
 ## Structure
 
 | Path | Purpose |
 | --- | --- |
 | `src/engine/` | Motion tokens, input state (pointer + scroll velocity), scroll dolly, scene registry, hooks |
-| `src/ui/` | Cursor, nav/HUD, magnetic controls, text reveal primitives, print-shop decorations |
-| `src/scenes/` | The fifteen levels, in page order — each with one mechanic of its own |
-| `src/webgl/` | The depth field (Three.js, lazy-loaded after first paint) |
+| `src/ui/` | Nav, magnetic controls, text reveal primitives, the section visuals |
+| `src/scenes/` | The eleven sections, in page order |
+| `src/webgl/` | The hero cube scene (Three.js, loaded after mount) |
 | `src/styles/` | Tokens, base voices, UI, scenes |
 | `src/content/copy.js` | Every word on the site |
-| `public/grid.js` | The hero background animation (do not edit) |
 
 ## Running it locally
 
@@ -48,7 +43,6 @@ declares the framework, build command and output directory). Every push to
 
 ## Accessibility and motion
 
-Keyboard focus is visible everywhere; the accordion, level select and
-capability rows are operable from the keyboard. `prefers-reduced-motion` keeps
+Keyboard focus is visible everywhere and the accordion is operable from the keyboard. `prefers-reduced-motion` keeps
 the composition and the palette but drops the pinned scenes, the opening
 choreography and the scroll-driven camera for static layouts.

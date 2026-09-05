@@ -1,235 +1,183 @@
-/* =========================================================================
-   Every word on the site.  Scenes read from here and nowhere else.
-   ========================================================================= */
+/* Every word on the site.  Short on purpose. */
 
-export const brand = {
-  name: 'Seqnc',
-  domain: 'Seqnc.ai',
-  tag: 'Business Automation for Service Businesses',
-  status: 'Available for new projects',
-  reviewLength: '60 minutes',
-};
+export const brand = { name: 'Seqnc', domain: 'Seqnc.ai', tag: 'Business automation for service businesses', status: 'Available for new projects' };
 
 export const nav = [
-  { href: '#what', label: 'What We Do' },
-  { href: '#automations', label: 'Automations' },
-  { href: '#process', label: 'Process' },
-  { href: '#demos', label: 'Demos' },
+  { href: '#what', label: 'Why' },
+  { href: '#automations', label: 'What we build' },
+  { href: '#process', label: 'How it works' },
+  { href: '#work', label: 'Case study' },
 ];
 
 export const hero = {
   label: 'Business automation for service businesses',
-  headline: ['We Automate', 'Your Service', 'Business'],
-  tags: ['Leads', 'Scheduling', 'Workflows', 'CRM', 'Follow-ups'],
-  lede: 'Save time, capture more leads, and cut repetitive work with automation built around the tools you already use.',
-  primary: { label: 'Get Your Free Review', href: '#book' },
-  secondary: { label: 'See Live Demos', href: '#demos' },
-  note: '60 minutes. We identify your biggest time and revenue leaks and show you what can be automated.',
+  headline: ['Run your business', 'on autopilot.'],
+  lede: 'Seqnc automates leads, scheduling, workflows and follow-ups around the tools you already use.',
+  primary: { label: 'Get your free review', href: '#book' },
+  secondary: { label: 'See what we build', href: '#automations' },
+  note: '60 minutes. No commitment.',
 };
 
 export const manifesto = {
   label: 'Our position',
-  heading: ['Stop Running', 'Your Business', 'Manually'],
+  heading: ['Stop running', 'your business by hand.'],
   sub: 'Less manual work. More completed jobs. More time back.',
+  cards: ['Leads', 'Quotes', 'Scheduling', 'Invoices', 'Follow-ups'],
+  captions: ['Handled by hand', 'Handled by Seqnc'],
   stats: [
-    { label: 'Free review', value: '60', unit: 'min', note: 'No commitment, clear answers.' },
-    { label: 'Build time', value: '2–4', unit: 'wks', note: 'Designed, built and live.' },
-    { label: 'Built for', value: '2–20', unit: 'people', note: 'Employee service businesses.' },
-    { label: 'Your software', value: 'Kept', unit: '', note: 'We build around your tools.' },
+    { label: 'Free review', value: '60', unit: 'min' },
+    { label: 'Build time', value: '2–4', unit: 'weeks' },
+    { label: 'Built for', value: '2–20', unit: 'people' },
+    { label: 'Your software', value: 'Kept', unit: '' },
   ],
-  body: [
-    'Your business should not depend on someone remembering to reply to a lead, follow up on a quote, schedule a job, send an invoice, or contact an old customer.',
-    'Seqnc.ai helps service businesses automate repetitive tasks, improve customer response times, and build better business systems. We find where your business is losing time and money, then build the automation systems to fix it.',
-  ],
-};
-
-export const industries = {
-  label: 'Who it is for',
-  heading: ['Business Automation', 'Built for', 'Service Businesses'],
-  sub: 'We build practical automation for businesses that rely on leads, customers, appointments, projects and repeat business.',
-  items: [
-    { name: 'Home Services', body: 'Automate lead responses, appointment booking, customer follow-ups, reminders, reviews, and more.' },
-    { name: 'Trades & Contracting', body: 'Keep leads, estimates, projects, documents, scheduling, and customer communication organised automatically.' },
-    { name: 'Agencies', body: 'Automate client onboarding, project workflows, follow-ups, reporting, and repetitive administrative tasks.' },
-    { name: 'Professional Services', body: 'Reduce manual work across lead management, scheduling, client communication, onboarding, and follow-ups.' },
-  ],
-  note: 'Your business is different. Your automation should be too.',
 };
 
 export const problems = {
   label: 'The diagnosis',
-  heading: ['Find Where Your', 'Business', 'Is Losing Time'],
-  statement: ['Most service businesses do not have a people problem.', 'They have a systems problem.'],
-  body: 'Leads go unanswered. Quotes sit in inboxes. Appointments are scheduled manually. Employees forget the next step. Customers are not followed up with. Invoices are chased one by one. These small problems add up quickly.',
+  heading: ['Small leaks.', 'Every day.'],
+  statement: ['Most service businesses don’t have a people problem.', 'They have a systems problem.'],
   items: [
     'Slow lead responses', 'Missed calls and enquiries', 'Manual quote follow-ups', 'Appointment scheduling',
     'Repetitive data entry', 'Manual customer onboarding', 'Missed internal tasks', 'Invoice follow-ups',
-    'Review requests', 'Customer reactivation', 'Referral follow-ups', 'Seasonal customer campaigns',
+    'Review requests', 'Customer reactivation', 'Referral follow-ups', 'Seasonal campaigns',
   ],
-  note: 'If someone on your team does the same task repeatedly, there may be a better way.',
 };
 
 export const automations = {
   label: 'What we build',
-  cta: { label: 'Get Your Free Automation Review', href: '#book' },
+  heading: ['Three systems.', 'Zero busywork.'],
+  cta: { label: 'Get your free review', href: '#book' },
   items: [
     {
-      eyebrow: 'Lead Automation',
-      heading: ['Respond to New Leads', 'Automatically'],
-      body: 'Never leave a potential customer waiting for a response. We connect your calls, forms, emails, messages, and other lead sources so new enquiries are handled quickly and consistently.',
-      ticks: ['Qualify customers and collect key details', 'Send estimates, next steps and appointments', 'Notify your team and track every lead'],
-      mock: 'chart',
+      eyebrow: 'Lead automation',
+      heading: ['Respond to new leads', 'automatically.'],
+      body: 'Calls, forms, emails and messages are answered fast and consistently. Details are captured, your team is notified.',
+      ticks: ['Qualify and collect details', 'Send estimates and next steps', 'Track every lead'],
+      visual: 'leads',
     },
     {
-      eyebrow: 'Workflow Automation',
-      heading: ['Keep Every Job Moving', 'From Yes to Done'],
-      body: 'Once a customer says yes, your team should know exactly what happens next. We automate the repetitive steps between winning a customer and completing the work.',
+      eyebrow: 'Workflow automation',
+      heading: ['Keep every job moving', 'from yes to done.'],
+      body: 'Once a customer says yes, every next step happens on its own. Information collected, tasks created, appointments scheduled.',
       ticks: ['No sticky notes', 'No forgotten tasks', 'No guessing what happens next'],
-      mock: 'flow',
+      visual: 'flow',
     },
     {
-      eyebrow: 'Follow-Up Automation',
-      heading: ['Stay Connected', 'With Customers', 'Automatically'],
-      body: 'Your previous customers are one of your biggest opportunities for repeat business. We create automated follow-up systems that keep your business in front of customers at the right time.',
-      ticks: ['Review and referral requests', 'Repeat service reminders and seasonal offers', 'Win-back and past customer campaigns'],
-      mock: 'dash',
+      eyebrow: 'Follow-up automation',
+      heading: ['Stay in front of customers', 'at the right time.'],
+      body: 'Reviews, reminders, seasonal offers and win-back campaigns go out on schedule, in your words.',
+      ticks: ['Review and referral requests', 'Repeat service reminders', 'Win-back campaigns'],
+      visual: 'follow',
     },
   ],
 };
 
 export const capabilities = {
   label: 'Capabilities',
-  heading: ['What Can You', 'Automate?'],
-  sub: 'Almost any repetitive process can be improved.',
+  heading: ['If it repeats,', 'it can run itself.'],
   items: [
-    { name: 'Lead Management', body: 'Capture, organise, qualify, and follow up with new leads automatically.' },
-    { name: 'Appointment Scheduling', body: 'Let customers book while your calendar and team stay organised.' },
-    { name: 'CRM Automation', body: 'Keep customer records updated and move leads through your pipeline.' },
-    { name: 'Customer Onboarding', body: 'Collect information, send documents, create tasks, prepare your team.' },
-    { name: 'Sales Follow-Ups', body: 'Automatically follow up with leads who have not responded or booked.' },
-    { name: 'Review Requests', body: 'Ask customers for reviews automatically after completed work.' },
-    { name: 'Invoicing Follow-Ups', body: 'Reduce the time your team spends chasing unpaid invoices.' },
-    { name: 'Customer Reactivation', body: 'Reconnect with customers who have not booked recently.' },
+    { name: 'Lead management', body: 'Capture, qualify and follow up automatically.', glyph: 'inbox' },
+    { name: 'Scheduling', body: 'Customers book while your calendar stays organised.', glyph: 'calendar' },
+    { name: 'CRM automation', body: 'Records updated, leads moved through the pipeline.', glyph: 'crm' },
+    { name: 'Onboarding', body: 'Information, documents and tasks, prepared for you.', glyph: 'onboard' },
+    { name: 'Sales follow-ups', body: 'Leads who went quiet hear from you again.', glyph: 'reply' },
+    { name: 'Review requests', body: 'Asked for automatically after completed work.', glyph: 'star' },
+    { name: 'Invoice follow-ups', body: 'Less time chasing unpaid invoices.', glyph: 'invoice' },
+    { name: 'Reactivation', body: 'Reconnect with customers who haven’t booked lately.', glyph: 'return' },
   ],
-  note: 'If it is repetitive, time-consuming, and follows a predictable process, we can probably automate it.',
 };
 
 export const tools = {
   label: 'Your stack',
-  heading: ['We Build Around', 'Your Existing Tools'],
-  sub: 'Nothing gets replaced. Scroll to see what we connect, one tool at a time.',
+  heading: ['Your tools.', 'Connected, not replaced.'],
+  sub: 'Scroll to see what we connect.',
   items: [
-    { short: 'CRM', title: 'Your CRM', body: 'Contacts, deals and notes update themselves. Nobody retypes the same customer twice.' },
-    { short: 'Calendar', title: 'Your Calendar', body: 'New jobs drop straight into the calendar your team already checks each morning.' },
-    { short: 'Email', title: 'Your Email', body: 'Replies, estimates and reminders go out on time, written in your own words.' },
-    { short: 'Forms', title: 'Your Forms', body: 'Every enquiry is captured, sorted and routed to the right person the moment it lands.' },
-    { short: 'Website', title: 'Your Website', body: 'Booking happens on your own site instead of a third party page you do not control.' },
-    { short: 'Chat', title: 'Your Communication Tools', body: 'Your team gets a nudge in the app they already use the second a job needs attention.' },
-    { short: 'Internal', title: 'Your Internal Systems', body: 'The tools you built in house stay exactly where they are. We connect them to the rest.' },
+    { short: 'CRM', title: 'Your CRM', body: 'Contacts, deals and notes update themselves.' },
+    { short: 'Calendar', title: 'Your calendar', body: 'New jobs land in the calendar your team already checks.' },
+    { short: 'Email', title: 'Your email', body: 'Replies, estimates and reminders go out on time.' },
+    { short: 'Forms', title: 'Your forms', body: 'Every enquiry is captured and routed the moment it lands.' },
+    { short: 'Website', title: 'Your website', body: 'Booking happens on your own site.' },
+    { short: 'Chat', title: 'Your chat tools', body: 'Your team gets a nudge in the app they already use.' },
+    { short: 'Internal', title: 'Your internal systems', body: 'What you built in house stays. We connect it.' },
   ],
-  note: 'Better systems without rebuilding your entire business.',
 };
 
 export const process = {
   label: 'How it works',
-  heading: ['How Our Business', 'Automation', 'Process Works'],
-  sub: 'Four steps from first conversation to systems that keep running.',
+  heading: ['From first call', 'to autopilot.'],
   steps: [
-    { title: 'Find the Biggest Problems', body: 'We spend 60 minutes learning how your business actually operates and identify the processes costing you the most.' },
-    { title: 'Build Your Automation Plan', body: 'You receive a clear plan showing what we recommend automating, how it works, how long it takes, and what it costs.' },
-    { title: 'We Build Your Systems', body: 'We build and connect your automation using the software your business already relies on.' },
-    { title: 'We Keep It Running', body: 'We monitor your systems, fix issues, and make improvements through an ongoing monthly retainer.' },
+    { title: 'Find the biggest problems', body: '60 minutes on how your business actually runs and where it costs you most.' },
+    { title: 'Get a clear plan', body: 'What we recommend automating, how it works, how long it takes, what it costs.' },
+    { title: 'We build it', body: 'Connected to the software your business already relies on.' },
+    { title: 'We keep it running', body: 'Monitoring, fixes and improvements on a monthly retainer.' },
   ],
-  note: 'You focus on the business. We keep the systems running.',
 };
 
 export const work = {
   label: 'Case study',
-  heading: ['Real Business', 'Automation', 'Built to Work'],
+  heading: ['Proof,', 'not promises.'],
   client: 'Divos Detailing',
-  where: 'Auto Detailing, Houston',
-  body: 'Divos Detailing needed a better way to manage bookings, customers, and scheduling. Their booking experience now lives on their own website, with Google Calendar and CRM systems connected so they work together.',
-  before: 'Bookings handled through a third-party website. Customer information and scheduling tracked manually.',
-  after: 'Booking lives on their own website, with Google Calendar and CRM connected to work together.',
-  ticks: ['Website booking', 'Google Calendar integration', 'CRM automation'],
-  cta: { label: 'Get Your Free Automation Review', href: '#book' },
-};
-
-export const demos = {
-  label: 'Live demos',
-  heading: ['See Automation', 'in Action', 'Try Our Live Demos'],
-  sub: 'You do not have to imagine what automation could look like.',
-  items: [
-    { name: 'Lead Automation Demo', body: 'See how a customer can answer a few questions, receive an estimate, and choose an available appointment, without anyone on your team touching it.', link: 'Try the Lead System', href: '#book' },
-    { name: 'Operations Automation Demo', body: 'See how a new customer moves through onboarding while tasks and next steps are automatically created for your team.', link: 'Try the Operations System', href: '#book' },
-    { name: 'Customer Reactivation Demo', body: 'See how a business can identify past customers who have not returned and automatically send the right follow-up at the right time.', link: 'Try the Follow-Up System', href: '#book' },
+  where: 'Auto detailing, Houston',
+  problem: 'Bookings ran through a third-party website. Customer details and scheduling were tracked by hand.',
+  automated: ['Booking on their own website', 'Google Calendar integration', 'CRM automation'],
+  result: 'Booking now lives on their own site. Calendar and CRM stay in sync without anyone touching them.',
+  outcomes: [
+    { k: 'Booking', v: 'On their own website' },
+    { k: 'Calendar', v: 'Always in sync' },
+    { k: 'CRM', v: 'Updated automatically' },
   ],
-  meta: 'Realistic sample data',
 };
 
 export const why = {
   label: 'Why Seqnc',
-  heading: ['Why Choose', 'Seqnc.ai?'],
-  sub: 'Built for growing service businesses with roughly 2 to 20 employees.',
+  heading: ['Built around', 'how you actually work.'],
   items: [
-    { name: 'Practical Automation', body: 'We automate real business processes that save your team time and help you capture more opportunities.' },
-    { name: 'Built Around Your Business', body: 'We do not force your company into a generic system. Your workflows are built around how you actually work.' },
-    { name: 'Use Your Existing Software', body: 'We work with the tools your team already uses whenever possible.' },
-    { name: 'Fast Implementation', body: 'Most automation projects can be designed and built within two to four weeks, depending on scope.' },
-    { name: 'Ongoing Support', body: 'We monitor your systems and help keep them working as your business grows.' },
-    { name: 'Start Small', body: 'You do not need to automate everything. We start with the area creating the biggest problem.' },
+    { name: 'Practical', body: 'Real processes, real time saved.' },
+    { name: 'Yours', body: 'Workflows shaped to your business, not a generic system.' },
+    { name: 'Compatible', body: 'The tools your team already uses, wherever possible.' },
+    { name: 'Fast', body: 'Most projects are live in two to four weeks.' },
+    { name: 'Supported', body: 'Monitored and improved as you grow.' },
+    { name: 'Start small', body: 'Begin with the one thing costing you most.' },
   ],
-  note: 'You do not need to be technical. You simply need to know where your team is spending too much time.',
-};
-
-export const pricing = {
-  label: 'Pricing',
-  heading: ['How Much Does', 'Business', 'Automation Cost?'],
-  sub: 'Every business has different needs, so every project is scoped individually.',
-  items: [
-    { kind: 'One-time', name: 'Setup Fee', body: 'Covers the initial build of your automation systems.' },
-    { kind: 'Monthly', name: 'Retainer', body: 'Monitoring, fixes and improvements as your business changes.' },
-  ],
-  note: 'After your free review you receive a clear scope, timeline, and price. No vague pricing. No unnecessary packages. No requirement to purchase every system.',
 };
 
 export const faq = {
   label: 'Questions',
-  heading: ['Frequently Asked', 'Questions'],
-  sub: 'Have another question? Please contact our team.',
+  heading: ['Questions,', 'answered.'],
   items: [
-    { q: 'What is business automation?', a: 'Business automation uses software and connected systems to complete repetitive business tasks automatically instead of requiring someone on your team to do them manually.' },
-    { q: 'What types of businesses do you work with?', a: 'We primarily work with service businesses such as home service companies, trades, contractors, agencies, and professional service businesses.' },
-    { q: 'What can Seqnc.ai automate?', a: 'We can automate lead management, customer follow-ups, scheduling, CRM updates, onboarding, internal workflows, review requests, customer reactivation, and many other repetitive processes.' },
-    { q: 'Do I need to replace my current software?', a: 'Usually not. We build around the software your business already uses whenever possible.' },
-    { q: 'Do I need to be technical?', a: 'No. We handle the technical work and explain the system in simple terms.' },
-    { q: 'How long does an automation project take?', a: 'Most projects are built within two to four weeks, depending on the number and complexity of the systems involved.' },
-    { q: 'Can I start with only one automation?', a: 'Yes. We recommend starting with the process that is costing your business the most time or money.' },
-    { q: 'What happens if something breaks?', a: 'Ongoing monitoring and fixes are included with the monthly retainer. If an issue comes up, we work to resolve it.' },
-    { q: 'Is there a long-term contract?', a: 'You can cancel the monthly retainer without a penalty, subject to the terms of your agreement.' },
+    { q: 'What is business automation?', a: 'Software and connected systems completing repetitive tasks automatically, instead of someone on your team doing them by hand.' },
+    { q: 'Who do you work with?', a: 'Service businesses: home services, trades, contractors, agencies and professional services.' },
+    { q: 'Do I need to replace my current software?', a: 'Usually not. We build around what you already use.' },
+    { q: 'Do I need to be technical?', a: 'No. We handle the technical work and explain it in plain terms.' },
+    { q: 'How long does a project take?', a: 'Most are built within two to four weeks.' },
+    { q: 'Can I start with one automation?', a: 'Yes. We recommend starting with the process costing you most.' },
+    { q: 'What if something breaks?', a: 'Monitoring and fixes are included in the monthly retainer.' },
+    { q: 'Is there a long-term contract?', a: 'The retainer can be cancelled without penalty, subject to your agreement.' },
   ],
 };
 
 export const book = {
   label: 'Final step',
-  heading: ['Find Out', 'What You Could', 'Automate'],
-  sub: 'Book a free 60-minute business automation review. We will look at how your business operates, identify your biggest time and revenue leaks, and show you which processes could be automated.',
-  cta: { label: 'Book Your Free Automation Review', href: '#book' },
-  note: '60 minutes. No commitment. Clear answers. You do not need to hire us afterward.',
+  heading: ['See what you', 'could automate.'],
+  sub: 'A free 60-minute review of how your business runs, where it leaks time, and what to automate first.',
+  cta: { label: 'Book your free review', href: 'mailto:hello@seqnc.ai' },
+  note: 'No commitment. Clear answers.',
 };
 
 export const footer = {
-  body: 'We help service businesses automate leads, scheduling, workflows, customer follow-ups, and repetitive tasks so their teams can save time and focus on the work that matters.',
+  line: 'Business automation for service businesses.',
   services: [
-    { label: 'Business Automation', href: '#automations' },
-    { label: 'Workflow Automation', href: '#automations' },
-    { label: 'Lead Automation', href: '#automations' },
-    { label: 'CRM Automation', href: '#capabilities' },
-    { label: 'Scheduling Automation', href: '#capabilities' },
-    { label: 'Customer Follow-Up Automation', href: '#automations' },
+    { label: 'Lead automation', href: '#automations' },
+    { label: 'Workflow automation', href: '#automations' },
+    { label: 'Follow-up automation', href: '#automations' },
+    { label: 'CRM automation', href: '#capabilities' },
+    { label: 'Scheduling', href: '#capabilities' },
   ],
-  legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms & Conditions', href: '#' },
+  company: [
+    { label: 'How it works', href: '#process' },
+    { label: 'Case study', href: '#work' },
+    { label: 'Questions', href: '#faq' },
+    { label: 'Book a review', href: '#book' },
   ],
+  legal: [{ label: 'Privacy', href: '#' }, { label: 'Terms', href: '#' }],
 };

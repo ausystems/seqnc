@@ -2,22 +2,16 @@ import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollProvider } from './engine/scroll.jsx';
-import Field from './webgl/Field.jsx';
-import Cursor from './ui/Cursor.jsx';
-import { Grain } from './ui/Deco.jsx';
 import Nav from './ui/Nav.jsx';
 import Hero from './scenes/Hero.jsx';
 import Manifesto from './scenes/Manifesto.jsx';
-import Industries from './scenes/Industries.jsx';
 import Problems from './scenes/Problems.jsx';
 import Automations from './scenes/Automations.jsx';
 import Capabilities from './scenes/Capabilities.jsx';
 import Tools from './scenes/Tools.jsx';
 import Process from './scenes/Process.jsx';
-import Work from './scenes/Work.jsx';
-import Demos from './scenes/Demos.jsx';
+import CaseStudy from './scenes/CaseStudy.jsx';
 import Why from './scenes/Why.jsx';
-import Pricing from './scenes/Pricing.jsx';
 import Faq from './scenes/Faq.jsx';
 import Book from './scenes/Book.jsx';
 import Footer from './scenes/Footer.jsx';
@@ -26,34 +20,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   useEffect(() => {
-    /* pinned scenes change the page height: measure again once fonts and
-       everything else have landed */
     const refresh = () => ScrollTrigger.refresh();
     document.fonts.ready.then(refresh);
     window.addEventListener('load', refresh);
     const t = setTimeout(refresh, 1200);
     return () => { window.removeEventListener('load', refresh); clearTimeout(t); };
   }, []);
-
   return (
     <ScrollProvider>
-      <Field />
-      <Grain />
-      <Cursor />
       <Nav />
       <main>
         <Hero />
         <Manifesto />
-        <Industries />
         <Problems />
         <Automations />
         <Capabilities />
         <Tools />
         <Process />
-        <Work />
-        <Demos />
+        <CaseStudy />
         <Why />
-        <Pricing />
         <Faq />
         <Book />
       </main>

@@ -1,8 +1,11 @@
-/* Only the pieces of three the field needs, so the chunk stays small. */
+/* Only the pieces of three the cube scene needs. */
 export { WebGLRenderer } from 'three/src/renderers/WebGLRenderer.js';
 export { Scene } from 'three/src/scenes/Scene.js';
-export { OrthographicCamera } from 'three/src/cameras/OrthographicCamera.js';
-export { ShaderMaterial } from 'three/src/materials/ShaderMaterial.js';
-export { PlaneGeometry } from 'three/src/geometries/PlaneGeometry.js';
+export { PerspectiveCamera } from 'three/src/cameras/PerspectiveCamera.js';
 export { Mesh } from 'three/src/objects/Mesh.js';
-export { Vector2 } from 'three/src/math/Vector2.js';
+export { Group } from 'three/src/objects/Group.js';
+export { MeshStandardMaterial } from 'three/src/materials/MeshStandardMaterial.js';
+export { HemisphereLight } from 'three/src/lights/HemisphereLight.js';
+export { DirectionalLight } from 'three/src/lights/DirectionalLight.js';
+export { Color } from 'three/src/math/Color.js';
+export { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';

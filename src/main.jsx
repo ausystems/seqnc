@@ -12,6 +12,6 @@ import './styles/scenes.css';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 ScrollTrigger.config({ ignoreMobileResize: true });
 bindInput();
-if (import.meta.env.DEV) window.__ST = ScrollTrigger;   /* dev-only handle for the capture harness */
+if (import.meta.env.DEV) window.__ST = ScrollTrigger;
 
 createRoot(document.getElementById('root')).render(<App />);
