@@ -2,34 +2,53 @@
 
 Marketing site for **Seqnc.ai** — business automation for service businesses.
 
-A static site with no build step, no framework and no runtime dependencies: four
-files served straight from the repository root.
+Built as a single-page interactive experience: React + Vite, GSAP (ScrollTrigger,
+SplitText) for the motion engine, Lenis for the scroll dolly, and a small
+Three.js shader for the depth field beneath the page.
+
+## Design system
+
+Paper and ink. A medium-cream page, condensed heavy uppercase display type
+(Archivo, width axis), a serif second voice (Instrument Serif) for deck lines
+and interjections, Inter for utility text. Black bands with torn edges invert
+the palette; bracketed `[ labels ]`, stacked rule bands, circled numbers and
+hairline ledgers give the structure. One whisper of lavender — under the
+pointer in the depth field, on the tools sheet, and around the cursor in the
+footer wordmark.
+
+The hero's isometric cube-grid background is `public/grid.js`, loaded untouched.
 
 ## Structure
 
-| File | Purpose |
+| Path | Purpose |
 | --- | --- |
-| `index.html` | The whole page — hero, fifteen sections and the footer |
-| `styles.css` | Neo-Swiss type scale, layout system, and every transition |
-| `grid.js` | The hero's isometric cube grid: a canvas background that lights up around the cursor |
-| `site.js` | Scroll reveals, the demo carousel, the FAQ accordion and the orbiting tools story |
+| `src/engine/` | Motion tokens, input state (pointer + scroll velocity), scroll dolly, scene registry, hooks |
+| `src/ui/` | Cursor, nav/HUD, magnetic controls, text reveal primitives, print-shop decorations |
+| `src/scenes/` | The fifteen levels, in page order — each with one mechanic of its own |
+| `src/webgl/` | The depth field (Three.js, lazy-loaded after first paint) |
+| `src/styles/` | Tokens, base voices, UI, scenes |
+| `src/content/copy.js` | Every word on the site |
+| `public/grid.js` | The hero background animation (do not edit) |
 
 ## Running it locally
 
-Any static file server works:
-
 ```bash
-python3 -m http.server 5199
+npm install
+npm run dev
 ```
 
-Then open <http://localhost:5199>.
+Then open <http://localhost:5173>. `npm run build` writes the production
+bundle to `dist/`; `npm run preview` serves it.
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com) as a static site — no build command, output
-served from the repository root. Every push to `main` deploys automatically.
+Deployed on [Vercel](https://vercel.com) as a Vite project (`vercel.json`
+declares the framework, build command and output directory). Every push to
+`main` deploys automatically once the repository is imported.
 
 ## Accessibility and motion
 
-The page honours `prefers-reduced-motion`: the cursor-reactive hero grid, the scroll
-reveals, the carousel and the scroll-driven orbit all fall back to static layouts.
+Keyboard focus is visible everywhere; the accordion, level select and
+capability rows are operable from the keyboard. `prefers-reduced-motion` keeps
+the composition and the palette but drops the pinned scenes, the opening
+choreography and the scroll-driven camera for static layouts.

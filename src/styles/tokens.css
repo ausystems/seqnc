@@ -1,0 +1,68 @@
+/* =========================================================================
+   Design tokens — paper, ink, and one whisper of lavender.
+
+   Every surface reads its colours from four roles: --bg, --ink, --mid,
+   --line.  A black band simply redefines the four, so everything inside it
+   inverts by itself.
+   ========================================================================= */
+:root{
+  --cream:    #e8e4db;   /* the page */
+  --cream-2:  #f1eee7;   /* lighter paper for inset panels */
+  --paper:    #f8f6f1;   /* near white, highlights */
+  --cream-3:  #ddd8cd;   /* darker paper for pressed states */
+  --black:    #0c0c0c;
+  --lav:      #cfc8e4;   /* the whisper */
+  --lav-2:    #e3dfee;
+  --lav-deep: #7a6ec2;
+
+  /* roles, page default = ink on paper */
+  --bg:    var(--cream);
+  --ink:   var(--black);
+  --ink-2: #33322f;
+  --mid:   #6e6b64;
+  --mid-2: #a09c93;
+  --line:  rgba(12,12,12,.16);
+  --line-2:rgba(12,12,12,.34);
+  --line-3:rgba(12,12,12,.7);
+
+  --font-d: "Archivo", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-s: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --font-t: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* condensed, heavy, upper — the loudest voice on the page */
+  --wd:  68%;
+  --t-hero:  clamp(64px, min(11.2vw, 18.6vh), 210px);
+  --t-1:     clamp(56px, 9.6vw, 176px);
+  --t-2:     clamp(38px, 5.8vw, 104px);
+  --t-3:     clamp(22px, 2.3vw, 36px);
+  --t-4:     clamp(17px, 1.4vw, 22px);
+  --t-serif: clamp(24px, 2.6vw, 42px);   /* the serif deck line */
+  --t-body:  clamp(15px, 1.08vw, 18px);
+  --t-small: clamp(12.5px, .9vw, 14px);
+  --t-micro: 11px;
+
+  --gutter:  clamp(20px, 3.4vw, 64px);
+  --pad-s:   clamp(96px, 12vw, 200px);
+  --col-gap: clamp(16px, 1.6vw, 28px);
+
+  --ease-out:    cubic-bezier(.16, 1, .3, 1);
+  --ease-camera: cubic-bezier(.65, 0, .35, 1);
+  --ease-snap:   cubic-bezier(.34, 1.4, .64, 1);
+
+  --sv: 0;
+  --pv: 0;
+}
+
+/* a black band: same rules, inverted */
+.band, .hero{
+  --bg:    var(--black);
+  --ink:   var(--cream);
+  --ink-2: #d9d5cc;
+  --mid:   #a39f96;
+  --mid-2: #6f6c65;
+  --line:  rgba(232,228,219,.16);
+  --line-2:rgba(232,228,219,.34);
+  --line-3:rgba(232,228,219,.7);
+  color: var(--ink);
+}
+.band{ background: var(--bg); }

@@ -1,3 +1,7 @@
+# dependencies / build
+node_modules/
+dist/
+
 # macOS
 .DS_Store
 
@@ -6,6 +10,3 @@
 
 # vercel
 .vercel/
-
-# node
-node_modules/
