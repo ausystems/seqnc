@@ -40,7 +40,7 @@ const FRAG = /* glsl */`
     vec2 q  = p + vec2(0.0, uScroll * 0.14);
     vec2 id = floor(q / cell);
     vec2 g  = mod(q, cell) - cell * 0.5;
-    float stretch = 1.0 + abs(uScrollV) * 3.0;
+    float stretch = 1.0 + abs(uScrollV) * 0.8;
     float d = length(vec2(g.x, g.y / stretch));
     float dot_ = 1.0 - smoothstep(0.7 * uDpr, 1.5 * uDpr, d);
 
@@ -50,18 +50,18 @@ const FRAG = /* glsl */`
     float glow = 1.0 - smoothstep(0.0, r, dist);
     glow *= glow;
 
-    float ink = dot_ * (0.10 + 0.05 * hash(id) + glow * 0.32 + abs(uScrollV) * 0.06);
+    float ink = dot_ * (0.035 + 0.02 * hash(id) + glow * 0.09 + abs(uScrollV) * 0.015);
     vec3 col = uBase - vec3(ink);
 
     /* the whisper of lavender under the pointer, and over the whole sheet as atmosphere rises */
-    col = mix(col, uLav, glow * (0.22 + 0.18 * uSpeed) + uAtmo * 0.10);
+    col = mix(col, uLav, glow * 0.07 + uAtmo * 0.03);
 
     /* paper grain */
-    col += (hash(p * 0.41 + fract(uTime * 0.8)) - 0.5) * 0.022;
+    col += (hash(p * 0.41 + fract(uTime * 0.8)) - 0.5) * 0.006;
 
     /* the sheet is slightly darker toward its edges */
     float vg = smoothstep(1.6, 0.2, length(vUv - 0.5) * 1.5);
-    col *= 0.965 + 0.035 * vg;
+    col *= 0.985 + 0.015 * vg;
     gl_FragColor = vec4(col, 1.0);
   }
 `;

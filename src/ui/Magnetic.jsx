@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { finePointer, reduced } from '../engine/device.js';
 import { onFrame } from '../engine/input.js';
 
-export default function Magnetic({ as: Tag = 'a', className = '', strength = 0.3, radius = 44, cursor = 'link', children, ...rest }) {
+export default function Magnetic({ as: Tag = 'a', className = '', strength = 0.14, radius = 30, cursor = 'link', children, ...rest }) {
   const ref = useRef(null);
   const inner = useRef(null);
 

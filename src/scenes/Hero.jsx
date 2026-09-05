@@ -48,7 +48,7 @@ export default function Hero() {
     });
 
     gsap.set(hl, { perspective: 1000 });
-    gsap.set(lines, { yPercent: 112, rotateX: -30, z: -180, transformOrigin: '50% 100%' });
+    gsap.set(lines, { yPercent: 106 });
     gsap.set(tags, { x: -22, opacity: 0 });
     gsap.set(rule, { scaleX: 0 });
     gsap.set(brackets, { opacity: 0 });
@@ -59,7 +59,7 @@ export default function Hero() {
     tl.to(rule, { scaleX: 1, duration: 1.2 }, 0.1)
       .to(brackets, { opacity: 1, duration: 0.4 }, 0.25)
       .add(() => typeIn(label), 0.3)
-      .to(lines, { yPercent: 0, rotateX: 0, z: 0, duration: 1.5, stagger: 0.1 }, 0.45)
+      .to(lines, { yPercent: 0, duration: 1.6, stagger: 0.09 }, 0.45)
       .to(tags, { x: 0, opacity: 1, duration: 0.7, stagger: 0.05 }, 1.2)
       .to(lede, { opacity: 1, y: 0, duration: 0.9 }, 1.2)
       .to(ctas, { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.09, ease: EASE.snap }, 1.35)
@@ -74,9 +74,9 @@ export default function Hero() {
       const sk = gsap.quickTo(hl, 'skewX', { duration: 0.8, ease: 'power3' });
       const off = onFrame((s) => {
         if (!s.present) { xTo(0); yTo(0); sk(0); return; }
-        xTo((s.nx - 0.5) * -18);
-        yTo((s.ny - 0.5) * -10);
-        sk(gsap.utils.clamp(-2.2, 2.2, s.vx / 1200));
+        xTo((s.nx - 0.5) * -6);
+        yTo((s.ny - 0.5) * -3);
+        sk(0);
       });
       return () => { dead = true; off(); };
     }

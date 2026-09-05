@@ -11,7 +11,7 @@
   --paper:    #f8f6f1;   /* near white, highlights */
   --cream-3:  #ddd8cd;   /* darker paper for pressed states */
   --black:    #0c0c0c;
-  --lav:      #cfc8e4;   /* the whisper */
+  --lav:      #d9d4e8;   /* the whisper */
   --lav-2:    #e3dfee;
   --lav-deep: #7a6ec2;
 
@@ -30,13 +30,13 @@
   --font-t: "Inter", "Helvetica Neue", Arial, sans-serif;
 
   /* condensed, heavy, upper — the loudest voice on the page */
-  --wd:  68%;
-  --t-hero:  clamp(64px, min(11.2vw, 18.6vh), 210px);
-  --t-1:     clamp(56px, 9.6vw, 176px);
-  --t-2:     clamp(38px, 5.8vw, 104px);
+  --wd:  90%;
+  --t-hero:  clamp(52px, min(8.4vw, 15vh), 156px);
+  --t-1:     clamp(44px, 7vw, 124px);
+  --t-2:     clamp(30px, 4.2vw, 72px);
   --t-3:     clamp(22px, 2.3vw, 36px);
   --t-4:     clamp(17px, 1.4vw, 22px);
-  --t-serif: clamp(24px, 2.6vw, 42px);   /* the serif deck line */
+  --t-serif: clamp(22px, 2.2vw, 34px);   /* the serif deck line */
   --t-body:  clamp(15px, 1.08vw, 18px);
   --t-small: clamp(12.5px, .9vw, 14px);
   --t-micro: 11px;

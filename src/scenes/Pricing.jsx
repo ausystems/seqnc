@@ -53,7 +53,7 @@ export default function Pricing() {
       <div className="wrap">
         <div className="price" style={{ '--a': 1, '--b': 1 }}>
           {c.items.map((it, i) => (
-            <div key={it.name} className={`price__cell price__cell--${i} ${i === 0 ? 'band' : ''}`}>
+            <div key={it.name} className={`price__cell price__cell--${i} `}>
               <span className="u tag"><i aria-hidden="true">[</i>{it.kind}<i aria-hidden="true">]</i></span>
               <h3 className="dsp dsp--2">{it.name}</h3>
               <p className="small">{it.body}</p>

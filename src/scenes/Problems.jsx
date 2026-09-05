@@ -6,7 +6,6 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SceneHead, Lines, Display } from '../ui/Reveal.jsx';
-import { Chip } from '../ui/Deco.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
 import { reduced, finePointer } from '../engine/device.js';
 import { onFrame } from '../engine/input.js';
@@ -58,8 +57,8 @@ export default function Problems() {
   });
 
   const statement = [
-    <>Most service businesses <Chip kind="bars" /> do not have a people problem.</>,
-    <>They have a <Chip kind="wave" /> systems problem.</>,
+    c.statement[0],
+    c.statement[1],
   ];
 
   return (

@@ -53,7 +53,7 @@ export default function Tools() {
       gsap.set(orbit, { transformPerspective: 1400 });
       let active = false;
       const st = ScrollTrigger.create({ trigger: stage, start: 'top bottom', end: 'bottom top', onToggle: (s) => { active = s.isActive; if (!active) { rx(0); ry(0); } } });
-      const off = onFrame((s) => { if (!active || !s.present) return; ry((s.nx - 0.5) * 14); rx((s.ny - 0.5) * -10); });
+      const off = onFrame((s) => { if (!active || !s.present) return; ry((s.nx - 0.5) * 5); rx((s.ny - 0.5) * -4); });
       return () => { off(); st.kill(); };
     }
     return undefined;

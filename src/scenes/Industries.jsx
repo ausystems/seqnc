@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SceneHead, Lines } from '../ui/Reveal.jsx';
-import { Tear } from '../ui/Deco.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
 import { reduced, finePointer, DESKTOP, MOBILE } from '../engine/device.js';
 import { onFrame } from '../engine/input.js';
@@ -59,8 +58,8 @@ export default function Industries() {
         const off = onFrame((s) => {
           if (hot < 0) return;
           const r = items[hot].getBoundingClientRect();
-          tos[hot].ry(((s.x - r.left) / r.width - 0.5) * 9);
-          tos[hot].rx(-((s.y - r.top) / r.height - 0.5) * 6);
+          tos[hot].ry(((s.x - r.left) / r.width - 0.5) * 3);
+          tos[hot].rx(-((s.y - r.top) / r.height - 0.5) * 2);
         });
         return () => { off(); items.forEach((it) => { it.removeEventListener('pointerenter', over); it.removeEventListener('pointerleave', out); }); tl.kill(); };
       }
@@ -83,7 +82,6 @@ export default function Industries() {
       </div>
 
       <div className="ind__stage band">
-        <Tear pos="top" seed={5} />
         <div className="ind__clip">
         <div className="ind__axis" aria-hidden="true" />
         <div className="ind__track">
@@ -97,7 +95,6 @@ export default function Industries() {
           ))}
         </div>
         </div>
-        <Tear pos="bottom" seed={6} />
       </div>
 
       <div className="wrap ind__foot">

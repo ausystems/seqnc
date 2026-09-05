@@ -35,8 +35,7 @@ export default function Demos() {
         <SceneHead label={c.label} index="09" heading={c.heading} sub={c.sub} headingId="demo-h" />
       </div>
 
-      <div className="demo__film band">
-        <div className="film__sprockets" aria-hidden="true" />
+      <div className="demo__film wrap">
         <div className={rowClass} onPointerLeave={finePointer ? () => setActive(-1) : undefined}>
           {c.items.map((it, i) => (
             <article
@@ -60,7 +59,6 @@ export default function Demos() {
             </article>
           ))}
         </div>
-        <div className="film__sprockets" aria-hidden="true" />
       </div>
     </section>
   );

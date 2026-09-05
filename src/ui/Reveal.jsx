@@ -54,10 +54,10 @@ export function Display({ lines, as: Tag = 'h2', size = 1, className = '', dimLa
     const inner = el.querySelectorAll('.hl__in');
     if (reduced) return;
     gsap.set(el, { perspective: 900 });
-    gsap.set(inner, { yPercent: 108, rotateX: -18, z: -100, transformOrigin: '50% 100%' });
+    gsap.set(inner, { yPercent: 104 });
     ScrollTrigger.create({
       trigger: el, start, once: true,
-      onEnter: () => gsap.to(inner, { yPercent: 0, rotateX: 0, z: 0, duration: 1.3, ease: EASE.out, stagger: 0.09, delay }),
+      onEnter: () => gsap.to(inner, { yPercent: 0, duration: 1.4, ease: EASE.out, stagger: 0.08, delay }),
     });
   });
   return (

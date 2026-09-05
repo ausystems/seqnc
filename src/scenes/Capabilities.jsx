@@ -69,7 +69,7 @@ export default function Capabilities() {
       r.addEventListener('focus', enter);
       r.addEventListener('blur', hide);
     });
-    const off = finePointer && !reduced ? onFrame((s) => { if (hot) xTo((s.nx - 0.5) * -60); }) : null;
+    const off = finePointer && !reduced ? onFrame((s) => { if (hot) xTo((s.nx - 0.5) * -20); }) : null;
 
     return () => {
       if (off) off();

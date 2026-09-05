@@ -6,10 +6,8 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Label, Lines, Deck } from '../ui/Reveal.jsx';
-import { Tear, Bands, Halftone } from '../ui/Deco.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
-import { onFrame } from '../engine/input.js';
-import { reduced, finePointer, DESKTOP, MOBILE } from '../engine/device.js';
+import { reduced, DESKTOP, MOBILE } from '../engine/device.js';
 import { EASE } from '../engine/tokens.js';
 import { manifesto as c } from '../content/copy.js';
 
@@ -27,17 +25,14 @@ export default function Manifesto() {
     const strike = q('.mani__line')[0];
     const stats = q('.mani__stat');
     const nums = q('.mani__num[data-count]');
-    const disc = q('.mani__disc')[0];
     if (reduced) return undefined;
 
     gsap.set(q('.mani__hl'), { perspective: 900 });
-    gsap.set(lines, { yPercent: 108, rotateX: -22, z: -120, transformOrigin: '50% 100%' });
-    gsap.set(disc, { scale: 0.6, opacity: 0, rotate: -30 });
+    gsap.set(lines, { yPercent: 104 });
     ScrollTrigger.create({
       trigger: el, start: 'top 70%', once: true,
       onEnter: () => {
-        gsap.to(lines, { yPercent: 0, rotateX: 0, z: 0, duration: 1.3, ease: EASE.out, stagger: 0.09 });
-        gsap.to(disc, { scale: 1, opacity: 1, rotate: 0, duration: 1.6, ease: EASE.out, delay: 0.3 });
+        gsap.to(lines, { yPercent: 0, duration: 1.4, ease: EASE.out, stagger: 0.08 });
       },
     });
 
@@ -45,8 +40,7 @@ export default function Manifesto() {
       const tl = gsap.timeline({ defaults: { ease: 'none' } });
       tl.fromTo(strike, { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0)
         .to(chars, {
-          y: () => gsap.utils.random(-14, 14, 1), rotate: () => gsap.utils.random(-5, 5, 1),
-          opacity: 0.34, duration: 0.5, ease: 'power2.inOut', stagger: { each: 0.03, from: 'center' },
+          opacity: 0.4, duration: 0.5, ease: 'power2.inOut', stagger: { each: 0.03, from: 'center' },
         }, 0.18)
         .fromTo(stats, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', stagger: 0.07 }, 0.3);
       nums.forEach((n) => {
@@ -67,20 +61,13 @@ export default function Manifesto() {
       ScrollTrigger.create({ trigger: q('.mani__strike')[0], start: 'top 62%', once: true, onEnter: () => tl.play() });
     });
 
-    let off = null;
-    if (finePointer) {
-      const dx = gsap.quickTo(disc, 'x', { duration: 1.4, ease: 'power3' });
-      const dy = gsap.quickTo(disc, 'y', { duration: 1.4, ease: 'power3' });
-      off = onFrame((s) => { if (!s.present) return; dx((s.nx - 0.5) * -34); dy((s.ny - 0.5) * -24); });
-    }
-    return () => { mm.revert(); if (off) off(); };
+    return () => mm.revert();
   });
 
   const plain = c.heading.slice(0, -1), word = c.heading[c.heading.length - 1];
 
   return (
     <section ref={ref} id="what" className="scene mani" aria-labelledby="mani-h">
-      <Tear pos="below" seed={11} />
       <div className="mani__pin wrap">
         <div className="scene__meta">
           <Label>{c.label}</Label>
@@ -100,9 +87,7 @@ export default function Manifesto() {
               </span>
             </h2>
           </div>
-          <Halftone className="mani__disc" seed={4} />
         </div>
-        <Bands className="mani__bands" />
         <Deck className="mani__sub">{c.sub}</Deck>
 
         <ul className="mani__stats" aria-label="Key facts">

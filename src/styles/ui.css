@@ -14,7 +14,7 @@
 .nav > *{ pointer-events:auto; }
 .nav.is-hidden{ transform:translateY(-100%); }
 .nav .u{ color:rgba(255,255,255,.7); }
-.nav__brand{ display:inline-flex; align-items:center; gap:10px; font-family:var(--font-d); font-stretch:78%; font-weight:800; font-size:22px; letter-spacing:-.02em; text-transform:uppercase; }
+.nav__brand{ display:inline-flex; align-items:center; gap:10px; font-family:var(--font-d); font-stretch:92%; font-weight:500; font-size:20px; letter-spacing:-.03em; }
 .nav__mark{ width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 .nav__hud{ display:inline-flex; align-items:center; gap:10px; justify-self:start; margin-left:clamp(24px, 4vw, 72px); white-space:nowrap; }
 .nav__hudk{ color:rgba(255,255,255,.45); }
@@ -35,14 +35,14 @@
 .cur__dot{ position:absolute; left:0; top:0; width:5px; height:5px; margin:-2.5px 0 0 -2.5px; border-radius:50%; background:#fff; opacity:0; }
 .cur__ring{
   position:absolute; left:0; top:0; width:28px; height:28px; margin:-14px 0 0 -14px;
-  border-radius:50%; border:1px solid rgba(255,255,255,.8); opacity:0;
+  border-radius:50%; border:1px solid rgba(255,255,255,.45); opacity:0;
   display:flex; align-items:center; justify-content:center;
   transition:width .45s var(--ease-out), height .45s var(--ease-out), margin .45s var(--ease-out), background .3s;
 }
 .cur__word{ font:500 10px/1 var(--font-t); letter-spacing:.14em; text-transform:uppercase; color:#000; opacity:0; transition:opacity .25s; }
-.cur__ring[data-state="link"]{ width:40px; height:40px; margin:-20px 0 0 -20px; }
+.cur__ring[data-state="link"]{ width:36px; height:36px; margin:-18px 0 0 -18px; }
 .cur__ring[data-state="play"], .cur__ring[data-state="open"], .cur__ring[data-state="drag"], .cur__ring[data-state="scan"]{
-  width:66px; height:66px; margin:-33px 0 0 -33px; background:#fff; border-color:#fff;
+  width:56px; height:56px; margin:-28px 0 0 -28px; background:#fff; border-color:#fff;
 }
 .cur__ring[data-state="play"] .cur__word, .cur__ring[data-state="open"] .cur__word,
 .cur__ring[data-state="drag"] .cur__word, .cur__ring[data-state="scan"] .cur__word{ opacity:1; }
@@ -78,7 +78,7 @@
 .mock__value em{ font-style:normal; font-size:.5em; color:var(--mid); margin-left:3px; }
 .mock__head{ display:flex; justify-content:space-between; align-items:flex-start; }
 .mock__tag{ display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border:1px solid var(--line-2); border-radius:999px; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); }
-.mock__tag i{ width:5px; height:5px; border-radius:50%; background:var(--lav); animation:pulse 2.2s ease-in-out infinite; }
+.mock__tag i{ width:5px; height:5px; border-radius:50%; background:var(--cream); animation:pulse 3s ease-in-out infinite; }
 @keyframes pulse{ 0%,100%{ opacity:1 } 50%{ opacity:.25 } }
 .mock__rule{ height:1px; margin:clamp(14px,1.6vw,22px) 0 auto; background:var(--line); }
 .mock__foot{ display:flex; justify-content:space-between; margin-top:14px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--mid); }

@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Magnetic from '../ui/Magnetic.jsx';
-import { Tear } from '../ui/Deco.jsx';
 import { useGsap, useScene } from '../engine/hooks.js';
 import { useScroll } from '../engine/scroll.jsx';
 import { reduced, finePointer } from '../engine/device.js';
@@ -59,7 +58,6 @@ export default function Footer() {
 
   return (
     <footer ref={ref} className="foot band" aria-label="Footer">
-      <Tear pos="top" seed={17} />
       <div className="wrap g12 foot__grid">
         <div className="foot__col foot__col--a">
           <span className="u tag"><i aria-hidden="true">[</i>{brand.domain}<i aria-hidden="true">]</i></span>
