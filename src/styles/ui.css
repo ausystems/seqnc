@@ -61,7 +61,7 @@
 /* accordion */
 .acc{ border-top:1px solid var(--line); }
 .acc__item{ border-bottom:1px solid var(--line); }
-.acc__btn{ width:100%; display:grid; grid-template-columns:52px 1fr 40px; align-items:baseline; gap:12px; padding:26px 0; text-align:left; color:var(--text); }
+.acc__btn{ width:100%; display:grid; grid-template-columns:52px 1fr 40px; align-items:baseline; gap:12px; padding:22px 0; text-align:left; color:var(--text); }
 .acc__i{ font-family:var(--font-m); font-size:var(--t-mono); letter-spacing:.14em; color:var(--text-3); transition:color var(--dur-hover); }
 .acc__q{ font-family:var(--font-d); font-size:var(--t-3); font-weight:500; letter-spacing:-.02em; line-height:1.25; }
 .acc__x{ position:relative; width:14px; height:14px; justify-self:end; align-self:center; }
@@ -98,3 +98,13 @@
 
 /* fine grain for the night chapters */
 .grain{ position:absolute; inset:0; pointer-events:none; opacity:.055; mix-blend-mode:screen; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:180px 180px; }
+
+/* touch: every inline link and control reaches a comfortable hit area without moving the layout */
+@media (pointer: coarse){
+  .lnk, .mlnk{ padding-top:11px; padding-bottom:11px; margin-top:-11px; margin-bottom:-11px; }
+  .lnk{ display:inline-block; }
+  .btn{ min-height:54px; }
+  .acc__btn{ min-height:56px; }
+  a:active, button:active{ opacity:.7; }
+  .btn:active{ opacity:1; }
+}

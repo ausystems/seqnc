@@ -42,7 +42,7 @@ export default function Process() {
     }
     gsap.to(el.querySelector('.ring__hex'), { rotation: 360, transformOrigin: '50% 50%', duration: 40, ease: 'none', repeat: -1 });
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: el.querySelector('.process__pin'), start: 'top top', end: '+=240%', pin: true, scrub: .7, anticipatePin: 1 },
+      scrollTrigger: { trigger: el.querySelector('.process__pin'), start: 'top top', end: '+=140%', pin: true, scrub: .7, anticipatePin: 1 },
     });
     tl.fromTo(prog, { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 1 }, 0)
       .fromTo(arc, { strokeDashoffset: C }, { strokeDashoffset: 0, ease: 'none', duration: 1 }, 0);

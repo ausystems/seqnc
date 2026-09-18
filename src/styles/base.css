@@ -1,7 +1,7 @@
 *,*::before,*::after{ box-sizing:border-box; }
 html{ background:var(--paper); -webkit-text-size-adjust:100%; scroll-padding-top:calc(var(--nav-h) + 8px); }
 body{
-  margin:0; background:var(--surface); color:var(--text);
+  margin:0; background:var(--surface); color:var(--text); -webkit-tap-highlight-color:transparent;
   font-family:var(--font-d); font-size:var(--t-body); font-weight:500; line-height:1.6;
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
   overflow-x:clip;

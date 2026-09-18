@@ -25,7 +25,7 @@ export function Brand({ className = '' }) {
   return (
     <A to="/" name="Seqnc" className={`brand ${className}`} aria-label="Seqnc Automations, home">
       <Mark className="brand__mark" />
-      <span className="brand__w"><span className="brand__name">Seqnc</span><span className="brand__sub">Automations</span></span>
+      <span className="brand__w" aria-hidden="true"><span className="brand__name">Seqnc</span><span className="brand__sub">Automations</span></span>
     </A>
   );
 }
