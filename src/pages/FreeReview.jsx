@@ -17,6 +17,7 @@ export default function FreeReview() {
     <>
       <Seo title={t.seo.review.title} description={t.seo.review.description} />
       <section className="page review" aria-labelledby="review-title">
+        <div className="review__obj" aria-hidden="true"><img src="/ring.webp" alt="" width="1200" height="1200" decoding="async" /></div>
         <div className="wrap">
           <Fade now delay={.1}><Eyebrow>{r.label}</Eyebrow></Fade>
           <Lines as="h1" id="review-title" className="dsp dsp--hero review__title" now delay={.2}>

@@ -110,7 +110,15 @@ export default function Nav() {
   useEffect(() => { close(); }, [location, close]);
   useEffect(() => {
     if (!open) return undefined;
-    const onKey = (e) => { if (e.key === 'Escape') { close(); menuBtn.current && menuBtn.current.focus(); } };
+    const onKey = (e) => {
+      if (e.key === 'Escape') { close(); menuBtn.current && menuBtn.current.focus(); return; }
+      if (e.key !== 'Tab' || !menuRef.current) return;
+      /* keep focus inside the open menu */
+      const items = [menuBtn.current, ...menuRef.current.querySelectorAll('a, button')].filter(Boolean);
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     window.addEventListener('keydown', onKey);
     const first = menuRef.current && menuRef.current.querySelector('a');
     first && setTimeout(() => first.focus(), 400);

@@ -44,6 +44,7 @@ export default defineConfig({
   preview: { port: Number(process.env.PORT) || 4173 },
   build: {
     target: 'es2020',
+    chunkSizeWarningLimit: 600, /* three loads in its own chunk on demand */
     cssCodeSplit: false,
     rollupOptions: {
       output: {
