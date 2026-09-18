@@ -17,6 +17,7 @@
 .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; overflow:hidden; background:var(--surface); }
 .hero__glow{ position:absolute; z-index:0; right:-12vw; top:4%; width:76vw; height:92%; background:radial-gradient(closest-side, rgba(124,77,204,.17), rgba(126,154,245,.06) 55%, rgba(124,77,204,0) 72%); filter:blur(28px); pointer-events:none; }
 .hero__obj{ position:absolute; z-index:1; top:50%; right:-15vw; width:min(66vw, 1040px); aspect-ratio:1; transform:translateY(-52%); pointer-events:none; }
+.hero__shadow{ position:absolute; left:14%; right:14%; top:58%; height:34%; border-radius:50%; background:radial-gradient(closest-side, rgba(60,24,140,.30), rgba(60,24,140,0)); filter:blur(34px); transform:translateY(8%); }
 .hero__body{ position:relative; z-index:2; flex:1; display:flex; align-items:center; width:100%; padding-top:calc(var(--nav-h) + 4vh); padding-bottom:6vh; }
 .hero__copy{ width:100%; max-width:min(52%, 720px); }
 .hero__title{ margin:26px 0 30px; max-width:12ch; }
@@ -130,6 +131,7 @@
 .work__soon{ margin-top:clamp(48px, 6vw, 88px); max-width:66ch; color:var(--text-3); padding-top:22px; border-top:1px solid var(--line); }
 
 /* ----- live demos ----- */
+.demos{ padding-bottom:calc(var(--pad) + var(--r-l)); }
 .demos__title{ margin-top:28px; max-width:16ch; }
 .demos__body{ margin-top:28px; }
 .demos__list{ margin-top:clamp(56px, 7vw, 100px); border-top:1px solid var(--line); }
@@ -166,8 +168,9 @@
 .dvis__spend{ margin-left:auto; color:var(--text); }
 
 /* ----- the TimeBack Method (night) ----- */
-.process{ position:relative; background:var(--surface); color:var(--text); }
-.process::before{ content:""; position:absolute; inset:0; background:radial-gradient(50% 60% at 88% 12%, rgba(124,77,204,.28), rgba(124,77,204,0) 70%); pointer-events:none; }
+.process{ position:relative; z-index:2; background:var(--surface); color:var(--text); border-radius:var(--r-l) var(--r-l) 0 0; margin-top:calc(var(--r-l) * -1); }
+.process::before{ content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(50% 60% at 88% 12%, rgba(124,77,204,.28), rgba(124,77,204,0) 70%); pointer-events:none; }
+.process .grain{ border-radius:inherit; }
 .process__pin{ min-height:100svh; display:flex; align-items:center; }
 .process__inner{ width:100%; display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:var(--gap); row-gap:clamp(40px, 5vw, 80px); padding-top:calc(var(--nav-h) + 4vh); padding-bottom:7vh; align-items:end; }
 .process__head{ grid-column:1 / span 7; }

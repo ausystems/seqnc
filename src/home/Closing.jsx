@@ -11,6 +11,7 @@ export default function Closing() {
     <section className="closing" aria-labelledby="closing-title">
       <div className="wrap">
         <div className="closing__panel" data-theme="dark">
+          <i className="grain" aria-hidden="true" />
           <p className="closing__ghost" aria-hidden="true">Seqnc</p>
           <div className="closing__obj"><Ribbon variant="ring" /></div>
           <div className="closing__copy">

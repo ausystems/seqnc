@@ -40,6 +40,7 @@ export default function Process() {
       if (counter) counter.textContent = t.ui.stepOf(total, total);
       return () => theme.kill();
     }
+    gsap.to(el.querySelector('.ring__hex'), { rotation: 360, transformOrigin: '50% 50%', duration: 40, ease: 'none', repeat: -1 });
     const tl = gsap.timeline({
       scrollTrigger: { trigger: el.querySelector('.process__pin'), start: 'top top', end: '+=240%', pin: true, scrub: .7, anticipatePin: 1 },
     });
@@ -62,6 +63,7 @@ export default function Process() {
 
   return (
     <section className="process" id="process" data-theme="dark" ref={ref} aria-labelledby="process-title" data-pinned={pinned ? '1' : '0'}>
+      <i className="grain" aria-hidden="true" />
       <div className="process__pin">
         <div className="wrap process__inner">
           <div className="process__head">

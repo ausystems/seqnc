@@ -2,7 +2,10 @@
    Live demos.  Three real, sample-data systems, each previewed in its own
    small interface and linked to the page where it actually runs.
    ========================================================================= */
+import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
+import { useGsap } from '../engine/hooks.js';
+import { reduced } from '../engine/device.js';
 import Eyebrow from '../ui/Eyebrow.jsx';
 import { Lines, Fade } from '../ui/Reveal.jsx';
 import { Arrow } from '../ui/Icons.jsx';
@@ -45,16 +48,38 @@ function OutboundVis({ d }) {
   );
 }
 
+/* each preview plays its small story once it is in view: checks tick on,
+   the progress bar fills, rows arrive */
+function useAlive() {
+  return useGsap((_, el) => {
+    if (reduced) return;
+    el.querySelectorAll('.dvis').forEach((vis) => {
+      const tl = gsap.timeline({ scrollTrigger: { trigger: vis, start: 'top 78%', once: true } });
+      const rows = vis.querySelectorAll('li');
+      tl.from(rows, { opacity: 0, x: -10, duration: .7, ease: 'expo.out', stagger: .12 }, 0);
+      const checks = vis.querySelectorAll('.chk--on');
+      if (checks.length) tl.from(checks, { scale: 0, transformOrigin: '50% 50%', duration: .5, ease: 'back.out(2)', stagger: .18 }, .35);
+      const bar = vis.querySelector('.dvis__prog i');
+      if (bar) tl.from(bar, { scaleX: 0, transformOrigin: 'left center', duration: 1.2, ease: 'power3.inOut' }, .4);
+      const est = vis.querySelector('.dvis__est');
+      if (est) tl.from(est, { opacity: 0, y: 8, duration: .8, ease: 'expo.out' }, .9);
+      const spends = vis.querySelectorAll('.dvis__spend');
+      if (spends.length) tl.from(spends, { opacity: 0, duration: .6, stagger: .12 }, .5);
+    });
+  }, []);
+}
+
 export default function Demos() {
   const { t } = useT();
   const d = t.demos;
+  const ref = useAlive();
   const list = [
     { key: 'inbound', data: d.inbound, Vis: InboundVis },
     { key: 'operations', data: d.operations, Vis: OperationsVis },
     { key: 'outbound', data: d.outbound, Vis: OutboundVis },
   ];
   return (
-    <section className="section demos" id="demos" aria-labelledby="demos-title">
+    <section className="section demos" id="demos" ref={ref} aria-labelledby="demos-title">
       <div className="wrap">
         <Fade><Eyebrow n="04">{d.label}</Eyebrow></Fade>
         <Lines as="h2" id="demos-title" className="dsp dsp--1 demos__title">{d.titleLines[0]}<br /><span className="dim">{d.titleLines[1]}</span></Lines>

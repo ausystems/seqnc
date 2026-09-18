@@ -6,6 +6,7 @@ import { I18nProvider, useT } from './i18n.jsx';
 import { ScrollProvider } from './engine/scroll.jsx';
 import { TransitionProvider } from './engine/transition.jsx';
 import Nav from './ui/Nav.jsx';
+import Intro from './ui/Intro.jsx';
 import Footer from './ui/Footer.jsx';
 import Home from './home/Home.jsx';
 import FreeReview from './pages/FreeReview.jsx';
@@ -31,6 +32,7 @@ function Shell() {
   const location = useLocation();
   return (
     <TransitionProvider>
+      <Intro />
       <Nav />
       <main id="main" tabIndex={-1}>
         <Routes location={location} key={location.pathname}>

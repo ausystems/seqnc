@@ -52,9 +52,19 @@ export default function Nav() {
   const menuBtn = useRef(null);
   const home = location.pathname === '/';
 
-  /* solid after the page moves */
+  /* solid after the page moves; steps aside while reading down, returns on the way up */
+  const [hide, setHide] = useState(false);
   useEffect(() => {
-    const on = () => setSolid(window.scrollY > 24);
+    let last = window.scrollY;
+    const on = () => {
+      const y = window.scrollY;
+      setSolid(y > 24);
+      const d = y - last;
+      if (y < 160) setHide(false);
+      else if (d > 6) setHide(true);
+      else if (d < -6) setHide(false);
+      last = y;
+    };
     on();
     window.addEventListener('scroll', on, { passive: true });
     return () => window.removeEventListener('scroll', on);
@@ -110,7 +120,7 @@ export default function Nav() {
   return (
     <>
       <a className="skip" href="#main">{t.ui.skip}</a>
-      <header className="nav" data-solid={solid || open ? '1' : '0'} data-theme={theme === 'dark' && !open ? 'dark' : undefined}>
+      <header className="nav" data-solid={solid || open ? '1' : '0'} data-hide={hide && !open ? '1' : '0'} data-theme={theme === 'dark' && !open ? 'dark' : undefined}>
         <Brand />
         <nav className="nav__links" aria-label="Site">
           {SECTIONS.map((s) => (

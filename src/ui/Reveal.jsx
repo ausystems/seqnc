@@ -8,6 +8,7 @@ import { SplitText } from 'gsap/SplitText';
 import { reduced } from '../engine/device.js';
 import { useFontsReady } from '../engine/hooks.js';
 import { useT } from '../i18n.jsx';
+import { introDelay } from '../engine/intro.js';
 
 gsap.registerPlugin(SplitText);
 
@@ -23,7 +24,7 @@ export function Lines({ as: Tag = 'div', className = '', children, now = false, 
       type: 'lines', mask: 'lines', linesClass: 'sl', autoSplit: true,
       onSplit(self) {
         tween = gsap.from(self.lines, {
-          yPercent: 112, duration: 1.25, ease: 'expo.out', stagger, delay,
+          yPercent: 112, duration: 1.25, ease: 'expo.out', stagger, delay: delay + (now ? introDelay() : 0),
           scrollTrigger: now ? undefined : { trigger: el, start, once: true },
         });
         return tween;
@@ -46,7 +47,7 @@ export function Fade({ as: Tag = 'div', className = '', children, now = false, d
     if (!el || reduced) return undefined;
     const targets = stagger ? Array.from(el.children) : el;
     const tw = gsap.from(targets, {
-      opacity: 0, y, duration: 1.05, ease: 'expo.out', delay, stagger,
+      opacity: 0, y, duration: 1.05, ease: 'expo.out', delay: delay + (now ? introDelay() : 0), stagger,
       scrollTrigger: now ? undefined : { trigger: el, start, once: true },
       clearProps: 'transform',
     });

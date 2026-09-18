@@ -183,6 +183,8 @@ export function createRibbon(canvas, opts = {}) {
       state.rx += (tx - state.rx) * Math.min(1, dt * 2.4);
       state.ry += (ty - state.ry) * Math.min(1, dt * 2.4);
       group.rotation.y += state.ry * 0.02;
+      /* a fast scroll gives the band a little extra turn */
+      group.rotation.y += (pointer.sv || 0) * dt * 0.9;
     }
     mesh.morphTargetInfluences[0] = state.t;
     if (variant === 'hero') {

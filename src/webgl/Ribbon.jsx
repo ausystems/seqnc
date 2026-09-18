@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { dpr, lowPower, reduced, touch } from '../engine/device.js';
 import { input } from '../engine/input.js';
+import { introDelay } from '../engine/intro.js';
 
 export default function Ribbon({ variant = 'hero', className = '' }) {
   const canvasRef = useRef(null);
@@ -35,7 +36,7 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
       /* the resolution: loose loop to ring, then a slow breath around it */
       if (variant === 'hero') {
         intro = gsap.timeline()
-          .to(app.state, { t: 0.86, duration: 3.2, ease: 'power3.inOut', delay: 0.4 })
+          .to(app.state, { t: 0.86, duration: 3.2, ease: 'power3.inOut', delay: 0.4 + introDelay() })
           .to(app.state, { t: 0.78, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
       }
       let last = performance.now();

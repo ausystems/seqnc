@@ -6,6 +6,7 @@
 import { useT } from '../i18n.jsx';
 import { useGsap } from '../engine/hooks.js';
 import { reduced } from '../engine/device.js';
+import { introDelay } from '../engine/intro.js';
 import { A } from '../engine/transition.jsx';
 import Eyebrow from '../ui/Eyebrow.jsx';
 import Button from '../ui/Button.jsx';
@@ -25,7 +26,7 @@ export default function Hero() {
     <section className="hero" ref={ref} aria-labelledby="hero-title">
       <div className="gridlines" aria-hidden="true">{LINES.map((i) => <i key={i} style={{ '--i': i }} />)}</div>
       <div className="hero__glow" aria-hidden="true" />
-      <div className="hero__obj"><Ribbon variant="hero" /></div>
+      <div className="hero__obj"><i className="hero__shadow" aria-hidden="true" /><Ribbon variant="hero" /></div>
       <div className="wrap hero__body">
         <div className="hero__copy">
           <Fade now delay={.1} className="hero__eyebrow"><Eyebrow>{t.hero.label}</Eyebrow></Fade>
@@ -54,10 +55,11 @@ export default function Hero() {
 
 import { gsap } from 'gsap';
 function gsap_intro(el) {
+  const d = introDelay();
   const lines = el.querySelectorAll('.gridlines i');
-  gsap.from(lines, { scaleY: 0, duration: 1.6, ease: 'expo.out', stagger: .06, delay: .15 });
-  gsap.from(el.querySelector('.hero__obj'), { opacity: 0, scale: .94, duration: 1.8, ease: 'expo.out', delay: .25 });
-  gsap.from(el.querySelector('.hero__strip'), { opacity: 0, duration: 1.2, delay: 1.1 });
+  gsap.from(lines, { scaleY: 0, duration: 1.6, ease: 'expo.out', stagger: .06, delay: d + .15 });
+  gsap.from(el.querySelector('.hero__obj'), { opacity: 0, scale: .94, duration: 1.8, ease: 'expo.out', delay: d + .25 });
+  gsap.from(el.querySelector('.hero__strip'), { opacity: 0, duration: 1.2, delay: d + 1.1 });
   /* the sentence drifts up a little slower than the page, the object a little faster */
   gsap.to(el.querySelector('.hero__copy'), { yPercent: -10, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true } });
 }
