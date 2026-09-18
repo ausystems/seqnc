@@ -1,0 +1,16 @@
+/* The SEQNC frame around every live demo: one slim night bar that says
+   whose demo this is, that the data is sample data, and the way back. */
+@font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/Manrope-200-800-normal-latin.woff2) format("woff2")}
+@font-face{font-family:"Azeret Mono";font-style:normal;font-weight:300 600;font-display:swap;src:url(/fonts/AzeretMono-300-600-normal-latin.woff2) format("woff2")}
+.seqnc-frame{ position:relative; z-index:400; display:flex; align-items:center; gap:22px; height:44px; padding:0 22px; background:#0E0820; color:#F4F1F8; font-family:"Azeret Mono",ui-monospace,Menlo,monospace; font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; line-height:1; }
+.seqnc-frame__brand{ display:inline-flex; align-items:center; gap:9px; color:#F4F1F8; text-decoration:none; font-family:"Manrope",system-ui,sans-serif; font-weight:800; font-size:15px; letter-spacing:-.04em; text-transform:none; }
+.seqnc-frame__brand svg{ width:20px; height:20px; display:block; }
+.seqnc-frame__tag{ display:inline-flex; align-items:center; gap:10px; color:#B4ACC4; }
+.seqnc-frame__tag::before{ content:""; width:16px; height:1px; background:#A861E6; }
+.seqnc-frame__note{ color:#8F86A8; }
+.seqnc-frame__back{ margin-left:auto; display:inline-flex; align-items:center; gap:10px; color:#F4F1F8; text-decoration:none; white-space:nowrap; }
+.seqnc-frame__back svg{ width:14px; height:10px; transition:transform .4s cubic-bezier(.16,1,.3,1); }
+.seqnc-frame__back:hover svg{ transform:translateX(-4px); }
+.seqnc-frame__back:focus-visible, .seqnc-frame__brand:focus-visible{ outline:2px solid #C9AEF5; outline-offset:3px; }
+@media (max-width:760px){ .seqnc-frame__note{ display:none; } .seqnc-frame{ gap:14px; padding:0 16px; } }
+@media (max-width:480px){ .seqnc-frame__tag{ display:none; } }

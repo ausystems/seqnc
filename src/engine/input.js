@@ -1,5 +1,5 @@
 /* =========================================================================
-   Input state — the player's hands.
+   Input state: the player's hands.
 
    Pointer position, velocity and acceleration; scroll velocity and
    direction; how hard the player is interacting.  Sampled once per frame
@@ -100,7 +100,7 @@ function tick(_t, dtMs) {
 
   input.intensity = lerp(input.intensity, clamp(Math.abs(input.sv) * 0.8 + input.speed * 0.6, 0, 1), 0.1);
 
-  /* expose the two values CSS can use — written only when they move */
+  /* expose the two values CSS can use: written only when they move */
   const npv = Math.round(input.speed * 100) / 100;
   if (npv !== pv) { pv = npv; document.documentElement.style.setProperty('--pv', pv); }
   document.documentElement.style.setProperty('--sv', input.sv.toFixed(3));

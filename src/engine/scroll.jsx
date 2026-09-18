@@ -1,5 +1,5 @@
 /* =========================================================================
-   Scroll — the camera dolly.
+   Scroll: the camera dolly.
 
    Lenis carries the momentum on fine-pointer devices so the page moves like
    a camera on a rail; touch devices keep their native feel; reduced motion
@@ -20,12 +20,13 @@ export function ScrollProvider({ children }) {
   const api = useMemo(() => ({ lenis: null, scrollTo: (target, opts) => nativeScrollTo(target, opts) }), []);
 
   useEffect(() => {
-    if (reduced || !finePointer) {
+    const native = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('native');
+    if (reduced || !finePointer || native) {
       ScrollTrigger.refresh();
       return undefined;
     }
     const lenis = new Lenis({
-      lerp: 0.085,
+      lerp: 0.09,
       wheelMultiplier: 1,
       smoothWheel: true,
       syncTouch: false,
@@ -41,12 +42,16 @@ export function ScrollProvider({ children }) {
 
     /* hash links go through the dolly too */
     const onClick = (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a || a.getAttribute('href') === '#') return;
-      const el = document.querySelector(a.getAttribute('href'));
+      const a = e.target.closest('a[href^="#"], a[href^="/#"]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      const hash = href.slice(href.indexOf('#'));
+      if (hash === '#' || (href.startsWith('/#') && window.location.pathname !== '/')) return;
+      const el = document.querySelector(hash);
       if (!el) return;
       e.preventDefault();
-      api.scrollTo(el);
+      api.scrollTo(el, { offset: -8 });
+      if (window.history.replaceState) window.history.replaceState(null, '', hash);
     };
     document.addEventListener('click', onClick);
 
@@ -62,10 +67,11 @@ export function ScrollProvider({ children }) {
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }
 
-function nativeScrollTo(target) {
+function nativeScrollTo(target, opts = {}) {
   const el = typeof target === 'string' ? document.querySelector(target) : target;
   if (!el) { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); return; }
-  el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+  const top = el.getBoundingClientRect().top + window.scrollY + (opts.offset || 0);
+  window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
 }
 
 export const useScroll = () => useContext(Ctx);

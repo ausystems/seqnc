@@ -1,29 +1,39 @@
-# Seqnc.ai
+# Seqnc Automations
 
-Marketing site for **Seqnc.ai** — business automation for service businesses.
+The marketing site for **Seqnc Automations** (seqnc.ca): custom Inbound,
+Operations and Outbound systems for service businesses, built around
+The TimeBack Method™.
 
-Built as a single-page interactive experience: React + Vite, GSAP (ScrollTrigger,
-SplitText) for the motion engine, Lenis for the scroll dolly, and a small
-Three.js shader for the depth field beneath the page.
+React + Vite, GSAP (ScrollTrigger, SplitText, DrawSVG, MotionPath) for the
+motion, Lenis for the scroll on fine-pointer devices, and one Three.js scene:
+a band of violet chrome that resolves from a loose loop into a ring.
 
 ## Design system
 
-Light room, dark objects. A neutral off-white page, Archivo for display type
-in sentence case, Inter for everything else, one ink and three greys. The
-hero is a small Three.js scene of matte cubes; the section illustrations are
-white interfaces floating in shallow CSS 3D. Motion is slow and quiet, and
-`prefers-reduced-motion` keeps every composition static.
+The brand's own violet (`#7C4DCC`, `#A861E6`, `#C9AEF5`) and night
+(`#0E0820`) on paper. Manrope for display and body, Azeret Mono for labels,
+numbers and controls, Instrument Serif italic for one accent line per
+composition. Tokens live in `src/styles/tokens.css`.
 
 ## Structure
 
 | Path | Purpose |
 | --- | --- |
-| `src/engine/` | Motion tokens, input state (pointer + scroll velocity), scroll dolly, scene registry, hooks |
-| `src/ui/` | Nav, magnetic controls, text reveal primitives, the section visuals |
-| `src/scenes/` | The eleven sections, in page order |
-| `src/webgl/` | The hero cube scene (Three.js, loaded after mount) |
-| `src/styles/` | Tokens, base voices, UI, scenes |
-| `src/content/copy.js` | Every word on the site |
+| `src/content/en.js`, `src/content/fr.js` | Every word on the site, both languages |
+| `src/i18n.jsx` | Language state, remembered under `seqnc-lang` |
+| `src/engine/` | Device flags, motion tokens, input sampling, scroll dolly, route transition, hooks |
+| `src/ui/` | Nav and menu, footer, button, reveal primitives, mark, icons |
+| `src/home/` | The homepage chapters, in page order |
+| `src/pages/` | The free review, privacy, terms, 404 |
+| `src/webgl/` | The ribbon scene and its React host |
+| `public/demo/` | The three live demos (self-contained static apps) with the Seqnc frame |
+| `public/fonts/` | Self-hosted woff2 subsets |
+
+## Routes
+
+`/`, `/free-review`, `/privacy`, `/terms`, plus the static demos at
+`/demo/inbound/`, `/demo/operations/`, `/demo/outbound/`. Anything else is
+the 404 page. Booking goes to Calendly; contact is by email.
 
 ## Running it locally
 
@@ -32,17 +42,19 @@ npm install
 npm run dev
 ```
 
-Then open <http://localhost:5173>. `npm run build` writes the production
-bundle to `dist/`; `npm run preview` serves it.
+`npm run build` writes the production bundle to `dist/`; `npm run preview`
+serves it. In dev, `?native` disables the smooth scroll and `?poster`
+exposes `window.__seqncPoster` for re-rendering the ribbon stills in
+`public/` (they post to the dev-only `/__poster` endpoint).
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com) as a Vite project (`vercel.json`
-declares the framework, build command and output directory). Every push to
-`main` deploys automatically once the repository is imported.
+Vercel, as a Vite project (`vercel.json`). The SPA rewrite excludes
+`/demo/`, `/assets/` and `/fonts/` so the static demos are served as files.
 
 ## Accessibility and motion
 
-Keyboard focus is visible everywhere and the accordion is operable from the keyboard. `prefers-reduced-motion` keeps
-the composition and the palette but drops the pinned scenes, the opening
-choreography and the scroll-driven camera for static layouts.
+Semantic landmarks, a skip link, visible focus everywhere, a keyboard
+accordion and menu. `prefers-reduced-motion` keeps every composition static:
+the ribbon shows its poster, the method reads as a column, and text arrives
+without motion.
