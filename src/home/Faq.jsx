@@ -25,7 +25,7 @@ function Item({ i, q, a, open, onToggle }) {
     <li className="acc__item" data-open={open ? '1' : '0'}>
       <h3>
         <button type="button" className="acc__btn" aria-expanded={open} aria-controls={`${id}-p`} id={`${id}-b`} onClick={toggle}>
-          <span className="acc__i">0{i + 1}</span>
+          <span className="acc__i" aria-hidden="true">0{i + 1}</span>
           <span className="acc__q">{q}</span>
           <span className="acc__x" aria-hidden="true" />
         </button>
