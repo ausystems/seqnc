@@ -6,7 +6,7 @@
    ========================================================================= */
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { dpr, lowPower, reduced } from '../engine/device.js';
+import { dpr, lowPower, reduced, touch } from '../engine/device.js';
 import { input } from '../engine/input.js';
 
 export default function Ribbon({ variant = 'hero', className = '' }) {
@@ -16,7 +16,8 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || reduced) return undefined;
+    /* the closing ring stays a still on touch devices: one WebGL context per page there */
+    if (!canvas || reduced || (variant === 'ring' && touch)) return undefined;
     let dead = false, app, tick, onResize, io, intro;
     let visible = true;
     (async () => {

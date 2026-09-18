@@ -38,7 +38,7 @@ function SysHead({ n, s, demo, tryLabel }) {
 /* ----- inbound: convergence ----- */
 function InboundWide({ s }) {
   return (
-    <svg viewBox="0 0 640 330" className="inb__svg">
+    <svg viewBox="0 0 720 330" className="inb__svg">
       {[64, 165, 266].map((y, i) => (
         <g key={y}>
           <text className="inb__lbl mono-svg" x="0" y={y + 4}>{s.channels[i]}</text>
