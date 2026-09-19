@@ -155,7 +155,7 @@ export default {
         { text: 'Thermostat Issue', picked: true },
       ],
       result: 'Estimate · Tuesday 8:00 AM',
-      estimate: '$200–$460',
+      estimate: '$200 to $460',
       href: '/demo/inbound/',
     },
     operations: {
@@ -290,7 +290,7 @@ export default {
         title: 'Live in two to four weeks',
         body: "A clear plan, scope and timeline with the price attached. Then we build it, and your team doesn't touch a thing.",
         stamp: 'Live in 2 to 4 weeks  ·  ',
-        stampCentre: '2–4', stampUnit: 'weeks',
+        stampCentre: '2-4', stampUnit: 'weeks',
       },
       guarantee: {
         title: 'It keeps working',

@@ -154,7 +154,7 @@ export default {
         { text: 'Problème de thermostat', picked: true },
       ],
       result: 'Soumission · mardi 8 h 00',
-      estimate: '200 $ – 460 $',
+      estimate: '200 $ à 460 $',
       href: '/demo/inbound/',
     },
     operations: {
@@ -288,7 +288,7 @@ export default {
         title: 'En ligne en deux à quatre semaines',
         body: "Un plan clair, une portée et un échéancier, avec le prix attaché. Puis on le bâtit, et votre équipe n'a rien à faire.",
         stamp: 'En ligne en 2 à 4 semaines  ·  ',
-        stampCentre: '2–4', stampUnit: 'semaines',
+        stampCentre: '2-4', stampUnit: 'semaines',
       },
       guarantee: {
         title: 'Ça continue de fonctionner',

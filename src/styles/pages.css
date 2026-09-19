@@ -51,7 +51,9 @@
 .nf__body{ margin:28px 0 36px; max-width:40ch; }
 
 /* ----- footer ----- */
-.foot{ padding:clamp(48px, 6vw, 88px) 0 calc(32px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); background:var(--surface); color:var(--text); }
+.foot{ position:relative; overflow:hidden; padding:clamp(48px, 6vw, 88px) 0 0; border-top:1px solid var(--line); background:var(--surface); color:var(--text); }
+/* the wordmark, set as wide as the page and cropped by the bottom edge */
+.foot__ghost{ display:block; margin:clamp(32px, 4vw, 56px) 0 calc(-.19em + env(safe-area-inset-bottom) * -1); padding:0 var(--gutter); font-family:var(--font-d); font-weight:800; font-size:clamp(96px, 31.5vw, 560px); letter-spacing:-.06em; line-height:.86; color:var(--paper-3); text-align:center; white-space:nowrap; pointer-events:none; user-select:none; }
 .foot__top{ display:grid; grid-template-columns:4fr 8fr; gap:48px var(--gap); }
 .foot__tag{ margin-top:22px; max-width:34ch; color:var(--text-3); }
 .foot__cols{ display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px var(--gap); }

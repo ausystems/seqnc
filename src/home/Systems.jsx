@@ -7,7 +7,6 @@ import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
 import { useGsap } from '../engine/hooks.js';
 import { reduced } from '../engine/device.js';
-import Eyebrow from '../ui/Eyebrow.jsx';
 import { Lines, Fade } from '../ui/Reveal.jsx';
 import { MonoLink } from '../ui/Button.jsx';
 import { Glyph } from '../ui/Mark.jsx';
@@ -29,7 +28,6 @@ export default function Systems() {
   return (
     <section className="section systems" id="systems" ref={ref} aria-labelledby="systems-title">
       <div className="wrap">
-        <Fade><Eyebrow n="02">{s.label}</Eyebrow></Fade>
         <Lines as="h2" id="systems-title" className="dsp dsp--1 systems__title" stagger={.1}>
           {s.titleLines[0]}<br /><span className="dim">{s.titleLines[1]} {s.titleLines[2]}</span>
         </Lines>

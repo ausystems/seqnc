@@ -3,7 +3,6 @@ import { useId, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
 import { reduced } from '../engine/device.js';
-import Eyebrow from '../ui/Eyebrow.jsx';
 import { Lines, Fade } from '../ui/Reveal.jsx';
 
 function Item({ i, q, a, open, onToggle }) {
@@ -44,7 +43,6 @@ export default function Faq() {
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq__grid">
         <div className="faq__head">
-          <Fade><Eyebrow n="06">{t.faq.label}</Eyebrow></Fade>
           <Lines as="h2" id="faq-title" className="dsp dsp--1">{t.faq.title}</Lines>
         </div>
         <Fade as="ul" className="acc faq__list" y={16}>

@@ -58,6 +58,7 @@ export default function Footer() {
           <Lang className="foot__lang" />
         </div>
       </div>
+      <p className="foot__ghost" aria-hidden="true">Seqnc</p>
     </footer>
   );
 }

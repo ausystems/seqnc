@@ -5,7 +5,8 @@ import Statement from './Statement.jsx';
 import Bento from './Bento.jsx';
 import Systems from './Systems.jsx';
 import Method from './Method.jsx';
-import Proof from './Proof.jsx';
+import CaseStudy from './CaseStudy.jsx';
+import Pricing from './Pricing.jsx';
 import Faq from './Faq.jsx';
 import Closing from './Closing.jsx';
 
@@ -19,7 +20,8 @@ export default function Home() {
       <Bento />
       <Systems />
       <Method />
-      <Proof />
+      <CaseStudy />
+      <Pricing />
       <Faq />
       <Closing />
     </>

@@ -8,7 +8,6 @@ import { useT } from '../i18n.jsx';
 import { useGsap } from '../engine/hooks.js';
 import { reduced } from '../engine/device.js';
 import { introDelay } from '../engine/intro.js';
-import Eyebrow from '../ui/Eyebrow.jsx';
 import Button, { MonoLink } from '../ui/Button.jsx';
 import { Lines, Fade } from '../ui/Reveal.jsx';
 import { Glyph } from '../ui/Mark.jsx';
@@ -28,7 +27,6 @@ export default function Hero() {
       <div className="hero__obj"><i className="hero__shadow" aria-hidden="true" /><Ribbon variant="hero" /></div>
       <div className="wrap hero__body">
         <div className="hero__top">
-          <Fade now delay={.1}><Eyebrow>{t.hero.label}</Eyebrow></Fade>
           <Fade now delay={.2}><p className="hero__lede">{t.hero.lede}</p></Fade>
           <Fade now delay={.3} className="hero__actions">
             <Button href={t.calendly} calendly>{t.hero.cta}</Button>

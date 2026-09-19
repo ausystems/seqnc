@@ -10,7 +10,6 @@ import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { useT } from '../i18n.jsx';
 import { reduced, finePointer } from '../engine/device.js';
-import Eyebrow from '../ui/Eyebrow.jsx';
 import { Lines, Fade } from '../ui/Reveal.jsx';
 import { Glyph } from '../ui/Mark.jsx';
 
@@ -198,7 +197,6 @@ export default function Bento() {
   return (
     <section className="section bento" id="glance" aria-labelledby="bento-title">
       <div className="wrap">
-        <Fade><Eyebrow n="01">{b.label}</Eyebrow></Fade>
         <div className="bento__head">
           <Lines as="h2" id="bento-title" className="dsp dsp--1 bento__title" stagger={.1}>{b.titleStart}<br /><span className="hi">{b.titleAccent}</span></Lines>
           <Fade><p className="lead bento__body">{b.body}</p></Fade>

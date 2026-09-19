@@ -12,7 +12,6 @@ export default function Closing() {
       <div className="wrap">
         <div className="closing__panel" data-theme="dark">
           <i className="grain" aria-hidden="true" />
-          <p className="closing__ghost" aria-hidden="true">Seqnc</p>
           <div className="closing__obj"><Ribbon variant="ring" /></div>
           <div className="closing__copy">
             <Lines as="h2" id="closing-title" className="dsp dsp--1 closing__title">{c.titleStart}<br /><span className="hi">{c.titleAccent}</span></Lines>
