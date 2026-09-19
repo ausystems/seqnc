@@ -52,7 +52,8 @@ function Inbound({ d }) {
         <div className="bmsgs">
           {d.cards.map((c) => (
             <div className="bmsg" key={c.chan}>
-              <span className="bmsg__dot" /><span className="bmsg__chan mono">{c.chan}</span><span className="bmsg__when mono">{c.when}</span><span className="bmsg__text">{c.text}</span>
+              <div className="bmsg__h"><span className="bmsg__dot" /><span className="bmsg__chan mono">{c.chan}</span><span className="bmsg__when mono">{c.when}</span></div>
+              <span className="bmsg__text">{c.text}</span>
             </div>
           ))}
         </div>
