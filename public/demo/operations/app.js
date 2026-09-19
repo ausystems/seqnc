@@ -352,7 +352,7 @@ function renderShell(user) {
         '<div class="sidebar-brand">' + brandMark() + '<span class="brand-name">' + esc(STATE.agency.product) + '</span></div>' +
         '<nav class="sidebar-nav">' + navHtml + '</nav>' +
         '<div class="sidebar-foot">' +
-          '<a class="sidebar-foot-btn" href="/#demos" style="text-decoration:none;">' + icon('chevronLeft') + '<span class="sidebar-foot-text">Back to Seqnc</span></a>' +
+          '<a class="sidebar-foot-btn" href="/#systems" style="text-decoration:none;">' + icon('chevronLeft') + '<span class="sidebar-foot-text">Back to Seqnc</span></a>' +
           '<button class="sidebar-foot-btn" id="btn-restart-sidebar">' + icon('refresh') + '<span class="sidebar-foot-text">Restart demo</span></button>' +
           '<button class="sidebar-foot-btn" id="btn-collapse">' + icon('panel') + '<span class="sidebar-foot-text">Collapse</span></button>' +
         '</div>' +
@@ -453,7 +453,7 @@ function renderLogin() {
     '<div class="demo-account-list">' + rows + '</div>' +
     '<p class="login-footnote">Nothing you do here is sent or saved anywhere, everything resets on refresh.</p>' +
     '<div class="login-reset-wrap"><button class="restart-btn" id="btn-restart-login">' + icon('refresh') + ' Reset demo data</button>' +
-      '<a class="restart-btn" href="/#demos" style="text-decoration:none;margin-left:8px;">' + icon('chevronLeft') + ' Back to Seqnc</a></div>' +
+      '<a class="restart-btn" href="/#systems" style="text-decoration:none;margin-left:8px;">' + icon('chevronLeft') + ' Back to Seqnc</a></div>' +
   '</div></div>';
 }
 

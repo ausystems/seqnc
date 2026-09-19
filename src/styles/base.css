@@ -28,18 +28,21 @@ main{ position:relative; z-index:1; }
 .mono{ font-family:var(--font-m); font-size:var(--t-mono); font-weight:500; letter-spacing:.14em; text-transform:uppercase; line-height:1.45; }
 .mono--s{ font-family:var(--font-m); font-size:12.5px; font-weight:400; letter-spacing:.01em; text-transform:none; line-height:1.6; }
 .mono--l{ font-family:var(--font-m); font-size:13px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
-.dsp{ font-family:var(--font-d); font-weight:300; letter-spacing:-.035em; line-height:1.0; color:var(--text); text-wrap:balance; }
-.dsp--hero{ font-size:var(--t-hero); letter-spacing:-.04em; line-height:.98; }
-.dsp--1{ font-size:var(--t-1); }
-.dsp--2{ font-size:var(--t-2); font-weight:400; letter-spacing:-.028em; line-height:1.08; }
-.dsp--3{ font-size:var(--t-3); font-weight:500; letter-spacing:-.02em; line-height:1.22; }
+.dsp{ font-family:var(--font-d); font-weight:600; letter-spacing:-.045em; line-height:1.0; color:var(--text); text-wrap:balance; }
+.dsp--hero{ font-size:var(--t-hero); font-weight:700; letter-spacing:-.05em; line-height:.96; }
+.dsp--1{ font-size:var(--t-1); font-weight:700; letter-spacing:-.045em; line-height:1.0; }
+.dsp--2{ font-size:var(--t-2); font-weight:600; letter-spacing:-.035em; line-height:1.06; }
+.dsp--3{ font-size:var(--t-3); font-weight:600; letter-spacing:-.025em; line-height:1.2; }
 .dsp--4{ font-size:var(--t-4); font-weight:500; letter-spacing:-.015em; line-height:1.3; }
 .dsp .dim, .dim{ color:var(--text-3); }
 .accent{ font-family:var(--font-s); font-style:italic; font-weight:400; letter-spacing:-.01em; font-size:1.09em; color:var(--accent); }
-.lead{ font-size:var(--t-lead); font-weight:500; line-height:1.45; letter-spacing:-.012em; color:var(--text-2); text-wrap:pretty; }
+/* the gradient phrase: violet into periwinkle, the way a word is lit in the reference */
+.grad{ background:linear-gradient(92deg, #6A3BD6 0%, #8B5CF0 48%, #7E9AF5 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; padding-right:.04em; }
+.grad--night{ background:linear-gradient(92deg, #B08CF2 0%, #C9AEF5 50%, #9DB2F8 100%); -webkit-background-clip:text; background-clip:text; }
+.lead{ font-size:var(--t-lead); font-weight:500; line-height:1.45; letter-spacing:-.014em; color:var(--text-2); text-wrap:pretty; }
 .body{ font-size:var(--t-body); line-height:1.62; color:var(--text-2); max-width:46ch; text-wrap:pretty; }
 .small{ font-size:var(--t-small); line-height:1.55; color:var(--text-3); }
-.num{ font-family:var(--font-d); font-weight:200; letter-spacing:-.05em; line-height:.9; font-variant-numeric:tabular-nums; }
+.num{ font-family:var(--font-d); font-weight:300; letter-spacing:-.05em; line-height:.9; font-variant-numeric:tabular-nums; }
 .tnum{ font-variant-numeric:tabular-nums; }
 
 /* ----- structure ----- */

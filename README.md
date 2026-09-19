@@ -11,9 +11,10 @@ a band of violet chrome that resolves from a loose loop into a ring.
 ## Design system
 
 The brand's own violet (`#7C4DCC`, `#A861E6`, `#C9AEF5`) and night
-(`#0E0820`) on paper. Manrope for display and body, Azeret Mono for labels,
-numbers and controls, Instrument Serif italic for one accent line per
-composition. Tokens live in `src/styles/tokens.css`.
+(`#0E0820`) on paper. Manrope, set bold and tight, for display and body,
+Azeret Mono for labels, numbers and controls, and a violet-to-periwinkle
+gradient for the one lit phrase in each headline. Tokens live in
+`src/styles/tokens.css`.
 
 ## Structure
 
@@ -23,7 +24,7 @@ composition. Tokens live in `src/styles/tokens.css`.
 | `src/i18n.jsx` | Language state, remembered under `seqnc-lang` |
 | `src/engine/` | Device flags, motion tokens, input sampling, scroll dolly, route transition, hooks |
 | `src/ui/` | Nav and menu, footer, button, reveal primitives, mark, icons |
-| `src/home/` | The homepage chapters, in page order |
+| `src/home/` | The seven homepage chapters, in page order |
 | `src/pages/` | The free review, privacy, terms, 404 |
 | `src/webgl/` | The ribbon scene and its React host |
 | `public/demo/` | The three live demos (self-contained static apps) with the Seqnc frame |

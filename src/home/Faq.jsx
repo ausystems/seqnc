@@ -44,7 +44,7 @@ export default function Faq() {
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq__grid">
         <div className="faq__head">
-          <Fade><Eyebrow n="07">{t.faq.label}</Eyebrow></Fade>
+          <Fade><Eyebrow n="05">{t.faq.label}</Eyebrow></Fade>
           <Lines as="h2" id="faq-title" className="dsp dsp--1">{t.faq.title}</Lines>
         </div>
         <Fade as="ul" className="acc faq__list" y={16}>

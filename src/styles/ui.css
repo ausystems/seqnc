@@ -15,19 +15,22 @@
 .brk:hover .c3, .brk:focus-visible .c3{ transform:translate(-3px,3px); }
 .brk:hover .c4, .brk:focus-visible .c4{ transform:translate(3px,3px); }
 
-/* button */
+/* button: the pill */
 .btn{
-  --btn-bg:var(--text); --btn-fg:var(--surface);
-  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:16px;
-  height:54px; padding:0 24px; background:var(--btn-bg); color:var(--btn-fg);
-  font-family:var(--font-m); font-size:11.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; line-height:1;
-  white-space:nowrap; transition:background var(--dur-hover) var(--ease-out), color var(--dur-hover) var(--ease-out), transform var(--dur-tap) var(--ease-out);
+  --btn-bg:var(--violet); --btn-fg:#fff;
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  height:50px; padding:0 22px 0 24px; border-radius:999px; background:var(--btn-bg); color:var(--btn-fg);
+  font-family:var(--font-d); font-size:15px; font-weight:600; letter-spacing:-.01em; line-height:1; white-space:nowrap;
+  box-shadow:0 1px 0 rgba(255,255,255,.12) inset, 0 10px 24px -14px rgba(124,77,204,.7);
+  transition:background var(--dur-hover) var(--ease-out), transform var(--dur-tap) var(--ease-out), box-shadow var(--dur-hover) var(--ease-out);
 }
-.btn:active{ transform:scale(.985); }
-.btn .c{ color:var(--text); }
+.btn:hover{ background:#6A3BD6; box-shadow:0 1px 0 rgba(255,255,255,.12) inset, 0 16px 30px -14px rgba(124,77,204,.8); }
+.btn:active{ transform:scale(.98); }
+[data-theme="dark"] .btn{ --btn-bg:#F4F1F8; --btn-fg:var(--night); box-shadow:none; }
+[data-theme="dark"] .btn:hover{ background:#fff; }
 .btn--ghost{ --btn-bg:transparent; --btn-fg:var(--text); box-shadow:inset 0 0 0 1px var(--line-2); }
-.btn--ghost:hover{ background:var(--accent-soft); }
-.btn--s{ height:42px; padding:0 18px; font-size:10.5px; gap:12px; }
+.btn--ghost:hover{ background:var(--accent-soft); box-shadow:inset 0 0 0 1px var(--line-2); }
+.btn--s{ height:40px; padding:0 16px 0 18px; font-size:14px; gap:10px; }
 .btn__arr{ width:15px; height:10px; flex:none; transition:transform var(--dur-hover) var(--ease-out); }
 .btn:hover .btn__arr{ transform:translateX(4px); }
 .btn__arr--ext{ width:11px; height:11px; }
@@ -83,7 +86,7 @@
 @media (max-width:640px){
   .acc__btn{ grid-template-columns:34px 1fr 30px; padding:20px 0; }
   .acc__a{ padding-left:46px; }
-  .btn{ height:auto; min-height:54px; padding:17px 20px; white-space:normal; text-align:center; line-height:1.45; }
+  .btn{ height:auto; min-height:52px; padding:15px 22px; white-space:normal; text-align:center; line-height:1.4; }
 }
 @media (prefers-reduced-motion: reduce){
   .lnk::after, .btn__arr, .mlnk svg, .brk .c{ transition:none; }
@@ -103,7 +106,7 @@
 @media (pointer: coarse){
   .lnk, .mlnk{ padding-top:11px; padding-bottom:11px; margin-top:-11px; margin-bottom:-11px; }
   .lnk{ display:inline-block; }
-  .btn{ min-height:54px; }
+  .btn{ min-height:50px; }
   .acc__btn{ min-height:56px; }
   a:active, button:active{ opacity:.7; }
   .btn:active{ opacity:1; }

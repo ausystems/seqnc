@@ -15,9 +15,9 @@ import Button from './Button.jsx';
 import { Arrow } from './Icons.jsx';
 
 export const SECTIONS = [
-  { id: 'leaks', key: 'problem' },
+  { id: 'problem', key: 'problem' },
   { id: 'systems', key: 'systems' },
-  { id: 'process', key: 'process' },
+  { id: 'method', key: 'process' },
   { id: 'pricing', key: 'pricing' },
 ];
 

@@ -44,9 +44,9 @@
   --font-m:"Azeret Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --font-s:"Instrument Serif",Georgia,"Times New Roman",serif;
 
-  --t-hero:clamp(42px, 6vw, 96px);
-  --t-1:clamp(36px, 4.9vw, 78px);
-  --t-2:clamp(28px, 3.1vw, 48px);
+  --t-hero:clamp(44px, 6.6vw, 112px);
+  --t-1:clamp(36px, 5.2vw, 84px);
+  --t-2:clamp(28px, 3.2vw, 50px);
   --t-3:clamp(21px, 1.7vw, 27px);
   --t-4:clamp(18px, 1.3vw, 21px);
   --t-lead:clamp(17px, 1.3vw, 21px);
