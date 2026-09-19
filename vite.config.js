@@ -38,8 +38,24 @@ function demoDirs() {
   };
 }
 
+/* After the build, give every app route its own HTML entry (and a 404.html)
+   so static hosts serve them as files even before any rewrite runs. */
+function routeEntries() {
+  let outDir = 'dist';
+  return {
+    name: 'seqnc-route-entries',
+    configResolved(c) { outDir = c.build.outDir; },
+    closeBundle() {
+      const index = path.join(outDir, 'index.html');
+      if (!fs.existsSync(index)) return;
+      const html = fs.readFileSync(index);
+      for (const r of ['free-review', 'privacy', 'terms', '404']) fs.writeFileSync(path.join(outDir, `${r}.html`), html);
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), demoDirs()],
+  plugins: [react(), demoDirs(), routeEntries()],
   server: { port: Number(process.env.PORT) || 5173, strictPort: !!process.env.PORT },
   preview: { port: Number(process.env.PORT) || 4173 },
   build: {
