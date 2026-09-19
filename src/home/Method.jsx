@@ -26,9 +26,9 @@ export default function Method() {
       <div className="wrap">
         <div className="method__head">
           <div>
-            <Fade><Eyebrow n="02">{p.label}</Eyebrow></Fade>
+            <Fade><Eyebrow n="03">{p.label}</Eyebrow></Fade>
             <Lines as="h2" id="method-title" className="dsp dsp--1 method__title" stagger={.1}>
-              {p.titleStart}<br /><span className="grad">{p.titleAccent}</span>
+              {p.titleStart}<br /><span className="hi">{p.titleAccent}</span>
             </Lines>
             <Fade><p className="lead method__body">{p.body}</p></Fade>
           </div>

@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { dpr, lowPower, reduced, touch } from '../engine/device.js';
 import { input } from '../engine/input.js';
-import { introDelay } from '../engine/intro.js';
 
 export default function Ribbon({ variant = 'hero', className = '' }) {
   const canvasRef = useRef(null);
@@ -19,7 +18,7 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
     const canvas = canvasRef.current;
     /* the closing ring stays a still on touch devices: one WebGL context per page there */
     if (!canvas || reduced || (variant === 'ring' && touch)) return undefined;
-    let dead = false, app, tick, onResize, io, intro;
+    let dead = false, app, tick, onResize, io;
     let visible = true;
     (async () => {
       let mod;
@@ -33,24 +32,14 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
       io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 });
       io.observe(canvas);
 
-      /* the resolution: loose loop to ring, then a slow breath around it */
-      if (variant === 'hero') {
-        intro = gsap.timeline()
-          .to(app.state, { t: 0.86, duration: 3.2, ease: 'power3.inOut', delay: 0.4 + introDelay() })
-          .to(app.state, { t: 0.78, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-      }
+      /* the ring arrives already resolved; it only turns */
       let last = performance.now();
       tick = () => {
         const now = performance.now();
         const dt = Math.min(0.05, (now - last) / 1000);
         last = now;
         if (!visible || document.hidden) return;
-        if (variant === 'hero') {
-          const sc = Math.min(1, window.scrollY / Math.max(1, window.innerHeight * 0.9));
-          app.state.scroll = sc;
-          if (sc > 0.02 && intro) { intro.kill(); intro = null; }
-          if (!intro) app.state.t += (1 - app.state.t) * Math.min(1, dt * 1.2);
-        }
+        if (variant === 'hero') app.state.scroll = Math.min(1, window.scrollY / Math.max(1, window.innerHeight * 0.9));
         app.render(dt, input.present ? input : null);
       };
       gsap.ticker.add(tick);
@@ -63,7 +52,6 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
           const w = canvas.clientWidth, h = canvas.clientHeight;
           app.renderer.setSize(size, size, false);
           app.renderer.setPixelRatio(1);
-          app.state.t = variant === 'hero' ? 0.86 : 1;
           app.state.scroll = 0;
           app.render(0, null);
           const url = canvas.toDataURL(type, q);
@@ -78,7 +66,6 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
       if (tick) gsap.ticker.remove(tick);
       if (onResize) window.removeEventListener('resize', onResize);
       if (io) io.disconnect();
-      if (intro) intro.kill();
       if (app) app.dispose();
     };
   }, [variant]);

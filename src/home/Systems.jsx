@@ -29,7 +29,7 @@ export default function Systems() {
   return (
     <section className="section systems" id="systems" ref={ref} aria-labelledby="systems-title">
       <div className="wrap">
-        <Fade><Eyebrow n="01">{s.label}</Eyebrow></Fade>
+        <Fade><Eyebrow n="02">{s.label}</Eyebrow></Fade>
         <Lines as="h2" id="systems-title" className="dsp dsp--1 systems__title" stagger={.1}>
           {s.titleLines[0]}<br /><span className="dim">{s.titleLines[1]} {s.titleLines[2]}</span>
         </Lines>

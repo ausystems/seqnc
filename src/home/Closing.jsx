@@ -15,7 +15,7 @@ export default function Closing() {
           <p className="closing__ghost" aria-hidden="true">Seqnc</p>
           <div className="closing__obj"><Ribbon variant="ring" /></div>
           <div className="closing__copy">
-            <Lines as="h2" id="closing-title" className="dsp dsp--1 closing__title">{c.titleStart}<br /><span className="grad grad--night">{c.titleAccent}</span></Lines>
+            <Lines as="h2" id="closing-title" className="dsp dsp--1 closing__title">{c.titleStart}<br /><span className="hi">{c.titleAccent}</span></Lines>
             <Fade><p className="lead closing__body">{c.body}</p></Fade>
             <Fade className="closing__cta"><Button href={t.calendly} calendly>{c.cta}</Button></Fade>
             <Fade><p className="mono closing__note">{c.note}</p></Fade>

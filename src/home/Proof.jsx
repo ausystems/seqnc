@@ -16,7 +16,7 @@ export default function Proof() {
     <section className="section proof" id="pricing" aria-labelledby="proof-title">
       <div className="wrap proof__grid">
         <div className="proof__work">
-          <Fade><Eyebrow n="03">{w.label}</Eyebrow></Fade>
+          <Fade><Eyebrow n="04">{w.label}</Eyebrow></Fade>
           <div className="proof__client">
             <img src="/divos-logo.jpg" alt="" width="48" height="48" loading="lazy" />
             <div>
@@ -36,7 +36,7 @@ export default function Proof() {
           <Fade><p className="mono--s proof__soon">{w.comingSoon}</p></Fade>
         </div>
         <div className="proof__terms">
-          <Fade><Eyebrow n="04">{p.label}</Eyebrow></Fade>
+          <Fade><Eyebrow n="05">{p.label}</Eyebrow></Fade>
           <Lines as="h2" className="dsp dsp--2 proof__ptitle">{p.title}</Lines>
           <Fade><p className="body proof__pbody">{p.body}</p></Fade>
           <Fade as="ol" className="terms" stagger={.1}>

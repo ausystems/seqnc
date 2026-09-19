@@ -28,7 +28,7 @@ export default function Statement() {
       <i className="grain" aria-hidden="true" />
       <div className="wrap stmt__in">
         <Lines as="h2" id="stmt-title" className="dsp dsp--1 stmt__title" stagger={.1}>
-          {p.titleLines[0]}<br /><span className="grad">{p.titleLines[1]}</span>
+          {p.titleLines[0]}<br /><span className="hi">{p.titleLines[1]}</span>
         </Lines>
         <Fade as="ul" className="stmt__items" stagger={.12}>
           {p.items.map((it, i) => <li key={it}><span className="mono stmt__i" aria-hidden="true">0{i + 1}</span><p>{it}</p></li>)}
@@ -36,7 +36,7 @@ export default function Statement() {
         <Fade className="stmt__bench">
           <p className="stmt__sentence">
             {b.stats.map((s, i) => (
-              <span key={s.label} className="stmt__stat"><strong className="grad"><span data-count={s.value}>0</span>{s.suffix}</strong> {s.label}.{i < b.stats.length - 1 ? ' ' : ''}</span>
+              <span key={s.label} className="stmt__stat"><strong className="hi"><span data-count={s.value}>0</span>{s.suffix}</strong> {s.label}.{i < b.stats.length - 1 ? ' ' : ''}</span>
             ))}
           </p>
           <p className="mono--s stmt__note">{b.disclaimer}</p>

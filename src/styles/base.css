@@ -36,9 +36,9 @@ main{ position:relative; z-index:1; }
 .dsp--4{ font-size:var(--t-4); font-weight:500; letter-spacing:-.015em; line-height:1.3; }
 .dsp .dim, .dim{ color:var(--text-3); }
 .accent{ font-family:var(--font-s); font-style:italic; font-weight:400; letter-spacing:-.01em; font-size:1.09em; color:var(--accent); }
-/* the gradient phrase: violet into periwinkle, the way a word is lit in the reference */
-.grad{ background:linear-gradient(92deg, #6A3BD6 0%, #8B5CF0 48%, #7E9AF5 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; padding-right:.04em; }
-.grad--night{ background:linear-gradient(92deg, #B08CF2 0%, #C9AEF5 50%, #9DB2F8 100%); -webkit-background-clip:text; background-clip:text; }
+/* the lit phrase: solid violet, and its lighter cousin on night */
+.hi{ color:var(--violet); }
+[data-theme="dark"] .hi, .hi--night{ color:var(--violet-3); }
 .lead{ font-size:var(--t-lead); font-weight:500; line-height:1.45; letter-spacing:-.014em; color:var(--text-2); text-wrap:pretty; }
 .body{ font-size:var(--t-body); line-height:1.62; color:var(--text-2); max-width:46ch; text-wrap:pretty; }
 .small{ font-size:var(--t-small); line-height:1.55; color:var(--text-3); }

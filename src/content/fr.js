@@ -251,6 +251,53 @@ export default {
     terms: "Conditions d'utilisation",
   },
 
+  bento: {
+    label: "En un coup d'œil",
+    title: 'Six choses qui cessent de dépendre de vous.',
+    titleStart: 'Six choses qui cessent',
+    titleAccent: 'de dépendre de vous.',
+    body: "Ce que font les systèmes, et ce que comprend l'entente.",
+    tiles: {
+      inbound: {
+        title: 'Ne manquez plus une demande',
+        body: 'Les appels, les courriels et les messages arrivent au même endroit et reçoivent une réponse immédiate, même un dimanche à 21 h.',
+        cards: [
+          { chan: 'Courriel', when: 'Dimanche · 21 h 04', text: 'Nouvelle demande' },
+          { chan: 'Appel manqué', when: 'Dimanche · 21 h 11', text: 'Message vocal laissé' },
+        ],
+        reply: 'Réponse envoyée au client', instantly: 'Instantanément',
+      },
+      operations: {
+        title: 'Rien ne se perd',
+        body: 'Du contrat signé au travail livré, chaque étape se déclenche automatiquement au lieu de reposer sur la mémoire.',
+      },
+      outbound: {
+        title: 'Des suivis au bon moment',
+        body: 'Avis, références et suivis saisonniers qui partent au bon moment sans que personne les écrive.',
+        bubbles: [
+          { day: 'Jour 1', text: "Remerciement et demande d'avis" },
+          { day: 'Jour 30', text: 'Offre de retour' },
+        ],
+      },
+      tools: {
+        title: 'Avec les outils que vous utilisez déjà',
+        body: 'Nous nous intégrons aux outils que vous utilisez déjà. Si une connexion directe est impossible, nous trouvons la meilleure solution de rechange.',
+        nodes: ['CRM', 'Calendrier', 'Courriel', 'Formulaires'],
+      },
+      build: {
+        title: 'En ligne en deux à quatre semaines',
+        body: "Un plan clair, une portée et un échéancier, avec le prix attaché. Puis on le bâtit, et votre équipe n'a rien à faire.",
+        stamp: 'En ligne en 2 à 4 semaines · Sur vos outils · ',
+        stampCentre: '2–4', stampUnit: 'semaines',
+      },
+      guarantee: {
+        title: 'Ça continue de fonctionner',
+        body: 'La surveillance et les correctifs font partie du forfait. Insatisfait dans les 90 premiers jours et vos paiements de forfait vous sont remboursés en entier.',
+        ringValue: '90', ringUnit: 'jours', ringLabel: 'garantie de remboursement',
+      },
+    },
+  },
+
   review: {
     label: 'Le diagnostic gratuit',
     title: "Un portrait clair de là où l'entreprise perd du temps et de l'argent.",

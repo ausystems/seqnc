@@ -40,7 +40,7 @@ export default function Hero() {
           </Fade>
         </div>
         <Lines as="h1" id="hero-title" className="dsp dsp--hero hero__title" now delay={.5} stagger={.1}>
-          {t.hero.titleStart}<br /><span className="grad">{t.hero.titleMuted}</span>
+          {t.hero.titleStart}<br /><span className="hi">{t.hero.titleMuted}</span>
         </Lines>
       </div>
       <div className="hero__strip">

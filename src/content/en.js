@@ -252,6 +252,54 @@ export default {
     terms: 'Terms & Conditions',
   },
 
+  /* The bento: six facets of the system, each from published copy. */
+  bento: {
+    label: 'At a glance',
+    title: 'Six things that stop depending on you.',
+    titleStart: 'Six things that stop',
+    titleAccent: 'depending on you.',
+    body: 'What the systems do, and what the engagement includes.',
+    tiles: {
+      inbound: {
+        title: 'Never miss a lead',
+        body: 'Calls, emails and DMs land in one place and get answered instantly, including at 9pm on a Sunday.',
+        cards: [
+          { chan: 'Email', when: 'Sunday · 9:04 PM', text: 'New enquiry' },
+          { chan: 'Missed call', when: 'Sunday · 9:11 PM', text: 'Voicemail left' },
+        ],
+        reply: 'Reply sent to the lead', instantly: 'Instantly',
+      },
+      operations: {
+        title: 'Nothing gets dropped',
+        body: 'Signed client to work delivered, with each handoff triggered automatically instead of remembered.',
+      },
+      outbound: {
+        title: 'Follow-ups on time',
+        body: 'Reviews, referrals and seasonal check-ins that go out on time without anyone writing them.',
+        bubbles: [
+          { day: 'Day 1', text: 'Thank you and review ask' },
+          { day: 'Day 30', text: 'Come-back offer' },
+        ],
+      },
+      tools: {
+        title: 'On the tools you already use',
+        body: 'We integrate with the tools you already use. If a direct connection is not possible, we find the best alternative.',
+        nodes: ['CRM', 'Calendar', 'Email', 'Forms'],
+      },
+      build: {
+        title: 'Live in two to four weeks',
+        body: "A clear plan, scope and timeline with the price attached. Then we build it, and your team doesn't touch a thing.",
+        stamp: 'Live in 2 to 4 weeks · On your tools · ',
+        stampCentre: '2–4', stampUnit: 'weeks',
+      },
+      guarantee: {
+        title: 'It keeps working',
+        body: 'Monitoring and fixes are part of the retainer. Not happy in the first 90 days and your retainer payments come back in full.',
+        ringValue: '90', ringUnit: 'days', ringLabel: 'money-back guarantee',
+      },
+    },
+  },
+
   /* The free review page recomposes lines that already exist on the site. */
   review: {
     label: 'The free review',

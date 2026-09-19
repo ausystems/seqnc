@@ -1,13 +1,11 @@
 /* =========================================================================
-   The ribbon: one continuous band of violet chrome.
+   The ring: one continuous band of violet chrome.
 
-   It begins as a loose, twisted loop and resolves into a clean ring: the
-   site's one symbolic motion, operational friction settling into a system.
-   The geometry is a rounded-rectangle cross-section swept along a closed
-   spline; the tangled and resolved states are the same vertex set, so the
-   resolution is a single morph influence.  Reflections come from a small
-   procedural studio (a gradient sphere and three softboxes) baked through
-   PMREM, so no texture is downloaded.
+   A rounded-rectangle cross-section swept along a perfect circle.  It
+   turns slowly, leans with the pointer and answers a fast scroll, and it
+   is always a ring.  Reflections come from a small procedural studio (a
+   gradient sphere and a few softboxes) baked through PMREM, so no texture
+   is downloaded.
    ========================================================================= */
 import {
   ACESFilmicToneMapping, BackSide, DoubleSide, BufferAttribute, BufferGeometry, CatmullRomCurve3, Color,
@@ -19,19 +17,10 @@ import {
 const TAU = Math.PI * 2;
 const N = 12;
 
-/* control points: the ring, and the same ring loosened and twisted */
-function controlPoints(kind) {
+/* control points of the circle the band is swept along */
+function controlPoints() {
   const pts = [];
-  for (let i = 0; i < N; i++) {
-    const a = (i / N) * TAU;
-    if (kind === 'ring') {
-      pts.push(new Vector3(Math.cos(a), Math.sin(a), 0));
-    } else {
-      const r = 1 + 0.19 * Math.sin(3 * a + 0.4) + 0.05 * Math.cos(5 * a);
-      const z = 0.40 * Math.sin(2 * a + 0.9) + 0.09 * Math.sin(4 * a);
-      pts.push(new Vector3(Math.cos(a) * r, Math.sin(a) * r, z));
-    }
-  }
+  for (let i = 0; i < N; i++) { const a = (i / N) * TAU; pts.push(new Vector3(Math.cos(a), Math.sin(a), 0)); }
   return pts;
 }
 
@@ -78,17 +67,13 @@ function sweep(curve, segs, radial, w, h) {
 }
 
 function ribbonGeometry(segs, radial, w, h) {
-  const loose = new CatmullRomCurve3(controlPoints('loose'), true, 'centripetal', 0.5);
-  const ring = new CatmullRomCurve3(controlPoints('ring'), true, 'centripetal', 0.5);
-  const A = sweep(loose, segs, radial, w, h);
-  const B = sweep(ring, segs, radial, w, h);
+  const ring = new CatmullRomCurve3(controlPoints(), true, 'centripetal', 0.5);
+  const A = sweep(ring, segs, radial, w, h);
   const g = new BufferGeometry();
   g.setAttribute('position', new BufferAttribute(A.pos, 3));
   g.setAttribute('normal', new BufferAttribute(A.nor, 3));
   g.setAttribute('uv', new BufferAttribute(A.uv, 2));
   g.setIndex(A.idx);
-  g.morphAttributes.position = [new Float32BufferAttribute(B.pos, 3)];
-  g.morphAttributes.normal = [new Float32BufferAttribute(B.nor, 3)];
   return g;
 }
 
@@ -156,13 +141,12 @@ export function createRibbon(canvas, opts = {}) {
     envMapIntensity: 1.5,
   });
   const mesh = new Mesh(geometry, material);
-  mesh.morphTargetInfluences[0] = variant === 'hero' ? 0 : 1;
   const group = new Group();
   group.add(mesh);
   group.rotation.set(0.55, -0.35, 0.18);
   scene.add(group);
 
-  const state = { t: variant === 'hero' ? 0 : 1, rx: 0, ry: 0, scroll: 0, time: 0 };
+  const state = { rx: 0, ry: 0, scroll: 0, time: 0 };
 
   function resize() {
     const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1;
@@ -176,8 +160,9 @@ export function createRibbon(canvas, opts = {}) {
     state.time += dt;
     const base = variant === 'hero' ? 0.16 : 0.09;
     group.rotation.y += base * dt;
-    group.rotation.x = 0.55 + Math.sin(state.time * 0.35) * 0.06 + state.rx;
-    group.rotation.z = 0.18 + Math.cos(state.time * 0.27) * 0.05 + state.ry * 0.3;
+    /* a ring turning on its own axis reads as still, so it also breathes on two slow tilts */
+    group.rotation.x = 0.55 + Math.sin(state.time * 0.33) * 0.11 + state.rx;
+    group.rotation.z = 0.18 + Math.cos(state.time * 0.24) * 0.09 + state.ry * 0.3;
     if (pointer) {
       const tx = (pointer.ny - 0.5) * 0.34, ty = (pointer.nx - 0.5) * 0.5;
       state.rx += (tx - state.rx) * Math.min(1, dt * 2.4);
@@ -186,7 +171,6 @@ export function createRibbon(canvas, opts = {}) {
       /* a fast scroll gives the band a little extra turn */
       group.rotation.y += (pointer.sv || 0) * dt * 0.9;
     }
-    mesh.morphTargetInfluences[0] = state.t;
     if (variant === 'hero') {
       const s = 1 - state.scroll * 0.12;
       group.scale.setScalar(s);
