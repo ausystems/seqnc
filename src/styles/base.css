@@ -56,15 +56,8 @@ main{ position:relative; z-index:1; }
 /* eyebrow: a short accent rule then a mono label; the numbered variant
    starts with an index instead */
 .eyebrow{ display:inline-flex; align-items:center; gap:14px; color:var(--text-2); }
-.eyebrow::before{ content:""; width:22px; height:1px; background:var(--accent); flex:none; }
-.eyebrow--n::before{ display:none; }
 .eyebrow--n .eyebrow__i{ color:var(--accent); }
-.eyebrow--n .eyebrow__r{ width:22px; height:1px; background:var(--line-2); }
-
-/* dashed blueprint grid (six columns) */
-.gridlines{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-.gridlines i{ position:absolute; top:0; bottom:0; width:1px; left:calc(var(--i) * 100% / 6); background-image:linear-gradient(to bottom, var(--line-2) 0 5px, transparent 5px 11px); background-size:1px 11px; opacity:.45; transform-origin:top; }
-.gridlines i:nth-child(1){ left:0; }
+.eyebrow--n .eyebrow__r{ display:none; }
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{ transition-duration:.01ms !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; }

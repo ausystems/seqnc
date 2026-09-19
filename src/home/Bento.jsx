@@ -143,9 +143,10 @@ function Tools({ d }) {
 
 /* 05  build: a stamp that turns, and lands */
 function Build({ d }) {
+  /* the legend turns about the circle's own centre (svgOrigin, in viewBox units), so it never drifts */
   const ref = useTile((el) => gsap.timeline()
-    .from(el.querySelector('.bstamp'), { scale: 1.35, opacity: 0, rotate: -14, transformOrigin: '50% 50%', duration: .7, ease: 'expo.out' })
-    .to(el.querySelector('.bstamp__ring'), { rotate: '+=360', transformOrigin: '50% 50%', duration: 14, ease: 'none', repeat: -1 }, 0));
+    .from(el.querySelector('.bstamp'), { scale: 1.2, opacity: 0, transformOrigin: '50% 50%', duration: .7, ease: 'expo.out' })
+    .to(el.querySelector('.bstamp__ring'), { rotation: '+=360', svgOrigin: '100 100', duration: 18, ease: 'none', repeat: -1 }, 0));
   const id = 'bstamp-path';
   return (
     <article className="btile btile--build" ref={ref}>
@@ -153,8 +154,7 @@ function Build({ d }) {
         <svg viewBox="0 0 200 200" className="bstamp">
           <defs><path id={id} d="M100 100 m-72 0 a72 72 0 1 1 144 0 a72 72 0 1 1 -144 0" /></defs>
           <circle cx="100" cy="100" r="86" className="bstamp__outer" />
-          <g className="bstamp__ring"><text className="bstamp__text"><textPath href={`#${id}`}>{d.stamp}{d.stamp}</textPath></text></g>
-          <circle cx="100" cy="100" r="54" className="bstamp__inner" />
+          <g className="bstamp__ring"><text className="bstamp__text"><textPath href={`#${id}`} textLength="452" lengthAdjust="spacing">{d.stamp}{d.stamp}</textPath></text></g>
           <text x="100" y="104" textAnchor="middle" className="bstamp__centre">{d.stampCentre}</text>
           <text x="100" y="126" textAnchor="middle" className="bstamp__unit">{d.stampUnit}</text>
         </svg>

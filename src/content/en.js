@@ -289,7 +289,7 @@ export default {
       build: {
         title: 'Live in two to four weeks',
         body: "A clear plan, scope and timeline with the price attached. Then we build it, and your team doesn't touch a thing.",
-        stamp: 'Live in 2 to 4 weeks · On your tools · ',
+        stamp: 'Live in 2 to 4 weeks  ·  ',
         stampCentre: '2–4', stampUnit: 'weeks',
       },
       guarantee: {

@@ -14,7 +14,6 @@
 
 /* ----- hero ----- */
 .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; overflow:hidden; background:linear-gradient(180deg, #EEE8FB 0%, #F6F3FC 38%, var(--paper) 72%); }
-.hero .gridlines i{ opacity:.3; }
 .hero__obj{ position:absolute; z-index:1; top:8%; right:-12vw; width:min(58vw, 900px); aspect-ratio:1; pointer-events:none; }
 .hero__shadow{ position:absolute; left:14%; right:14%; top:58%; height:34%; border-radius:50%; background:radial-gradient(closest-side, rgba(60,24,140,.28), rgba(60,24,140,0)); filter:blur(34px); transform:translateY(8%); }
 .hero__body{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:space-between; width:100%; padding-top:calc(var(--nav-h) + 4vh); padding-bottom:4vh; }
@@ -50,7 +49,6 @@
 .srows{ margin-top:clamp(40px, 5vw, 72px); }
 .srow{ position:relative; display:grid; grid-template-columns:64px 4fr 6fr; column-gap:var(--gap); padding:clamp(40px, 5vw, 72px) 0; }
 .srow__rule{ position:absolute; top:0; left:0; right:0; height:1px; background:var(--line); transform-origin:left center; }
-.srow:last-child::after{ content:""; position:absolute; bottom:0; left:0; right:0; height:1px; background:var(--line); }
 .srow__n{ color:var(--accent); padding-top:.9em; }
 .srow__tag{ color:var(--text-3); margin-bottom:14px; }
 .srow__title{ max-width:12ch; }
@@ -95,11 +93,11 @@
 .proof__chips li{ display:flex; gap:9px; align-items:center; color:var(--text-2); }
 .proof__chips .glyph{ color:var(--text-3); }
 .proof__link{ margin-top:26px; }
-.proof__soon{ margin-top:26px; color:var(--text-3); max-width:44ch; padding-top:18px; border-top:1px solid var(--line); }
+.proof__soon{ margin-top:26px; color:var(--text-3); max-width:44ch; }
 .proof__terms{ grid-column:7 / span 6; }
 .proof__ptitle{ margin-top:26px; max-width:16ch; }
 .proof__pbody{ margin-top:18px; }
-.terms{ margin-top:28px; border-top:1px solid var(--line); }
+.terms{ margin-top:20px; }
 .term{ display:grid; grid-template-columns:44px 1fr; column-gap:12px; padding:20px 0 22px; border-bottom:1px solid var(--line); }
 .term__i{ color:var(--accent); padding-top:.45em; }
 .term__t{ font-size:var(--t-4); font-weight:600; letter-spacing:-.02em; line-height:1.25; }
@@ -115,15 +113,17 @@
 /* ----- closing ----- */
 .closing{ padding:0 0 clamp(24px, 3vw, 48px); }
 .closing__panel{ position:relative; overflow:hidden; border-radius:var(--r-l); padding:clamp(56px, 7vw, 110px) clamp(28px, 6vw, 110px); min-height:min(70vh, 640px); display:flex; align-items:center; }
-.closing__panel::before{ content:""; position:absolute; inset:0; background:radial-gradient(60% 80% at 82% 50%, rgba(124,77,204,.42), rgba(124,77,204,0) 70%); pointer-events:none; }
-.closing__ghost{ position:absolute; left:-.02em; bottom:-.22em; font-family:var(--font-d); font-weight:800; font-size:clamp(120px, 24vw, 420px); letter-spacing:-.05em; line-height:1; color:transparent; -webkit-text-stroke:1px rgba(244,241,248,.16); pointer-events:none; user-select:none; white-space:nowrap; }
-.closing__obj{ position:absolute; right:-14%; top:50%; width:min(64%, 780px); aspect-ratio:1; transform:translateY(-50%); pointer-events:none; }
+/* the glow is painted after the ghost so the letters' night fill tints with the panel */
+.closing__panel::after{ content:""; position:absolute; inset:0; z-index:0; background:radial-gradient(60% 80% at 82% 50%, rgba(124,77,204,.42), rgba(124,77,204,0) 70%); pointer-events:none; }
+/* filled in night and stroked underneath (paint-order), so only the outer edge of each letter shows */
+.closing__ghost{ position:absolute; left:-.02em; bottom:-.22em; font-family:var(--font-d); font-weight:800; font-size:clamp(120px, 24vw, 420px); letter-spacing:-.05em; line-height:1; color:var(--night); -webkit-text-stroke:2px rgba(244,241,248,.18); paint-order:stroke fill; pointer-events:none; user-select:none; white-space:nowrap; }
+.closing__obj{ position:absolute; z-index:1; right:-14%; top:50%; width:min(64%, 780px); aspect-ratio:1; transform:translateY(-50%); pointer-events:none; }
 .closing__copy{ position:relative; z-index:1; max-width:min(62%, 660px); }
 .closing__title{ max-width:17ch; }
 .closing__body{ margin-top:26px; max-width:40ch; }
 .closing__cta{ margin-top:34px; }
 .closing__note{ margin-top:22px; color:var(--text-3); }
-.closing__contact{ margin-top:34px; padding-top:22px; border-top:1px solid var(--line); display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
+.closing__contact{ margin-top:30px; display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
 .closing__clbl{ color:var(--text-3); }
 .closing__mail{ font-size:var(--t-4); font-weight:600; letter-spacing:-.02em; }
 

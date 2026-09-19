@@ -287,7 +287,7 @@ export default {
       build: {
         title: 'En ligne en deux à quatre semaines',
         body: "Un plan clair, une portée et un échéancier, avec le prix attaché. Puis on le bâtit, et votre équipe n'a rien à faire.",
-        stamp: 'En ligne en 2 à 4 semaines · Sur vos outils · ',
+        stamp: 'En ligne en 2 à 4 semaines  ·  ',
         stampCentre: '2–4', stampUnit: 'semaines',
       },
       guarantee: {

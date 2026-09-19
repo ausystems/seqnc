@@ -63,7 +63,7 @@
 .state--dim{ color:var(--text-3); }
 
 /* accordion */
-.acc{ border-top:1px solid var(--line); }
+.acc{ }
 .acc__item{ border-bottom:1px solid var(--line); }
 .acc__btn{ width:100%; display:grid; grid-template-columns:52px 1fr 40px; align-items:baseline; gap:12px; padding:22px 0; text-align:left; color:var(--text); }
 .acc__i{ font-family:var(--font-m); font-size:var(--t-mono); letter-spacing:.14em; color:var(--text-3); transition:color var(--dur-hover); }

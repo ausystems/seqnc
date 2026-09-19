@@ -24,8 +24,6 @@
 
 .btile__vis{ position:relative; flex:1; min-height:160px; border-radius:14px; background:var(--paper-2); overflow:hidden; display:flex; align-items:center; justify-content:center; padding:18px; }
 .btile--inbound .btile__vis{ min-height:300px; align-items:center; }
-/* the blueprint columns, faintly, behind the enquiries */
-.btile--inbound .btile__vis::before{ content:""; position:absolute; inset:0; background-image:repeating-linear-gradient(to right, transparent 0 calc(25% - 1px), var(--line) calc(25% - 1px) 25%); background-size:100% 100%; mask-image:repeating-linear-gradient(to bottom, #000 0 5px, transparent 5px 11px); -webkit-mask-image:repeating-linear-gradient(to bottom, #000 0 5px, transparent 5px 11px); opacity:.7; pointer-events:none; }
 .bmsgs, .breply{ position:relative; }
 .breply{ position:absolute; }
 .btile__t{ margin:20px 10px 0; font-family:var(--font-d); font-size:19px; font-weight:600; letter-spacing:-.025em; line-height:1.25; }
@@ -83,7 +81,6 @@
 /* 05 build: the stamp */
 .bstamp{ width:150px; height:150px; }
 .bstamp__outer{ fill:#fff; stroke:var(--violet); stroke-width:1.5; }
-.bstamp__inner{ fill:none; stroke:var(--violet); stroke-width:1; stroke-dasharray:2 3; }
 .bstamp__text{ font-family:var(--font-m); font-size:10.4px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; fill:var(--violet); }
 .bstamp__centre{ font-family:var(--font-d); font-size:34px; font-weight:700; letter-spacing:-.05em; fill:var(--night); }
 .bstamp__unit{ font-family:var(--font-m); font-size:9px; letter-spacing:.18em; text-transform:uppercase; fill:var(--text-3); }
