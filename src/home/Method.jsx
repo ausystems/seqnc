@@ -14,15 +14,10 @@ import { useT } from '../i18n.jsx';
 import { useGsap } from '../engine/hooks.js';
 import { reduced } from '../engine/device.js';
 import { Lines, Fade } from '../ui/Reveal.jsx';
+import Button from '../ui/Button.jsx';
+import { Digit, rollTo } from '../ui/Roll.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
-
-/* a digit that rolls up to its value through every digit below it */
-function Digit({ n }) {
-  const col = [];
-  for (let k = 0; k <= n; k++) col.push(<span key={k}>{k}</span>);
-  return <span className="roll" data-n={n}><span className="roll__col">{col}</span></span>;
-}
 
 export default function Method() {
   const { t } = useT();
@@ -30,7 +25,6 @@ export default function Method() {
   const ref = useGsap((_, el) => {
     const stack = el.querySelector('.stack');
     const cards = [...el.querySelectorAll('.mcard')];
-    const rollTo = (r) => -100 * Number(r.dataset.n) / (Number(r.dataset.n) + 1);
     if (reduced) {
       el.querySelectorAll('.roll').forEach((r) => gsap.set(r.querySelector('.roll__col'), { yPercent: rollTo(r) }));
       return undefined;
@@ -101,6 +95,10 @@ export default function Method() {
             </li>
           ))}
         </ol>
+        <Fade className="cta-row method__cta">
+          <p className="cta-row__lead">{t.offer.method}</p>
+          <Button href={t.calendly} calendly>{t.hero.cta}</Button>
+        </Fade>
       </div>
     </section>
   );

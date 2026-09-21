@@ -33,6 +33,7 @@ export default function Hero() {
             <Button href={t.calendly} calendly>{t.hero.cta}</Button>
             <MonoLink href="#systems" dim>{t.hero.secondary}</MonoLink>
           </Fade>
+          <Fade now delay={.4}><p className="hero__note">{t.hero.note}</p></Fade>
         </div>
         <Lines as="h1" id="hero-title" className="dsp dsp--hero hero__title" now delay={.5} stagger={.1}>
           {t.hero.titleStart}<br /><span className="hi">{t.hero.titleMuted}</span>

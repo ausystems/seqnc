@@ -54,8 +54,10 @@
 @media (max-width:900px){
   .nav{ grid-template-columns:auto 1fr; }
   .nav__links{ display:none; }
-  .nav__right{ gap:18px; }
-  .nav__cta{ display:none; }
+  .nav__right{ gap:14px; }
+  .nav__right > .lang{ display:none; }
+  .nav__cta{ height:38px; padding:0 13px 0 14px; font-size:13px; gap:8px; }
+  .menu__lang{ align-self:flex-start; }
   .nav__menu{ display:inline-block; }
   .brand__mark{ width:28px; height:28px; }
   .brand__name{ font-size:19px; }

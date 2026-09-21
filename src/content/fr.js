@@ -196,6 +196,8 @@ export default {
 
   work: {
     label: 'Étude de cas',
+    titleStart: 'Déjà en marche',
+    titleAccent: 'chez un vrai client.',
     client: 'Divos Detailing',
     meta: 'Esthétique Automobile · Houston',
     link: 'Voir le système de réservation en ligne',
@@ -235,6 +237,7 @@ export default {
     titleAccent: 'à votre entreprise.',
     body: "Nous ne publions pas de liste de prix, parce qu'un seul système et une refonte complète des quatre ne sont pas le même mandat. Voici plutôt exactement comment ça fonctionne.",
     cta: "Obtenez votre prix lors de l'appel",
+    vis: { setup: 'Installation', once: 'Une fois', retainer: 'Forfait', monthly: 'Mensuel', cancel: 'Annulez', days: 'jours', full: 'En entier' },
     items: [
       { title: "Des frais d'installation uniques, puis un forfait mensuel", desc: "L'installation couvre la construction. Le forfait couvre la surveillance, les correctifs et les améliorations. Les deux sont confirmés par écrit après votre analyse, jamais avant." },
       { title: 'Annulez quand vous voulez, sans pénalité', desc: "Sans question. Les conditions de l'entente sont dans la FAQ ci-dessous, en langage clair." },
@@ -257,6 +260,14 @@ export default {
       { q: 'Pouvez-vous travailler avec nos logiciels actuels?', a: 'Dans la plupart des cas, oui. Nous nous intégrons aux outils que vous utilisez déjà. Si une connexion directe est impossible, nous trouvons la meilleure solution de rechange pour que rien ne soit laissé de côté.' },
       { q: 'Comment se déroule le diagnostic gratuit?', a: "On discute de ce qui crée de la friction : des revenus que vous ne captez pas, du chaos interne, ou des clients qui ne reviennent pas. On identifie la cause de fond et on établit un échéancier pour la régler. Jusqu'à 60 minutes, gratuit, sans engagement." },
     ],
+  },
+
+  offer: {
+    points: ['Diagnostic gratuit de 60 minutes', 'En ligne en 2 à 4 semaines', 'Garantie de remboursement de 90 jours'],
+    leaveWith: 'Vous repartez avec vos 2 à 3 plus grandes fuites, que vous nous engagiez ou non.',
+    systems: "Vous ne savez pas lequel vous coûte le plus cher? C'est exactement à ça que sert le diagnostic gratuit.",
+    method: "La première étape est gratuite, et elle prend une heure.",
+    work: 'Vous voulez la même chose pour votre entreprise?',
   },
 
   closing: {

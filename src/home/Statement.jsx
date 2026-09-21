@@ -8,6 +8,7 @@ import { useGsap } from '../engine/hooks.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { reduced } from '../engine/device.js';
 import { Lines, Fade } from '../ui/Reveal.jsx';
+import { MonoLink } from '../ui/Button.jsx';
 
 export default function Statement() {
   const { t } = useT();
@@ -40,6 +41,7 @@ export default function Statement() {
             ))}
           </p>
           <p className="mono--s stmt__note">{b.disclaimer}</p>
+          <MonoLink className="stmt__cta" href={t.calendly}>{t.hero.cta}</MonoLink>
         </Fade>
       </div>
     </section>

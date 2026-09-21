@@ -162,6 +162,7 @@ export default function Nav() {
         </ul>
         <div className="menu__foot">
           <Button href={t.calendly} calendly onClick={close}>{t.hero.cta}</Button>
+          <Lang className="menu__lang" />
           <div className="menu__legal">
             <A to="/privacy" name={t.footer.privacy} onClick={close}>{t.footer.privacy}</A>
             <A to="/terms" name={t.footer.terms} onClick={close}>{t.footer.terms}</A>

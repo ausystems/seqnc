@@ -10,7 +10,7 @@ import { useGsap } from '../engine/hooks.js';
 import { useTile } from '../engine/tile.js';
 import { reduced } from '../engine/device.js';
 import { Lines, Fade } from '../ui/Reveal.jsx';
-import { MonoLink } from '../ui/Button.jsx';
+import Button, { MonoLink } from '../ui/Button.jsx';
 import { Glyph } from '../ui/Mark.jsx';
 
 const Check = ({ className = '' }) => (<i className={`bchk ${className}`} aria-hidden="true"><svg viewBox="0 0 10 8"><path d="M1 4.2 3.8 7 9 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></i>);
@@ -188,6 +188,10 @@ export default function Systems() {
           <Outbound sys={s.outbound} demo={d.outbound} t={t} />
           <Billing sys={s.billing} t={t} />
         </div>
+        <Fade className="cta-row systems__cta">
+          <p className="cta-row__lead">{t.offer.systems}</p>
+          <Button href={t.calendly} calendly>{t.hero.cta}</Button>
+        </Fade>
       </div>
     </section>
   );

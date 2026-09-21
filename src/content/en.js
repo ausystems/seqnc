@@ -197,6 +197,8 @@ export default {
 
   work: {
     label: 'Case study',
+    titleStart: 'Already running',
+    titleAccent: 'for a real client.',
     client: 'Divos Detailing',
     meta: 'Auto Detailing · Houston',
     link: 'See the live booking flow',
@@ -236,6 +238,8 @@ export default {
     titleAccent: 'to Your Business.',
     body: "We don't publish a price list, because a one-system build and a full four-system rebuild aren't the same job. Here is exactly how it works instead.",
     cta: 'Get your number on the call',
+    /* the words each pricing picture sets large, each lifted from its term */
+    vis: { setup: 'Setup', once: 'One-time', retainer: 'Retainer', monthly: 'Monthly', cancel: 'Cancel', days: 'days', full: 'In full' },
     items: [
       { title: 'A One-Time Setup Fee, Then a Monthly Retainer', desc: 'The setup covers the build. The retainer covers monitoring, fixes and improvements. Both are confirmed in writing after your review, never before.' },
       { title: 'Cancel Any Time, No Penalty', desc: 'No questions asked. Agreement terms are in the FAQ below, in plain language.' },
@@ -258,6 +262,16 @@ export default {
       { q: 'Can you work with our existing software?', a: "In most cases yes. We integrate with the tools you already use. If a direct connection isn't possible, we find the best alternative so nothing gets left behind." },
       { q: 'How does the free review work?', a: "We talk through what's causing friction, whether that's revenue you aren't capturing, internal chaos, or clients who don't come back. We identify the underlying issue and lay out a timeline to fix it. Up to 60 minutes, free, no obligation." },
     ],
+  },
+
+  /* The offer, as it already stands on the site, in three lines.  Shown
+     beside the main actions so the reason to book is never out of view. */
+  offer: {
+    points: ['Free 60-minute review', 'Live in 2 to 4 weeks', '90-day money-back guarantee'],
+    leaveWith: 'You leave knowing your 2 to 3 biggest leaks, whether you hire us or not.',
+    systems: "Not sure which one is costing you most? That's what the free review is for.",
+    method: 'Step one is free, and it takes an hour.',
+    work: 'Want this for your business?',
   },
 
   closing: {
