@@ -4,9 +4,9 @@
    Colour is the brand's own violet, lifted from the published site and the
    logo (#7C4DCC, #A861E6, #C9AEF5, #7C42B4, periwinkle #7E9AF5) and its night
    surface (#0E0820).  The page is paper; night is used for one chapter and
-   the closing panel.  Type is Manrope (display and body) and Azeret Mono
-   (labels, numbers, controls), with Instrument Serif italic for a single
-   accent line per composition.
+   the closing panel.  Type is Instrument Sans (display and body), Geist Mono
+   (labels, controls) and Instrument Serif (the accent phrase in italic, the
+   large numerals upright).
    ========================================================================= */
 :root{
   /* brand */
@@ -40,8 +40,8 @@
   --focus:var(--violet);
 
   /* type */
-  --font-d:"Manrope",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-  --font-m:"Azeret Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --font-d:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-m:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --font-s:"Instrument Serif",Georgia,"Times New Roman",serif;
 
   --t-hero:clamp(44px, 6.6vw, 112px);

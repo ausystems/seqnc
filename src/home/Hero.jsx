@@ -20,6 +20,7 @@ export default function Hero() {
     const d = introDelay();
     gsap.from(el.querySelector('.hero__obj'), { opacity: 0, scale: .94, duration: 1.8, ease: 'expo.out', delay: d + .25 });
     gsap.from(el.querySelector('.hero__strip'), { opacity: 0, duration: 1.2, delay: d + 1.1 });
+    gsap.from(el.querySelectorAll('.hero__who, .hero__stmt, .hero__chips li'), { y: 10, opacity: 0, duration: .9, ease: 'expo.out', stagger: .06, delay: d + 1.2, clearProps: 'transform' });
     gsap.to(el.querySelector('.hero__top'), { yPercent: -14, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true } });
   }, []);
   return (

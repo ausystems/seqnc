@@ -99,14 +99,16 @@ export default {
 
   systems: {
     label: 'The framework',
-    title: 'Three Systems. We Start With Whichever One Is Costing You Most.',
-    titleLines: ['Three Systems.', 'We Start With Whichever One', 'Is Costing You Most.'],
-    body: 'You are never required to take all three.',
+    title: 'Four Systems. We Start With Whichever One Is Costing You Most.',
+    titleLines: ['Four Systems.', 'We Start With Whichever One', 'Is Costing You Most.'],
+    body: 'You are never required to take all four.',
     inbound: {
       tag: 'Inbound',
       title: 'Never Miss a Lead',
       body: 'Calls, emails and DMs land in one place and get answered instantly, including at 9pm on a Sunday.',
       channels: ['Call', 'Email', 'DM'],
+      when: 'Sunday · 9:04 PM',
+      inbox: 'One inbox',
       reply: 'Reply sent to the lead',
       instantly: 'Instantly',
       bullets: ['Enquiries from every channel, handled the same way', 'After-hours leads get an answer, not a voicemail', 'Nothing sits waiting for you to notice it'],
@@ -134,6 +136,17 @@ export default {
         { day: 'Day 90', n: 90, msg: 'Seasonal check-in', badge: 'Queued' },
       ],
       bullets: ['Reviews asked for every job, not the ones you remember', 'Past clients hear from you without a campaign to write', 'Repeat work that used to depend on luck'],
+    },
+    billing: {
+      tag: 'Billing',
+      title: 'Get Paid Without Chasing',
+      body: 'The invoice goes out the moment the work is done, and reminders follow on their own until it is paid.',
+      stages: [
+        { label: 'Invoice sent', when: 'Job closed' },
+        { label: 'Reminder sent', when: 'Day 7' },
+        { label: 'Paid', when: 'In full' },
+      ],
+      bullets: ['The invoice goes out when the work does, not when someone remembers', 'Reminders keep going until the payment lands', 'Nothing left to chase at the end of the month'],
     },
   },
 
@@ -192,6 +205,12 @@ export default {
     afterLabel: 'After',
     before: 'Bookings on a third-party site. Calendar and clients tracked by hand.',
     after: 'Booking lives on their own site. Google Calendar and CRM sync on their own.',
+    pairs: [
+      { before: 'Bookings on a third-party site.', after: 'Booking lives on', afterAccent: 'their own site.' },
+      { before: 'Calendar and clients tracked by hand.', after: 'Google Calendar and CRM sync', afterAccent: 'on their own.' },
+    ],
+    live: 'Live',
+    url: 'divosdetailing.com/book-now',
     chips: ['On-site booking page', 'Google Calendar sync', 'CRM integration'],
     comingSoon: "Second case study in progress. A client's operations system goes live shortly and their numbers land here when it does.",
   },
@@ -203,17 +222,19 @@ export default {
     titleAccent: 'Start to Finish.',
     body: 'Four steps from broken systems to automated ones. No lengthy onboarding.',
     steps: [
-      { title: "We Find What's Costing You Most", desc: '60 minutes on how you actually operate, and which area is losing the most time and money.' },
-      { title: 'You See the Build and the Cost', desc: 'A clear plan, scope and timeline with the price attached. No vague proposals.' },
-      { title: 'We Build It', desc: "Two to four weeks, on the tools you already use. Your team doesn't touch a thing." },
-      { title: 'It Keeps Working', desc: 'Monitoring and fixes are part of the retainer. If it breaks, we fix it.' },
+      { title: "We Find What's Costing You Most", desc: '60 minutes on how you actually operate, and which area is losing the most time and money.', detail: '60 minutes' },
+      { title: 'You See the Build and the Cost', desc: 'A clear plan, scope and timeline with the price attached. No vague proposals.', detail: 'Scope, timeline, price' },
+      { title: 'We Build It', desc: "Two to four weeks, on the tools you already use. Your team doesn't touch a thing.", detail: '2 to 4 weeks' },
+      { title: 'It Keeps Working', desc: 'Monitoring and fixes are part of the retainer. If it breaks, we fix it.', detail: 'Monitoring included' },
     ],
   },
 
   pricing: {
     label: 'Pricing',
     title: 'Every Build Is Scoped to Your Business.',
-    body: "We don't publish a price list, because a one-system build and a full three-system rebuild aren't the same job. Here is exactly how it works instead.",
+    titleStart: 'Every Build Is Scoped',
+    titleAccent: 'to Your Business.',
+    body: "We don't publish a price list, because a one-system build and a full four-system rebuild aren't the same job. Here is exactly how it works instead.",
     cta: 'Get your number on the call',
     items: [
       { title: 'A One-Time Setup Fee, Then a Monthly Retainer', desc: 'The setup covers the build. The retainer covers monitoring, fixes and improvements. Both are confirmed in writing after your review, never before.' },
@@ -225,10 +246,12 @@ export default {
   faq: {
     label: 'FAQ',
     title: 'Questions People Ask Before Booking.',
+    titleStart: 'Questions People Ask',
+    titleAccent: 'Before Booking.',
     items: [
       { q: 'How long does it take to see results?', a: 'Most clients see impact from the Inbound system in the first week, because leads stop going unanswered right away. Operations and Outbound compound, and usually show meaningful time savings within 30 days.' },
       { q: 'Do I need to be technical?', a: "No. We build everything and your team doesn't touch it. Once it's live it runs in the background." },
-      { q: 'What if I only need one system?', a: "That's fine. We start with whatever is costing you the most and build from there. You're never required to take all three." },
+      { q: 'What if I only need one system?', a: "That's fine. We start with whatever is costing you the most and build from there. You're never required to take all four." },
       { q: 'What happens if something breaks?', a: 'Monitoring and bug fixes are included in your monthly retainer. If something stops working, we fix it.' },
       { q: 'Is there a contract?', a: 'Agreements run 12 months, but you can cancel any time with no questions asked and no penalty. Every retainer also comes with a 90-day money-back guarantee.' },
       { q: 'How much does it cost?', a: "It depends on the scope and complexity of your systems, so there's no one-size-fits-all number. Book a free review and you'll get exactly what you need and what it costs." },
@@ -252,35 +275,14 @@ export default {
     terms: 'Terms & Conditions',
   },
 
-  /* The bento: six facets of the system, each from published copy. */
+  /* The included strip: three facets of the engagement, from published copy. */
   bento: {
-    label: 'At a glance',
-    title: 'Six things that stop depending on you.',
-    titleStart: 'Six things that stop',
-    titleAccent: 'depending on you.',
-    body: 'What the systems do, and what the engagement includes.',
+    label: 'Included',
+    title: 'Included with every build.',
+    titleStart: 'Included with',
+    titleAccent: 'every build.',
+    body: 'Whichever system you start with, the engagement includes the same three things.',
     tiles: {
-      inbound: {
-        title: 'Never miss a lead',
-        body: 'Calls, emails and DMs land in one place and get answered instantly, including at 9pm on a Sunday.',
-        cards: [
-          { chan: 'Email', when: 'Sunday · 9:04 PM', text: 'New enquiry' },
-          { chan: 'Missed call', when: 'Sunday · 9:11 PM', text: 'Voicemail left' },
-        ],
-        reply: 'Reply sent to the lead', instantly: 'Instantly',
-      },
-      operations: {
-        title: 'Nothing gets dropped',
-        body: 'Signed client to work delivered, with each handoff triggered automatically instead of remembered.',
-      },
-      outbound: {
-        title: 'Follow-ups on time',
-        body: 'Reviews, referrals and seasonal check-ins that go out on time without anyone writing them.',
-        bubbles: [
-          { day: 'Day 1', text: 'Thank you and review ask' },
-          { day: 'Day 30', text: 'Come-back offer' },
-        ],
-      },
       tools: {
         title: 'On the tools you already use',
         body: 'We integrate with the tools you already use. If a direct connection is not possible, we find the best alternative.',

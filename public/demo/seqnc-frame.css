@@ -1,9 +1,9 @@
 /* The SEQNC frame around every live demo: one slim night bar that says
    whose demo this is, that the data is sample data, and the way back. */
-@font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/Manrope-200-800-normal-latin.woff2) format("woff2")}
-@font-face{font-family:"Azeret Mono";font-style:normal;font-weight:300 600;font-display:swap;src:url(/fonts/AzeretMono-300-600-normal-latin.woff2) format("woff2")}
-.seqnc-frame{ position:relative; z-index:400; display:flex; align-items:center; gap:22px; height:44px; padding:0 22px; background:#0E0820; color:#F4F1F8; font-family:"Azeret Mono",ui-monospace,Menlo,monospace; font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; line-height:1; }
-.seqnc-frame__brand{ display:inline-flex; align-items:center; gap:9px; color:#F4F1F8; text-decoration:none; font-family:"Manrope",system-ui,sans-serif; font-weight:800; font-size:15px; letter-spacing:-.04em; text-transform:none; }
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-stretch:75% 100%;font-display:swap;src:url(/fonts/InstrumentSans-latin.woff2) format("woff2")}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/GeistMono-latin.woff2) format("woff2")}
+.seqnc-frame{ position:relative; z-index:400; display:flex; align-items:center; gap:22px; height:44px; padding:0 22px; background:#0E0820; color:#F4F1F8; font-family:"Geist Mono",ui-monospace,Menlo,monospace; font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; line-height:1; }
+.seqnc-frame__brand{ display:inline-flex; align-items:center; gap:9px; color:#F4F1F8; text-decoration:none; font-family:"Instrument Sans",system-ui,sans-serif; font-weight:700; font-size:15px; letter-spacing:-.04em; text-transform:none; }
 .seqnc-frame__brand svg{ width:20px; height:20px; display:block; }
 .seqnc-frame__tag{ display:inline-flex; align-items:center; gap:10px; color:#B4ACC4; }
 .seqnc-frame__tag::before{ content:""; width:16px; height:1px; background:#A861E6; }

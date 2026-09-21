@@ -44,7 +44,7 @@
 .lnk--on::after{ transform:scaleX(1); transform-origin:left; }
 
 /* mono link with an arrow */
-.mlnk{ display:inline-flex; align-items:center; gap:12px; font-family:var(--font-m); font-size:var(--t-mono); font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text); }
+.mlnk{ display:inline-flex; align-items:center; gap:12px; font-family:var(--font-m); font-size:var(--t-mono); font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--text); }
 .mlnk svg{ width:15px; height:10px; flex:none; transition:transform var(--dur-hover) var(--ease-out); }
 .mlnk:hover svg{ transform:translateX(4px); }
 .mlnk .ext{ width:11px; height:11px; }
@@ -66,7 +66,7 @@
 .acc{ }
 .acc__item{ border-bottom:1px solid var(--line); }
 .acc__btn{ width:100%; display:grid; grid-template-columns:52px 1fr 40px; align-items:baseline; gap:12px; padding:22px 0; text-align:left; color:var(--text); }
-.acc__i{ font-family:var(--font-m); font-size:var(--t-mono); letter-spacing:.14em; color:var(--text-3); transition:color var(--dur-hover); }
+.acc__i{ font-family:var(--font-m); font-size:var(--t-mono); letter-spacing:.12em; color:var(--text-3); transition:color var(--dur-hover); }
 .acc__q{ font-family:var(--font-d); font-size:var(--t-3); font-weight:500; letter-spacing:-.02em; line-height:1.25; }
 .acc__x{ position:relative; width:14px; height:14px; justify-self:end; align-self:center; }
 .acc__x::before, .acc__x::after{ content:""; position:absolute; background:currentColor; transition:transform .5s var(--ease-out); }
@@ -97,7 +97,7 @@
 .intro{ position:fixed; inset:0; z-index:120; background:var(--night); color:#F4F1F8; display:flex; align-items:center; justify-content:center; }
 .intro__in{ display:flex; flex-direction:column; align-items:center; gap:18px; }
 .intro__mark{ opacity:0; }
-.intro__word{ font-family:var(--font-d); font-weight:800; font-size:22px; letter-spacing:-.045em; opacity:0; }
+.intro__word{ font-family:var(--font-d); font-weight:700; font-size:22px; letter-spacing:-.045em; opacity:0; }
 .intro__line{ width:120px; height:1px; background:var(--violet-2); transform:scaleX(0); transform-origin:left center; margin-top:6px; }
 
 /* fine grain for the night chapters */

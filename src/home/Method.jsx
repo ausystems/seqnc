@@ -1,7 +1,12 @@
 /* =========================================================================
-   The TimeBack Method.  The ring stays on the left and fills a quarter for
-   each step that passes; the four steps read down the right under large,
-   light numerals.  Small screens read it as a column with the ring above.
+   The TimeBack Method as four cards that stack.  Each card holds to the
+   top of the screen while the next slides over it, and the four surfaces
+   deepen as the work does: paper, lavender, violet, night.  A card's
+   numeral rolls into place as it arrives, like a counter.
+
+   Sticky cards move on their own, so nothing here trusts their measured
+   position: arrivals are observed on screen, and the sink of a covered
+   card is driven by the next card's natural place in the stack.
    ========================================================================= */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,32 +16,65 @@ import { reduced } from '../engine/device.js';
 import { Lines, Fade } from '../ui/Reveal.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
-const R = 92, C = 2 * Math.PI * R;
+
+/* a digit that rolls up to its value through every digit below it */
+function Digit({ n }) {
+  const col = [];
+  for (let k = 0; k <= n; k++) col.push(<span key={k}>{k}</span>);
+  return <span className="roll" data-n={n}><span className="roll__col">{col}</span></span>;
+}
 
 export default function Method() {
   const { t } = useT();
   const p = t.process;
-  const total = p.steps.length;
   const ref = useGsap((_, el) => {
-    const arc = el.querySelector('.mring__arc');
-    const n = el.querySelector('.mring__n');
-    const steps = el.querySelectorAll('.mstep');
-    const set = (i) => {
-      const frac = (i + 1) / total;
-      gsap.to(arc, { strokeDashoffset: C * (1 - frac), duration: reduced ? 0 : 1.1, ease: 'power3.inOut', overwrite: true });
-      if (n) n.textContent = `0${i + 1}`;
-      steps.forEach((s, k) => s.classList.toggle('is-on', k <= i));
+    const stack = el.querySelector('.stack');
+    const cards = [...el.querySelectorAll('.mcard')];
+    const rollTo = (r) => -100 * Number(r.dataset.n) / (Number(r.dataset.n) + 1);
+    if (reduced) {
+      el.querySelectorAll('.roll').forEach((r) => gsap.set(r.querySelector('.roll__col'), { yPercent: rollTo(r) }));
+      return undefined;
+    }
+    /* where each card sits before any of them sticks */
+    const gap = parseFloat(getComputedStyle(stack).rowGap) || 0;
+    const naturalTop = (i) => {
+      let y = stack.getBoundingClientRect().top + window.scrollY;
+      for (let k = 0; k < i; k++) y += cards[k].offsetHeight + gap;
+      return y;
     };
-    if (reduced) { set(total - 1); return; }
-    gsap.set(arc, { strokeDashoffset: C });
-    const triggers = [...steps].map((s, i) => ScrollTrigger.create({
-      trigger: s, start: 'top 62%',
-      onEnter: () => set(i),
-      onLeaveBack: () => { if (i > 0) set(i - 1); else { gsap.to(arc, { strokeDashoffset: C, duration: .8, ease: 'power3.inOut', overwrite: true }); steps.forEach((x) => x.classList.remove('is-on')); if (n) n.textContent = '00'; } },
-    }));
-    gsap.to(el.querySelector('.mring__hex'), { rotation: 360, transformOrigin: '50% 50%', duration: 48, ease: 'none', repeat: -1 });
-    return () => triggers.forEach((tr) => tr.kill());
-  }, [total]);
+    const stickyTop = (card) => parseFloat(getComputedStyle(card).top) || 0;
+
+    const words = cards.map((card) => [card.querySelector('.mcard__t'), card.querySelector('.mcard__d'), card.querySelector('.mcard__foot')]);
+    gsap.set(words.flat(), { y: 26, opacity: 0 });
+    const arrive = (card, i) => {
+      card.querySelectorAll('.roll').forEach((r, k) => {
+        const n = Number(r.dataset.n);
+        if (n) gsap.to(r.querySelector('.roll__col'), { yPercent: rollTo(r), duration: .9 + n * .18, ease: 'expo.inOut', delay: .1 + k * .08 });
+      });
+      gsap.to(words[i], { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: .1, delay: .15, clearProps: 'transform' });
+    };
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const i = cards.indexOf(en.target);
+        if (seen.has(i)) return;
+        seen.add(i); arrive(en.target, i); io.unobserve(en.target);
+      });
+    }, { threshold: .3 });
+    cards.forEach((c) => io.observe(c));
+
+    const tweens = cards.slice(0, -1).map((card, i) => {
+      const next = cards[i + 1];
+      const st = { start: () => naturalTop(i + 1) - window.innerHeight, end: () => naturalTop(i + 1) - stickyTop(next), scrub: true, invalidateOnRefresh: true };
+      return [
+        gsap.to(card.querySelector('.mcard__in'), { scale: .94, ease: 'none', transformOrigin: '50% 0%', scrollTrigger: st }),
+        /* only the words fade, so nothing shows through the card above */
+        gsap.to(card.querySelector('.mcard__grid'), { opacity: .35, ease: 'none', scrollTrigger: { ...st } }),
+      ];
+    }).flat();
+    return () => { io.disconnect(); tweens.forEach((tw) => { tw.scrollTrigger && tw.scrollTrigger.kill(); tw.kill(); }); };
+  }, [t.code]);
   return (
     <section className="section method" id="method" ref={ref} aria-labelledby="method-title">
       <div className="wrap">
@@ -46,29 +84,23 @@ export default function Method() {
           </Lines>
           <Fade><p className="lead method__body">{p.body}</p></Fade>
         </div>
-        <div className="method__grid">
-          <div className="method__side">
-            <div className="mring" aria-hidden="true">
-              <svg viewBox="0 0 220 220" className="mring__svg">
-                <circle cx="110" cy="110" r={R} className="mring__track" />
-                <circle cx="110" cy="110" r={R} className="mring__arc" style={{ strokeDasharray: C, strokeDashoffset: C }} />
-                <path d="M110 92l15.6 9v18L110 128l-15.6-9v-18L110 92Z" className="mring__hex" />
-              </svg>
-              <p className="mring__count"><span className="mring__n">00</span><span className="mring__of">/ 0{total}</span></p>
-            </div>
-          </div>
-          <ol className="method__steps">
-            {p.steps.map((s, i) => (
-              <li className="mstep" key={s.title}>
-                <p className="num mstep__n" aria-hidden="true">0{i + 1}</p>
-                <div className="mstep__body">
-                  <h3 className="dsp dsp--2 mstep__t">{s.title}</h3>
-                  <p className="mstep__d">{s.desc}</p>
+        <ol className="stack">
+          {p.steps.map((s, i) => (
+            <li className={`mcard mcard--${i + 1}`} key={s.title} style={{ '--i': i }}>
+              <div className="mcard__in"><div className="mcard__grid">
+                <p className="num mcard__n" aria-hidden="true"><Digit n={0} /><Digit n={i + 1} /></p>
+                <div className="mcard__body">
+                  <h3 className="dsp dsp--2 mcard__t">{s.title}</h3>
+                  <p className="mcard__d">{s.desc}</p>
                 </div>
-              </li>
-            ))}
-          </ol>
-        </div>
+                <div className="mcard__foot">
+                  <span className="mono mcard__detail">{s.detail}</span>
+                  <span className="mono mcard__of">{i + 1} / {p.steps.length}</span>
+                </div>
+              </div></div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

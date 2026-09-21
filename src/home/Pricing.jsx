@@ -13,7 +13,7 @@ export default function Pricing() {
     <section className="section pricing" id="pricing" aria-labelledby="pricing-title">
       <div className="wrap">
         <div className="pricing__head">
-          <Lines as="h2" id="pricing-title" className="dsp dsp--1 pricing__title" stagger={.1}>{p.title}</Lines>
+          <Lines as="h2" id="pricing-title" className="dsp dsp--1 pricing__title" stagger={.1}>{p.titleStart}<br /><span className="hi">{p.titleAccent}</span></Lines>
           <div>
             <Fade><p className="lead pricing__body">{p.body}</p></Fade>
             <Fade className="pricing__cta" delay={.1}><Button href={t.calendly} calendly>{p.cta}</Button></Fade>

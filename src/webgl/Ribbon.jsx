@@ -48,13 +48,16 @@ export default function Ribbon({ variant = 'hero', className = '' }) {
       if (new URLSearchParams(window.location.search).has('poster')) {
         /* dev only: render a still at a fixed size for the poster files */
         window.__seqncPoster = window.__seqncPoster || {};
-        window.__seqncPoster[variant] = (size = 1000, q = 0.86, type = 'image/webp') => {
+        window.__seqncPoster[variant] = (size = 1000, q = 0.86, type = 'image/webp', camZ) => {
           const w = canvas.clientWidth, h = canvas.clientHeight;
+          const z = app.camera.position.z;
+          if (camZ) app.camera.position.z = camZ;
           app.renderer.setSize(size, size, false);
           app.renderer.setPixelRatio(1);
           app.state.scroll = 0;
           app.render(0, null);
           const url = canvas.toDataURL(type, q);
+          app.camera.position.z = z;
           app.renderer.setPixelRatio(dpr);
           app.renderer.setSize(w, h, false);
           return url;

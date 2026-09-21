@@ -43,9 +43,9 @@ export default function Faq() {
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq__grid">
         <div className="faq__head">
-          <Lines as="h2" id="faq-title" className="dsp dsp--1">{t.faq.title}</Lines>
+          <Lines as="h2" id="faq-title" className="dsp dsp--1">{t.faq.titleStart}<br /><span className="hi">{t.faq.titleAccent}</span></Lines>
         </div>
-        <Fade as="ul" className="acc faq__list" y={16}>
+        <Fade as="ul" className="acc faq__list" y={16} stagger={.06}>
           {t.faq.items.map((it, i) => (
             <Item key={it.q} i={i} q={it.q} a={it.a} open={open === i} onToggle={(v) => setOpen(v ? i : -1)} />
           ))}

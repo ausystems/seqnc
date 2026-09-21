@@ -31,7 +31,7 @@ function sweep(curve, segs, radial, w, h) {
   const pos = new Float32Array((segs + 1) * (radial + 1) * 3);
   const nor = new Float32Array((segs + 1) * (radial + 1) * 3);
   const uv = new Float32Array((segs + 1) * (radial + 1) * 2);
-  const n = 3.6, e = 2 / n;
+  const n = 2.9, e = 2 / n;
   const P = new Vector3(), Nn = new Vector3();
   let k = 0, u = 0;
   for (let i = 0; i <= segs; i++) {
@@ -88,11 +88,13 @@ function studio(renderer) {
     fragmentShader: `varying vec3 vW;
       void main(){
         float y = vW.y;
-        vec3 top = vec3(0.50, 0.40, 0.86);
-        vec3 mid = vec3(0.30, 0.17, 0.64);
+        vec3 top = vec3(0.78, 0.70, 0.98);
+        vec3 high = vec3(0.54, 0.40, 0.92);
+        vec3 mid = vec3(0.30, 0.16, 0.66);
         vec3 low = vec3(0.05, 0.02, 0.15);
-        vec3 c = mix(low, mid, smoothstep(-0.7, 0.05, y));
-        c = mix(c, top, smoothstep(0.1, 0.8, y));
+        vec3 c = mix(low, mid, smoothstep(-0.75, 0.0, y));
+        c = mix(c, high, smoothstep(0.05, 0.5, y));
+        c = mix(c, top, smoothstep(0.55, 0.95, y));
         gl_FragColor = vec4(c, 1.0);
       }`,
   }));
@@ -101,10 +103,15 @@ function studio(renderer) {
     const m = new Mesh(new PlaneGeometry(w, h), new MeshBasicMaterial({ color: new Color(k * tint[0], k * tint[1], k * tint[2]), side: DoubleSide }));
     m.position.set(x, y, z); m.rotation.set(rx, ry, 0); m.lookAt(0, 0, 0); env.add(m);
   };
-  box(20, 5, 0, 14, 8, 7.5);
-  box(3.5, 16, -15, 2, 4, 3.0, 0, 0, [0.55, 0.68, 1.0]);
-  box(14, 1.8, 10, -8, -6, 4.5);
-  box(6, 2.2, 12, 8, 2, 3.0);
+  /* a broad top light, one long thin horizon strip for the sharp line
+     chrome is known by, a periwinkle side, a warm-white kicker and a
+     violet bounce from below */
+  box(22, 6, 0, 14, 8, 8.0);
+  box(34, 0.7, 0, 2.2, 12, 11.0);
+  box(3.5, 18, -15, 2, 4, 3.4, 0, 0, [0.55, 0.68, 1.0]);
+  box(14, 1.6, 10, -8, -6, 4.8);
+  box(6, 2.4, 12, 8, 2, 3.4, 0, 0, [1.0, 0.96, 0.9]);
+  box(16, 3, 0, -13, 4, 2.6, 0, 0, [0.82, 0.5, 1.0]);
   const pm = new PMREMGenerator(renderer);
   const tex = pm.fromScene(env, 0.035).texture;
   pm.dispose();
@@ -119,7 +126,7 @@ export function createRibbon(canvas, opts = {}) {
   renderer.setPixelRatio(dpr);
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
+  renderer.toneMappingExposure = 1.12;
   renderer.outputColorSpace = SRGBColorSpace;
 
   const scene = new Scene();
@@ -129,16 +136,18 @@ export function createRibbon(canvas, opts = {}) {
   const envMap = studio(renderer);
   scene.environment = envMap;
 
-  const key = new DirectionalLight(0xffffff, 2.2); key.position.set(2, 8, 6); scene.add(key);
-  const rim = new DirectionalLight(0x9db2f8, 2.0); rim.position.set(-6, -3, -5); scene.add(rim);
+  const key = new DirectionalLight(0xffffff, 2.4); key.position.set(2, 8, 6); scene.add(key);
+  const rim = new DirectionalLight(0x9db2f8, 2.2); rim.position.set(-6, -3, -5); scene.add(rim);
+  const fill = new DirectionalLight(0xc9aef5, 0.9); fill.position.set(-4, 2, 7); scene.add(fill);
 
-  const segs = lowPower ? 220 : 380, radial = lowPower ? 28 : 40;
-  const geometry = ribbonGeometry(segs, radial, 0.22, 0.08);
+  const segs = lowPower ? 240 : 480, radial = lowPower ? 32 : 48;
+  const geometry = ribbonGeometry(segs, radial, 0.24, 0.10);
   const material = new MeshPhysicalMaterial({
-    color: new Color(0x8b5cf0), metalness: 1, roughness: 0.09,
-    clearcoat: 1, clearcoatRoughness: 0.04,
-    iridescence: 0.3, iridescenceIOR: 1.3, iridescenceThicknessRange: [200, 560],
-    envMapIntensity: 1.5,
+    color: new Color(0x8f63f2), metalness: 1, roughness: 0.07,
+    clearcoat: 1, clearcoatRoughness: 0.03,
+    iridescence: 0.2, iridescenceIOR: 1.3, iridescenceThicknessRange: [220, 520],
+    anisotropy: 0.25, anisotropyRotation: Math.PI / 2,
+    envMapIntensity: 1.6,
   });
   const mesh = new Mesh(geometry, material);
   const group = new Group();
@@ -160,9 +169,10 @@ export function createRibbon(canvas, opts = {}) {
     state.time += dt;
     const base = variant === 'hero' ? 0.16 : 0.09;
     group.rotation.y += base * dt;
-    /* a ring turning on its own axis reads as still, so it also breathes on two slow tilts */
+    /* a ring turning on its own axis reads as still, so it also breathes on two slow tilts and floats a little */
     group.rotation.x = 0.55 + Math.sin(state.time * 0.33) * 0.11 + state.rx;
     group.rotation.z = 0.18 + Math.cos(state.time * 0.24) * 0.09 + state.ry * 0.3;
+    const float = Math.sin(state.time * 0.5) * 0.025;
     if (pointer) {
       const tx = (pointer.ny - 0.5) * 0.34, ty = (pointer.nx - 0.5) * 0.5;
       state.rx += (tx - state.rx) * Math.min(1, dt * 2.4);
@@ -174,7 +184,9 @@ export function createRibbon(canvas, opts = {}) {
     if (variant === 'hero') {
       const s = 1 - state.scroll * 0.12;
       group.scale.setScalar(s);
-      group.position.y = state.scroll * 0.9;
+      group.position.y = state.scroll * 0.9 + float;
+    } else {
+      group.position.y = float;
     }
     renderer.render(scene, camera);
   }
@@ -185,5 +197,5 @@ export function createRibbon(canvas, opts = {}) {
     renderer.forceContextLoss && renderer.forceContextLoss();
   }
 
-  return { renderer, state, render, resize, dispose, canvas };
+  return { renderer, camera, state, render, resize, dispose, canvas };
 }

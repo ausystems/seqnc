@@ -1,113 +1,20 @@
 /* =========================================================================
-   At a glance: six tiles, one idea each, every line from published copy.
-
-   Each tile carries a small illustration with its own choreography.  It
-   plays once as the tile enters and replays on hover (or on tap, where
-   there is no hover), while the tile itself lifts.
+   Included with every build: three tiles, one idea each, every line from
+   published copy.  Each tile carries a small illustration with its own
+   choreography; it plays once as the tile enters and replays on hover (or
+   on tap, where there is no hover), while the tile itself lifts.
    ========================================================================= */
-import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { useT } from '../i18n.jsx';
-import { reduced, finePointer } from '../engine/device.js';
+import { useGsap } from '../engine/hooks.js';
+import { useTile } from '../engine/tile.js';
+import { reduced } from '../engine/device.js';
 import { Lines, Fade } from '../ui/Reveal.jsx';
-import { Glyph } from '../ui/Mark.jsx';
 
 gsap.registerPlugin(DrawSVGPlugin);
 
-/* A tile owns one timeline built by `build(el)`; it plays on enter and on hover. */
-function useTile(build) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return undefined;
-    const tl = build(el);
-    if (!tl) return undefined;
-    if (reduced) { tl.progress(1); return () => tl.kill(); }
-    tl.pause(0);
-    let played = false;
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting && !played) { played = true; tl.play(0); } }, { threshold: .45 });
-    io.observe(el);
-    const replay = () => { if (!tl.isActive() || tl.progress() > .6) tl.play(0); };
-    if (finePointer) el.addEventListener('pointerenter', replay);
-    else el.addEventListener('click', replay);
-    return () => { io.disconnect(); el.removeEventListener('pointerenter', replay); el.removeEventListener('click', replay); tl.kill(); };
-  }, [build]);
-  return ref;
-}
-
-const Check = () => (<i className="bchk" aria-hidden="true"><svg viewBox="0 0 10 8"><path d="M1 4.2 3.8 7 9 1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></i>);
-
-/* 01  inbound: two enquiries arrive, one reply goes out */
-function Inbound({ d }) {
-  const ref = useTile((el) => gsap.timeline()
-    .from(el.querySelectorAll('.bmsg'), { y: 18, opacity: 0, duration: .8, ease: 'expo.out', stagger: .22 })
-    .from(el.querySelector('.breply'), { x: 22, opacity: 0, duration: .8, ease: 'expo.out' }, .8)
-    .from(el.querySelector('.breply .bchk'), { scale: 0, transformOrigin: '50% 50%', duration: .5, ease: 'back.out(2.2)' }, 1.05)
-    .from(el.querySelector('.breply__inst'), { opacity: 0, duration: .5 }, 1.2));
-  return (
-    <article className="btile btile--inbound" ref={ref}>
-      <div className="btile__vis" aria-hidden="true">
-        <div className="bmsgs">
-          {d.cards.map((c) => (
-            <div className="bmsg" key={c.chan}>
-              <div className="bmsg__h"><span className="bmsg__dot" /><span className="bmsg__chan mono">{c.chan}</span><span className="bmsg__when mono">{c.when}</span></div>
-              <span className="bmsg__text">{c.text}</span>
-            </div>
-          ))}
-        </div>
-        <div className="breply"><Check /><span className="breply__text">{d.reply}</span><span className="breply__inst mono">{d.instantly}</span></div>
-      </div>
-      <h3 className="btile__t">{d.title}</h3>
-      <p className="btile__d">{d.body}</p>
-    </article>
-  );
-}
-
-/* 02  operations: four handoffs tick themselves */
-function Operations({ d, steps }) {
-  const ref = useTile((el) => {
-    const tl = gsap.timeline();
-    el.querySelectorAll('.bstep').forEach((st, i) => {
-      tl.from(st, { opacity: .35, duration: .01 }, 0)
-        .to(st, { opacity: 1, duration: .4, ease: 'power2.out' }, .25 + i * .32)
-        .from(st.querySelector('.bchk'), { scale: 0, transformOrigin: '50% 50%', duration: .45, ease: 'back.out(2.2)' }, .3 + i * .32);
-    });
-    tl.fromTo(el.querySelector('.bsteps__prog'), { scaleY: 0 }, { scaleY: 1, duration: 1.3, ease: 'power2.inOut' }, .3);
-    return tl;
-  });
-  return (
-    <article className="btile btile--ops" ref={ref}>
-      <div className="btile__vis" aria-hidden="true">
-        <ol className="bsteps">
-          <i className="bsteps__line" /><i className="bsteps__prog" />
-          {steps.map((s) => <li className="bstep" key={s.label}><Check /><span>{s.label}</span><span className="mono bstep__badge">{s.badge}</span></li>)}
-        </ol>
-      </div>
-      <h3 className="btile__t">{d.title}</h3>
-      <p className="btile__d">{d.body}</p>
-    </article>
-  );
-}
-
-/* 03  outbound: two messages, days apart */
-function Outbound({ d }) {
-  const ref = useTile((el) => gsap.timeline()
-    .from(el.querySelectorAll('.bbub'), { y: 14, opacity: 0, scale: .96, transformOrigin: '0 100%', duration: .7, ease: 'expo.out', stagger: .5 }));
-  return (
-    <article className="btile btile--out" ref={ref}>
-      <div className="btile__vis" aria-hidden="true">
-        <div className="bbubs">
-          {d.bubbles.map((b, i) => <div className={`bbub${i % 2 ? ' bbub--r' : ''}`} key={b.day}><span className="mono bbub__day">{b.day}</span><span>{b.text}</span></div>)}
-        </div>
-      </div>
-      <h3 className="btile__t">{d.title}</h3>
-      <p className="btile__d">{d.body}</p>
-    </article>
-  );
-}
-
-/* 04  tools (night): four categories connect into the mark */
+/* 01  tools (night): four categories connect into the mark */
 function Tools({ d }) {
   const ref = useTile((el) => gsap.timeline()
     .from(el.querySelectorAll('.btool'), { opacity: 0, scale: .9, transformOrigin: '50% 50%', duration: .6, ease: 'expo.out', stagger: .1 })
@@ -140,7 +47,7 @@ function Tools({ d }) {
   );
 }
 
-/* 05  build: a stamp that turns, and lands */
+/* 02  build: a stamp that turns, and lands */
 function Build({ d }) {
   /* the legend turns about the circle's own centre (svgOrigin, in viewBox units), so it never drifts */
   const ref = useTile((el) => gsap.timeline()
@@ -164,7 +71,7 @@ function Build({ d }) {
   );
 }
 
-/* 06  guarantee: the ring fills to ninety days */
+/* 03  guarantee: the ring fills to ninety days */
 const R = 62, CIRC = 2 * Math.PI * R;
 function Guarantee({ d }) {
   const ref = useTile((el) => {
@@ -191,20 +98,21 @@ function Guarantee({ d }) {
   );
 }
 
-export default function Bento() {
+export default function Included() {
   const { t } = useT();
   const b = t.bento, tiles = b.tiles;
+  const ref = useGsap((_, el) => {
+    if (reduced) return;
+    gsap.from(el.querySelectorAll('.btile'), { y: 36, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .1, clearProps: 'transform', scrollTrigger: { trigger: el.querySelector('.bgrid'), start: 'top 84%', once: true } });
+  }, []);
   return (
-    <section className="section bento" id="glance" aria-labelledby="bento-title">
+    <section className="section bento" id="included" ref={ref} aria-labelledby="bento-title">
       <div className="wrap">
         <div className="bento__head">
           <Lines as="h2" id="bento-title" className="dsp dsp--1 bento__title" stagger={.1}>{b.titleStart}<br /><span className="hi">{b.titleAccent}</span></Lines>
           <Fade><p className="lead bento__body">{b.body}</p></Fade>
         </div>
         <div className="bgrid">
-          <Inbound d={tiles.inbound} />
-          <Operations d={tiles.operations} steps={t.systems.operations.steps} />
-          <Outbound d={tiles.outbound} />
           <Tools d={tiles.tools} />
           <Build d={tiles.build} />
           <Guarantee d={tiles.guarantee} />
