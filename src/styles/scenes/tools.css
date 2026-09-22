@@ -8,4 +8,4 @@
 .tools .tools__spokes{ fill:none; stroke:rgba(255,255,255,.4); stroke-width:1; }
 .tools .tools__core{ fill:#fff; }
 .tools .tools__live{ position:absolute; right:-2px; top:-2px; background:#fff; }
-.tools .halo{ inset:-40%; }
+.tools .halo{ inset:-40%; opacity:0; }

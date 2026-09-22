@@ -1,8 +1,8 @@
 /* =========================================================================
-   Tools: four categories connect into one mark.  The hub at the centre is
-   the hexagon, lit; the four pills stand in the corners, and from each a
-   packet travels along an arc into the hub, which pulses as it lands.
-   No wires: the packets are the connection.  The hub keeps breathing.
+   Tools: four categories feeding one mark, without end.  The hub and the
+   four pills stand from the start; packets keep leaving the pills along
+   their arcs into the hub, which swells and rings each time one lands,
+   and its live dot beats.
    ========================================================================= */
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
@@ -17,29 +17,29 @@ const HUB = { x: 170, y: 100, r: 30 };
 const ICONS = [Grid, Calendar, Mail, Form];
 const PILL = { w: 104, h: 36 };
 const POS = [{ x: 10, y: 22 }, { x: CW - PILL.w - 10, y: 22 }, { x: 10, y: CH - PILL.h - 22 }, { x: CW - PILL.w - 10, y: CH - PILL.h - 22 }];
+const CYCLE = 4;
 
 export default function Tools({ d, className = '' }) {
   const nodes = d.nodes.slice(0, 4);
   const ref = useScene((el) => {
-    const tl = gsap.timeline();
     const hub = el.querySelector('.tools__hub');
     const pills = el.querySelectorAll('.tools__pill');
-    tl.from(hub, { scale: .5, opacity: 0, transformOrigin: '50% 50%', duration: .9, ease: 'back.out(1.8)' }, 0)
-      .from(pills, { scale: .85, opacity: 0, transformOrigin: '50% 50%', duration: .7, ease: 'expo.out', stagger: .09 }, .25);
+    const tl = gsap.timeline();
+    tl.to(hub, { scale: 1.05, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, 0);
     pills.forEach((p, i) => {
+      tl.to(p, { y: i < 2 ? -3 : 3, duration: 2.6 + i * .25, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);
       const pkt = p.querySelector('.pkt');
       const from = { x: POS[i].x + (POS[i].x < CW / 2 ? PILL.w : 0), y: POS[i].y + PILL.h / 2 };
       const to = { x: HUB.x, y: HUB.y };
-      const at = .9 + i * .28;
       const bend = (i % 2 ? -1 : 1) * 26;
-      tl.set(pkt, { x: 0, y: 0, opacity: 1, scale: .7 }, at)
-        .to(pkt, { motionPath: { path: [{ x: 0, y: 0 }, { x: (to.x - from.x) * .5, y: (to.y - from.y) * .5 + bend }, { x: to.x - from.x, y: to.y - from.y }], curviness: 1.4 }, scale: 1, duration: .7, ease: 'power2.inOut' }, at)
-        .to(pkt, { opacity: 0, scale: .2, duration: .15 }, at + .62)
-        .to(hub, { scale: 1.12, duration: .16, ease: 'power2.out' }, at + .62)
-        .to(hub, { scale: 1, duration: .6, ease: 'expo.out' }, at + .78)
-        .fromTo(hub.querySelector('.halo'), { scale: .7, opacity: .9 }, { scale: 1.5, opacity: 0, duration: .8 }, at + .64);
+      const trip = gsap.timeline({ repeat: -1, repeatDelay: CYCLE - 1.4, delay: i * (CYCLE / 4) })
+        .set(pkt, { x: 0, y: 0, opacity: 0, scale: .6 })
+        .to(pkt, { opacity: 1, scale: 1, duration: .2 })
+        .to(pkt, { motionPath: { path: [{ x: 0, y: 0 }, { x: (to.x - from.x) * .5, y: (to.y - from.y) * .5 + bend }, { x: to.x - from.x, y: to.y - from.y }], curviness: 1.4 }, duration: 1, ease: 'power1.inOut' }, .1)
+        .to(pkt, { opacity: 0, scale: .2, duration: .2 }, .95)
+        .fromTo(hub.querySelector('.halo'), { scale: .7, opacity: .9 }, { scale: 1.5, opacity: 0, duration: .9, ease: 'power2.out' }, 1.0);
+      tl.add(trip, 0);
     });
-    tl.fromTo(hub.querySelector('.mk'), { opacity: 0 }, { opacity: 1, duration: .4 }, '>-.3');
     return tl;
   });
   return (
@@ -49,12 +49,12 @@ export default function Tools({ d, className = '' }) {
           {nodes.map((n, i) => {
             const Icon = ICONS[i];
             return (
-              <div className="lyr" data-depth="2" key={n} style={{ left: POS[i].x, top: POS[i].y }}>
+              <div className="lyr" key={n} style={{ left: POS[i].x, top: POS[i].y }}>
                 <div className="ob ob--pill tools__pill" style={{ width: PILL.w, height: PILL.h }}><Icon /><span className="ob__k">{n}</span><i className="pkt" style={{ left: POS[i].x < CW / 2 ? PILL.w - 6 : -2, top: PILL.h / 2 - 4 }} /></div>
               </div>
             );
           })}
-          <div className="lyr" data-depth="3" style={{ left: HUB.x - HUB.r, top: HUB.y - HUB.r }}>
+          <div className="lyr" style={{ left: HUB.x - HUB.r, top: HUB.y - HUB.r }}>
             <div className="tools__hub" style={{ width: HUB.r * 2, height: HUB.r * 2 }}>
               <i className="halo" />
               <svg viewBox="0 0 60 60" aria-hidden="true">

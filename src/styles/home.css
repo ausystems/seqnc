@@ -122,13 +122,17 @@
 .work__glow{ position:absolute; right:-18%; top:-30%; width:60%; aspect-ratio:1; border-radius:50%; background:radial-gradient(closest-side, rgba(124,77,204,.5), rgba(124,77,204,0)); pointer-events:none; animation:work-glow 10s ease-in-out infinite; }
 @keyframes work-glow{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.12) translate(-4%, 5%); } }
 .work__grid{ position:relative; display:grid; grid-template-columns:5fr 7fr; column-gap:clamp(24px, 4vw, 72px); row-gap:32px; align-items:start; }
-.work__client{ display:flex; align-items:center; gap:16px; }
-.work__mark{ display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; flex:none; font-size:17px; font-weight:600; letter-spacing:-.04em; color:#fff; background:linear-gradient(180deg, #8F63EC 0%, #7444C6 100%); box-shadow:inset 0 1px 0 rgba(255,255,255,.28), 0 0 0 1px rgba(90,45,170,.5); }
-.work__meta{ color:var(--text-3); }
-.work__name{ margin-top:26px; max-width:12ch; }
-.work__partner{ margin-top:18px; display:flex; align-items:center; gap:10px; font-size:var(--t-small); font-weight:500; color:var(--text-2); max-width:34ch; }
-.work__live{ flex:none; }
-.work__live{ width:7px; height:7px; border-radius:50%; background:var(--violet-2); animation:work-live 2.4s ease-in-out infinite; }
+/* the client's own logo, on its own white card */
+.work__logo{ display:inline-flex; align-items:center; justify-content:center; width:clamp(150px, 13vw, 190px); padding:20px 22px; border-radius:20px; background:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 0 0 1px rgba(255,255,255,.08), 0 24px 48px -24px rgba(0,0,0,.6); }
+.work__logo img{ width:100%; height:auto; }
+.work__meta{ margin-top:18px; color:var(--text-3); }
+/* the result, set as the largest thing in the panel */
+.work__figure{ margin-top:clamp(28px, 3.5vw, 48px); display:flex; flex-direction:column; align-items:flex-start; }
+.work__flead{ font-size:var(--t-3); font-weight:500; letter-spacing:-.02em; color:var(--text-2); }
+.work__fnum{ font-size:clamp(64px, 6.4vw, 112px); color:var(--violet-3); margin:.02em 0 .06em -.03em; white-space:nowrap; }
+.work__ftail{ font-size:var(--t-3); font-weight:500; letter-spacing:-.02em; color:var(--text); }
+.work__partner{ margin-top:clamp(22px, 2.6vw, 32px); display:flex; align-items:center; gap:10px; font-size:var(--t-small); font-weight:500; color:var(--text-2); max-width:34ch; }
+.work__live{ flex:none; width:7px; height:7px; border-radius:50%; background:var(--violet-2); animation:work-live 2.4s ease-in-out infinite; }
 @keyframes work-live{ 0%,100%{ box-shadow:0 0 0 0 rgba(168,97,230,.5); } 60%{ box-shadow:0 0 0 7px rgba(168,97,230,0); } }
 /* the pair of controls: a pill that slides under the current state */
 .work__toggle{ position:relative; display:inline-grid; grid-template-columns:1fr 1fr; background:rgba(244,241,248,.06); border:1px solid var(--line); border-radius:999px; padding:3px; margin-bottom:clamp(24px, 2.6vw, 36px); }
@@ -197,8 +201,7 @@
   .sys--inbound .sys__scene, .sys--outbound .sys__scene{ min-height:300px; }
   .sys--inbound .sys__text, .sys--outbound .sys__text{ padding:24px 12px 0; }
   .mcard__grid{ grid-template-columns:2fr 3fr; }
-  .work__grid{ grid-template-columns:1fr; row-gap:32px; }
-  .work__name{ max-width:none; }
+  .work__grid{ grid-template-columns:1fr; row-gap:36px; }
   .pgrid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
   .pt--fee{ grid-column:1 / -1; display:grid; grid-template-columns:1.05fr 1fr; gap:14px; }
   .pt--fee .pt__scene{ min-height:260px; }

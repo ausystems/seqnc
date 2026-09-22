@@ -1,9 +1,8 @@
 /* =========================================================================
-   Outbound: follow-ups that leave on their days.  A time track runs low
-   across the comp with four markers whose spacing grows with the day; a
-   violet playhead (near layer) sweeps across it, and each message it
-   passes rises above its marker as a bubble: the two that went out in
-   night, the two still to come as ghosts, each with its state.
+   Outbound: follow-ups that keep leaving on their days.  The whole
+   picture stands from the start: the time track with its four markers,
+   the four bubbles above their days.  A playhead sweeps the track without
+   end, each marker flares as it passes, and the bubbles breathe.
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useScene } from '../../engine/tile.js';
@@ -23,6 +22,7 @@ const layout = (wide) => {
 };
 /* markers spaced by the log of the day, so 1, 7, 30, 90 read as time */
 const posOf = (n, max, TRACK) => TRACK.x + (Math.log(n + 1) / Math.log(max + 1)) * (TRACK.w - 8) + 4;
+const SWEEP = 3.4;
 
 export default function Outbound({ d, className = '', wide = false }) {
   const isWide = useMedia(DESKTOP) && wide;
@@ -31,34 +31,34 @@ export default function Outbound({ d, className = '', wide = false }) {
   const max = Math.max(...seq.map((m) => m.n || 1));
   const xs = seq.map((m) => posOf(m.n || 1, max, TRACK));
   const ref = useScene((el) => {
-    const tl = gsap.timeline();
     const head = el.querySelector('.out__head');
-    const bubs = el.querySelectorAll('.out__bub');
     const marks = el.querySelectorAll('.out__mark');
-    const days = el.querySelectorAll('.out__day');
-    tl.from(el.querySelector('.out__track'), { scaleX: 0, transformOrigin: '0% 50%', duration: 1, ease: 'expo.out' }, 0)
-      .from(marks, { scale: 0, transformOrigin: '50% 50%', duration: .5, ease: 'back.out(2)', stagger: .08 }, .3)
-      .from(days, { opacity: 0, y: 4, duration: .5, stagger: .08 }, .4)
-      .set(head, { x: xs[0] - TRACK.x, opacity: 1 }, .5);
-    seq.forEach((m, i) => {
-      const at = .6 + i * .55;
-      tl.to(head, { x: xs[i] - TRACK.x, duration: i ? .5 : .01, ease: 'power2.inOut' }, at)
-        .to(marks[i], { backgroundColor: '#7C4DCC', duration: .3 }, at + (i ? .4 : 0))
-        .from(bubs[i], { y: 16, opacity: 0, scale: .94, transformOrigin: '50% 100%', duration: .8, ease: 'expo.out' }, at + (i ? .35 : .05))
-        .from(bubs[i].querySelector('.out__badge'), { opacity: 0, duration: .4 }, at + (i ? .7 : .4));
+    const bubs = el.querySelectorAll('.out__bub');
+    const x0 = xs[0] - TRACK.x, x1 = xs[xs.length - 1] - TRACK.x;
+    const tl = gsap.timeline();
+    const sweep = gsap.timeline({ repeat: -1, repeatDelay: .6 })
+      .set(head, { x: x0, opacity: 0, scale: .6 })
+      .to(head, { opacity: 1, scale: 1, duration: .3 })
+      .to(head, { x: x1, duration: SWEEP, ease: 'none' }, .2)
+      .to(head, { opacity: 0, scale: .6, duration: .35 }, .2 + SWEEP + .3);
+    seq.forEach((_, i) => {
+      const at = .2 + ((xs[i] - xs[0]) / (x1 - x0 || 1)) * SWEEP;
+      sweep.fromTo(marks[i], { scale: 1 }, { scale: 1.6, duration: .22, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, at - .1)
+        .fromTo(bubs[i], { scale: 1 }, { scale: 1.04, duration: .3, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 100%' }, at - .05);
     });
-    tl.fromTo(head.querySelector('.halo'), { scale: .6, opacity: .8 }, { scale: 1.5, opacity: 0, duration: .9 }, '>-.4');
+    tl.add(sweep, 0);
+    bubs.forEach((b, i) => tl.to(b, { y: i % 2 ? 2 : -2, duration: 2.6 + i * .3, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0));
     return tl;
   });
   return (
     <div className={`scene ${className}`} ref={ref}>
       <div className="scene__stage">
         <div className="comp out" style={{ '--cw': CW, '--ch': CH }}>
-          <div className="lyr" data-depth="1" style={{ left: TRACK.x, top: TRACK.y }}>
+          <div className="lyr" style={{ left: TRACK.x, top: TRACK.y }}>
             <i className="out__track" style={{ width: TRACK.w }} />
           </div>
           {seq.map((m, i) => (
-            <div className="lyr" data-depth="1" key={m.day} style={{ left: xs[i] - 5, top: TRACK.y - 3 }}>
+            <div className="lyr" key={m.day} style={{ left: xs[i] - 5, top: TRACK.y - 3 }}>
               <i className="out__mark" />
               <span className="ob__k out__day">{m.day}</span>
             </div>
@@ -71,7 +71,7 @@ export default function Outbound({ d, className = '', wide = false }) {
             const top = isWide ? 92 : (i % 2 ? 22 : 106);
             const left = isWide ? 8 + i * ((CW - 16 - BUB.w) / 3) : (i < 2 ? 8 : CW - BUB.w - 8);
             return (
-              <div className="lyr" data-depth="2" key={`b${m.day}`} style={{ left, top }}>
+              <div className="lyr" key={`b${m.day}`} style={{ left, top }}>
                 <div className={`ob out__bub ${sent ? 'ob--night' : 'ob--ghost out__bub--later'}`} style={{ width: BUB.w }}>
                   <Icon />
                   <span className="out__text">
@@ -82,7 +82,7 @@ export default function Outbound({ d, className = '', wide = false }) {
               </div>
             );
           })}
-          <div className="lyr" data-depth="3" style={{ left: TRACK.x - 9, top: TRACK.y - 9 }}>
+          <div className="lyr" style={{ left: TRACK.x - 9, top: TRACK.y - 9 }}>
             <i className="out__head"><i className="halo" /></i>
           </div>
         </div>

@@ -1,22 +1,28 @@
 /* =========================================================================
-   A tile owns one timeline, built by `build(el)`, and shows its end state
-   from the first paint: every picture is complete before it is seen, and
-   nothing in it appears, moves in or leaves afterwards.  What life a
-   picture keeps comes from its own CSS loops (a breathing dot, a turning
-   legend, a glow).
+   A tile owns one picture that is complete from its first paint (the DOM
+   and CSS are the finished state) and alive for as long as it is on
+   screen: `build(el)` returns a timeline of loops that move things inside
+   the picture, never the picture itself.  Loops rest while the tile is
+   far off screen and under reduced motion; the finished state remains.
    ========================================================================= */
 import { useEffect, useLayoutEffect, useRef } from 'react';
+import { reduced } from './device.js';
 import { bindScene } from './scene.js';
 
 export function useTile(build) {
   const ref = useRef(null);
   useLayoutEffect(() => {
     const el = ref.current;
-    if (!el) return undefined;
+    if (!el || reduced) return undefined;
     const tl = build(el);
     if (!tl) return undefined;
-    tl.progress(1).pause();
-    return () => tl.kill();
+    tl.play();
+    let io;
+    if (typeof IntersectionObserver !== 'undefined') {
+      io = new IntersectionObserver(([e]) => { if (e.isIntersecting) tl.play(); else tl.pause(); }, { rootMargin: '240px 0px' });
+      io.observe(el);
+    }
+    return () => { if (io) io.disconnect(); tl.revert(); };
   }, [build]);
   return ref;
 }

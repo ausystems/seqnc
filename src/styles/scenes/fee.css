@@ -9,3 +9,4 @@
 .fee .fee__pill .ob__t{ font-size:22px; letter-spacing:-.03em; }
 .fee .fee__setup .ob__k{ color:var(--violet-3); }
 .fee .fee__ret .ob__k{ color:rgba(255,255,255,.8); }
+.fee .halo{ opacity:0; }

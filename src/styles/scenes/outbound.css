@@ -1,6 +1,6 @@
 /* outbound: the time track, four markers, four bubbles, the playhead */
 .out .out__track{ display:block; height:4px; border-radius:2px; background:linear-gradient(90deg, rgba(124,77,204,.35), rgba(124,77,204,.1)); }
-.out .out__mark{ display:block; width:10px; height:10px; border-radius:50%; background:#fff; box-shadow:0 0 0 2px var(--violet-3), 0 4px 10px -4px rgba(14,8,32,.4); }
+.out .out__mark{ display:block; width:10px; height:10px; border-radius:50%; background:var(--violet); box-shadow:0 0 0 2px #fff, 0 4px 10px -4px rgba(14,8,32,.4); }
 .out .out__day{ position:absolute; left:50%; top:16px; transform:translateX(-50%); white-space:nowrap; }
 .out .out__bub{ display:flex; align-items:flex-start; gap:10px; padding:10px 12px 10px 11px; }
 .out .out__bub .ico{ margin-top:1px; color:var(--violet-3); }
@@ -10,3 +10,4 @@
 .out .out__bub--later .ob__k{ color:var(--text-3); }
 .out .out__bub.ob--night .ob__k{ color:var(--violet-3); }
 .out .out__head{ position:relative; display:block; width:22px; height:22px; border-radius:50%; background:var(--violet); box-shadow:0 0 0 4px rgba(124,77,204,.18), 0 8px 16px -6px rgba(124,77,204,.8); opacity:0; }
+.out .out__head .halo{ inset:-60%; opacity:.6; }

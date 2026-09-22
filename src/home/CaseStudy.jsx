@@ -1,8 +1,8 @@
 /* =========================================================================
-   The case study, as one night panel.  The client on the left; on the
-   right where things stood, held for three seconds when the panel
-   arrives, then turned line by line into what runs now, and what was
-   built follows.  The switch above the lines is the only place the two
+   The case study, as one night panel.  The client's own logo and the
+   result on the left; on the right where things stood, held for three
+   seconds when the panel arrives, then turned line by line into what
+   runs now, and what was built follows.  The switch above the lines is the only place the two
    words appear, and the only way to turn it again.  The panel ends on
    the two ways forward.
    ========================================================================= */
@@ -60,11 +60,14 @@ export default function CaseStudy() {
             <i className="work__glow" aria-hidden="true" />
             <div className="work__grid">
               <div className="work__side">
-                <div className="work__client">
-                  <span className="work__mark" aria-hidden="true">{w.mark}</span>
-                  <p className="mono work__meta">{w.meta}</p>
-                </div>
-                <h3 className="dsp dsp--2 work__name">{w.client}</h3>
+                <div className="work__logo"><img src={w.logo} alt={w.client} width="1200" height="948" loading="lazy" decoding="async" /></div>
+                <h3 className="vh">{w.client}</h3>
+                <p className="mono work__meta">{w.meta}</p>
+                <p className="work__figure" aria-label={`${w.figureLead} ${w.figure} ${w.figureTail}`}>
+                  <span className="work__flead">{w.figureLead}</span>
+                  <span className="num work__fnum">{w.figure}</span>
+                  <span className="work__ftail">{w.figureTail}</span>
+                </p>
                 <p className="work__partner"><i className="work__live" aria-hidden="true" />{w.partner}</p>
               </div>
               <div className="work__main">

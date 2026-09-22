@@ -12,3 +12,4 @@
 .inb__count{ position:absolute; right:16px; bottom:14px; color:var(--violet-3); }
 .inb__reply{ display:inline-flex; align-items:center; gap:10px; padding:8px 14px 8px 8px; white-space:nowrap; }
 .inb__inst{ color:rgba(255,255,255,.8); }
+.inb .halo{ opacity:0; }

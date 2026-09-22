@@ -21,7 +21,5 @@ export const Receipt = () => <I><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z" /><path
 export const Card = () => <I><rect x="3" y="6" width="18" height="12" rx="2.5" /><path d="M3 10h18M7 15h4" /></I>;
 export const Grid = () => <I><rect x="4" y="4" width="6" height="6" rx="1.5" /><rect x="14" y="4" width="6" height="6" rx="1.5" /><rect x="4" y="14" width="6" height="6" rx="1.5" /><rect x="14" y="14" width="6" height="6" rx="1.5" /></I>;
 export const Form = () => <I><rect x="4" y="3" width="16" height="18" rx="3" /><path d="M8 8h8M8 12h8M8 16h5" /></I>;
-export const Bolt = () => <I d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />;
-export const Shield = () => <I d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z" />;
 export const Wrench = () => <I d="M14.5 6.5a4 4 0 0 0 5 5l-9 9-2.5-2.5 9-9a4 4 0 0 0-5-5l2.5 2.5Z" />;
 export const Lock = () => <I><rect x="5" y="11" width="14" height="10" rx="2.5" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></I>;

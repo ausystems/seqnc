@@ -55,7 +55,7 @@
 .ico{ width:16px; height:16px; flex:none; color:currentColor; }
 .ico svg{ width:100%; height:100%; display:block; }
 /* a soft glow behind an object, sized by its parent */
-.halo{ position:absolute; inset:-30%; border-radius:50%; background:radial-gradient(closest-side, rgba(124,77,204,.45), rgba(124,77,204,0)); pointer-events:none; z-index:-1; }
+.halo{ position:absolute; inset:-30%; border-radius:50%; background:radial-gradient(closest-side, rgba(124,77,204,.45), rgba(124,77,204,0)); pointer-events:none; z-index:-1; opacity:0; }
 /* the small packet that travels between objects */
 .pkt{ position:absolute; width:8px; height:8px; border-radius:50%; background:var(--violet); box-shadow:0 0 0 3px rgba(124,77,204,.18), 0 0 12px rgba(124,77,204,.6); opacity:0; pointer-events:none; }
 
