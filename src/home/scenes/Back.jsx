@@ -6,6 +6,7 @@
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useScene } from '../../engine/tile.js';
+import { ring } from '../../engine/pulse.js';
 import { Check } from './icons.jsx';
 import '../../styles/scenes/back.css';
 
@@ -15,13 +16,21 @@ const COLS = 15;
 export default function Back({ d, className = '' }) {
   const n = Number(d.n) || 0;
   const ref = useScene((el) => {
-    const cells = el.querySelectorAll('.back__cell');
+    /* the lit last cell keeps its own light; the wave runs over the others */
+    const cells = el.querySelectorAll('.back__cell:not(.back__cell--last)');
+    const last = el.querySelector('.back__cell--last');
+    const chip = el.querySelector('.back__chip');
     const rows = Math.ceil(n / COLS);
     const tl = gsap.timeline({ repeat: -1, repeatDelay: .9 })
       .fromTo(cells, { scale: 1, opacity: .85 }, { scale: 1.45, opacity: 1, duration: .32, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 50%', stagger: { each: .02, grid: [rows, COLS], from: 'start' } }, 0)
       .fromTo(el.querySelector('.back__chip .chk'), { scale: 1 }, { scale: 1.3, duration: .3, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, '>-.2')
-      .fromTo(el.querySelector('.back__chip .halo'), { scale: .6, opacity: .8 }, { scale: 1.6, opacity: 0, duration: 1, ease: 'power2.out' }, '<');
-    return tl;
+      .to(el.querySelector('.back__chip .halo'), ring({ from: .8 }), '<')
+      .fromTo(last, { scale: 1 }, { scale: 1.5, duration: .32, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, '<');
+    /* the chip floats and the last cell breathes, so the field is never still */
+    return gsap.timeline()
+      .add(tl, 0)
+      .to(chip, { y: -3, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0)
+      .to(last, { opacity: .55, duration: 1.1, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);
   });
   return (
     <div className={`scene scene--night ${className}`} ref={ref}>

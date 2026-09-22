@@ -9,6 +9,7 @@
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { useScene } from '../../engine/tile.js';
+import { ring } from '../../engine/pulse.js';
 import { Phone, Mail, Chat, Inbox, Check } from './icons.jsx';
 import '../../styles/scenes/inbound.css';
 
@@ -40,7 +41,7 @@ export default function Inbound({ d, className = '' }) {
       tl.add(trip, 0);
     });
     tl.to(reply, { y: 2, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0)
-      .fromTo(reply.querySelector('.halo'), { scale: .6, opacity: .75 }, { scale: 1.6, opacity: 0, duration: 1.5, ease: 'power2.out', repeat: -1, repeatDelay: CYCLE - 1.5 }, 1.2);
+      .to(reply.querySelector('.halo'), { ...ring({ from: .75, duration: 1.4 }), repeat: -1, repeatDelay: CYCLE - 1.5 }, 1.2);
     return tl;
   });
   return (
@@ -63,7 +64,7 @@ export default function Inbound({ d, className = '' }) {
               <p className="ob__k inb__count">{d.channels.length} / {d.channels.length}</p>
             </div>
           </div>
-          <div className="lyr" style={{ left: 104, top: 200 }}>
+          <div className="lyr inb__replylyr" style={{ left: 0, right: 0, top: 200 }}>
             <div className="ob ob--violet ob--pill inb__reply"><i className="halo" /><span className="chk chk--white"><Check /></span><span className="ob__v">{d.reply}</span><span className="ob__k inb__inst">{d.instantly}</span></div>
           </div>
         </div>

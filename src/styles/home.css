@@ -14,19 +14,20 @@
 
 /* ----- hero ----- */
 .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; overflow:hidden; background:linear-gradient(180deg, #EEE8FB 0%, #F6F3FC 38%, var(--paper) 72%); }
-.hero__obj{ position:absolute; z-index:1; top:6%; right:-10vw; width:min(56vw, 880px); aspect-ratio:1; pointer-events:none; }
+/* the ring sits inside the right rail: its canvas carries clear margin around the ring, so the box may reach past the rail while the ring never does */
+.hero__obj{ position:absolute; z-index:1; top:6%; right:-3vw; width:min(52vw, 800px); aspect-ratio:1; pointer-events:none; }
 .hero__shadow{ position:absolute; left:14%; right:14%; top:58%; height:34%; border-radius:50%; background:radial-gradient(closest-side, rgba(60,24,140,.28), rgba(60,24,140,0)); filter:blur(34px); transform:translateY(8%); }
 .hero__body{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:center; width:100%; padding-top:calc(var(--nav-h) + 4vh); padding-bottom:6vh; }
-.hero__copy{ max-width:min(50%, 640px); }
-.hero__title{ max-width:11ch; }
+.hero__copy{ max-width:min(52%, 800px); }
+.hero__title{ max-width:12.4ch; } /* room for 'Votre entreprise' on one line at the largest size */
 .hero__lede{ margin-top:clamp(24px, 3vh, 36px); font-size:var(--t-lead); font-weight:500; line-height:1.4; letter-spacing:-.012em; color:var(--text-2); max-width:38ch; text-wrap:pretty; }
 .hero__actions{ margin-top:28px; display:flex; align-items:center; gap:26px; flex-wrap:wrap; }
 .hero__note{ margin-top:18px; font-size:var(--t-small); line-height:1.5; color:var(--text-3); max-width:40ch; text-wrap:pretty; }
 .hero__strip{ position:relative; z-index:2; border-top:1px solid var(--rule); }
 .hero__stripin{ display:grid; grid-template-columns:150px 1fr auto; gap:32px; align-items:center; padding-top:20px; padding-bottom:22px; }
 .hero__who{ color:var(--text-3); }
-.hero__stmt{ font-size:var(--t-small); font-weight:500; color:var(--text-2); }
-.hero__chips{ display:flex; gap:28px; }
+.hero__stmt{ font-size:var(--t-small); font-weight:500; color:var(--text-2); min-width:22ch; }
+.hero__chips{ display:flex; flex-wrap:wrap; gap:12px 28px; }
 .hero__chips li{ display:flex; align-items:center; gap:10px; color:var(--text-2); white-space:nowrap; }
 .hero__chips .glyph{ color:var(--text-3); }
 
@@ -220,7 +221,7 @@
   .hero__actions .btn{ width:100%; }
   .stmt__items p{ max-width:none; }
   .stmt__sentence{ font-size:20px; }
-  .sgrid{ grid-template-columns:1fr; gap:12px; }
+  .sgrid{ grid-template-columns:minmax(0,1fr); gap:12px; }
   .sys{ padding:12px 12px 22px; border-radius:20px; }
   .sys__scene, .sys--inbound .sys__scene, .sys--outbound .sys__scene{ min-height:250px; }
   .stack{ gap:14px; }
@@ -240,7 +241,7 @@
   .cta-row{ flex-direction:column; align-items:stretch; }
   .cta-row .btn{ width:100%; }
   .offer{ flex-direction:column; gap:10px; }
-  .pgrid{ grid-template-columns:1fr; gap:12px; }
+  .pgrid{ grid-template-columns:minmax(0,1fr); gap:12px; }
   .pt{ padding:12px 12px 22px; border-radius:20px; }
   .pt--fee{ display:flex; }
   .pt--fee .pt__scene, .pt__scene{ min-height:220px; }

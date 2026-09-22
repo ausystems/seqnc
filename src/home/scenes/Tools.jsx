@@ -7,6 +7,7 @@
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { useScene } from '../../engine/tile.js';
+import { ring } from '../../engine/pulse.js';
 import { Grid, Calendar, Mail, Form } from './icons.jsx';
 import '../../styles/scenes/tools.css';
 
@@ -15,7 +16,7 @@ gsap.registerPlugin(MotionPathPlugin);
 const CW = 340, CH = 200;
 const HUB = { x: 170, y: 100, r: 30 };
 const ICONS = [Grid, Calendar, Mail, Form];
-const PILL = { w: 104, h: 36 };
+const PILL = { w: 126, h: 36 }; /* wide enough for 'Formulaires' */
 const POS = [{ x: 10, y: 22 }, { x: CW - PILL.w - 10, y: 22 }, { x: 10, y: CH - PILL.h - 22 }, { x: CW - PILL.w - 10, y: CH - PILL.h - 22 }];
 const CYCLE = 4;
 
@@ -37,7 +38,7 @@ export default function Tools({ d, className = '' }) {
         .to(pkt, { opacity: 1, scale: 1, duration: .2 })
         .to(pkt, { motionPath: { path: [{ x: 0, y: 0 }, { x: (to.x - from.x) * .5, y: (to.y - from.y) * .5 + bend }, { x: to.x - from.x, y: to.y - from.y }], curviness: 1.4 }, duration: 1, ease: 'power1.inOut' }, .1)
         .to(pkt, { opacity: 0, scale: .2, duration: .2 }, .95)
-        .fromTo(hub.querySelector('.halo'), { scale: .7, opacity: .9 }, { scale: 1.5, opacity: 0, duration: .9, ease: 'power2.out' }, 1.0);
+        .to(hub.querySelector('.halo'), ring({ from: .9, start: .7, to: 1.5, duration: .8 }), 1.0);
       tl.add(trip, 0);
     });
     return tl;

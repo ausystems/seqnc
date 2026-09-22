@@ -5,8 +5,8 @@
    and a light that follows the pointer.  On it stand objects: white cards
    and pills lit from above, one night object and one violet object at
    most per scene, marks (dots, checks, glows) and a mono voice for keys.
-   Every scene is complete from its first paint and nothing in it moves;
-   the pointer only moves the light.
+   Every scene is complete from its first paint and keeps moving in a
+   loop of its own; the stage never moves, the pointer only moves the light.
    ========================================================================= */
 .scene{
   --mx:50%; --my:40%;

@@ -6,6 +6,7 @@
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useScene } from '../../engine/tile.js';
+import { ring } from '../../engine/pulse.js';
 import { Pen, Doc, Team, Flag, Check } from './icons.jsx';
 import '../../styles/scenes/operations.css';
 
@@ -32,7 +33,7 @@ export default function Operations({ d, className = '' }) {
       tl.to(cards[i], { x: 4, duration: .22, ease: 'power2.out', yoyo: true, repeat: 1 }, at - .1)
         .fromTo(cards[i].querySelector('.ops__chk'), { scale: 1 }, { scale: 1.35, duration: .2, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, at - .05);
     });
-    tl.fromTo(cards[rows.length - 1].querySelector('.halo'), { scale: .7, opacity: .8 }, { scale: 1.5, opacity: 0, duration: 1, ease: 'power2.out' }, .2 + RUN - .05);
+    tl.to(cards[rows.length - 1].querySelector('.halo'), ring({ from: .8, start: .7, to: 1.5 }), .2 + RUN - .05);
     return tl;
   });
   return (

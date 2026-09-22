@@ -1,7 +1,8 @@
 /* =========================================================================
    A scene is the small stage a picture is played on.  The composition is
    drawn at a fixed size and zoomed to fit its stage; on fine pointers the
-   light in the panel follows the hand.  Nothing in the picture moves.
+   light in the panel follows the hand.  The picture's own motion is
+   the tile's timeline (see tile.js); the stage itself never moves.
    ========================================================================= */
 import { finePointer, reduced } from './device.js';
 

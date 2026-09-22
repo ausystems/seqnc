@@ -6,13 +6,14 @@
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useScene } from '../../engine/tile.js';
+import { ring } from '../../engine/pulse.js';
 import { Calendar } from './icons.jsx';
 import '../../styles/scenes/fee.css';
 
 const CW = 340, CH = 220;
-const CAL = { x: 158, y: 16, w: 170, h: 128 };
-const SETUP = { x: 12, y: 56 };
-const RET = { x: 54, y: 126 };
+const CAL = { x: 178, y: 16, w: 150, h: 128 };
+const SETUP = { x: 12, y: 40 };
+const RET = { x: 30, y: 122 };
 
 export default function Fee({ d, className = '' }) {
   const ref = useScene((el) => {
@@ -22,7 +23,7 @@ export default function Fee({ d, className = '' }) {
     const ret = el.querySelector('.fee__ret');
     const round = gsap.timeline({ repeat: -1, repeatDelay: .8 });
     cells.forEach((c, k) => round.fromTo(c, { scale: 1 }, { scale: 1.3, duration: .22, ease: 'power2.out', yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, k * .16));
-    round.fromTo(ret.querySelector('.halo'), { scale: .6, opacity: .7 }, { scale: 1.5, opacity: 0, duration: 1.1, ease: 'power2.out' }, cells.length * .16);
+    round.to(ret.querySelector('.halo'), ring({ from: .7, to: 1.5, duration: 1.1 }), cells.length * .16);
     tl.add(round, 0)
       .to(setup, { y: -3, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0)
       .to(ret, { y: 3, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);

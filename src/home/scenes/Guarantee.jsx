@@ -30,8 +30,11 @@ export default function Guarantee({ d, className = '' }) {
     const lap = gsap.timeline({ repeat: -1, repeatDelay: .4 })
       .fromTo(glow, { strokeDashoffset: ARC * .18 }, { strokeDashoffset: -ARC, duration: LAP, ease: 'none' }, 0)
       .fromTo(o, { t: 0 }, { t: 1, duration: LAP, ease: 'none', onUpdate: place }, 0)
-      /* an even number of half-beats, so the head is back at rest when the lap restarts */
-      .fromTo(head, { attr: { r: 6 } }, { attr: { r: 9 }, duration: .5, ease: 'sine.inOut', yoyo: true, repeat: 7 }, 0);
+      /* the head lights as it sets off and dims as it reaches the end, so the lap closes without a jump;
+         eight half-beats of the radius fit the lap exactly */
+      .fromTo(head, { opacity: 0 }, { opacity: 1, duration: .3, ease: 'power2.out' }, 0)
+      .to(head, { opacity: 0, duration: .3, ease: 'power2.in' }, LAP - .3)
+      .fromTo(head, { attr: { r: 6 } }, { attr: { r: 9 }, duration: LAP / 8, ease: 'sine.inOut', yoyo: true, repeat: 7 }, 0);
     tl.add(lap, 0)
       .to(fig, { scale: 1.03, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, 0)
       .to(pill, { y: -3, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);
@@ -46,7 +49,7 @@ export default function Guarantee({ d, className = '' }) {
               <svg viewBox="0 0 164 164" aria-hidden="true">
                 <circle cx="82" cy="82" r={R} className="gua__arc" style={{ strokeDasharray: `${ARC} ${C}` }} />
                 <circle cx="82" cy="82" r={R} className="gua__glow" style={{ strokeDasharray: `${ARC * .18} ${C}` }} />
-                <circle r="7" className="gua__head" />
+                <circle cx={pt(A0).x} cy={pt(A0).y} r="7" className="gua__head" />
               </svg>
               <div className="gua__fig"><span className="ob__big gua__n">{d.ringValue}</span><span className="ob__k gua__u">{d.ringUnit}</span></div>
             </div>

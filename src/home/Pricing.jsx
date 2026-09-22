@@ -2,8 +2,9 @@
    Pricing.  No price list, so no table: the title, the reason, and the
    three terms as a tonal bento.  Paper, lavender, night.  Each tile
    carries a scene of its own copy: the two fees as two pills, the cancel
-   switch that lets go, the ninety days that fill in.  Tiles rise in on
-   scroll, lift on hover, and their scenes replay on hover.
+   switch that lets go, the ninety days that fill in.  Each picture is
+   complete from the first paint and keeps moving on its own; the tile
+   itself never moves.
    ========================================================================= */
 import { useT } from '../i18n.jsx';
 import Button from '../ui/Button.jsx';
