@@ -4,9 +4,6 @@
    Tiles lift on hover; their illustrations replay.  The small check and
    the reply pill are shared with the systems bento.
    ========================================================================= */
-.bento__head{ display:grid; grid-template-columns:7fr 4fr; column-gap:var(--gap); align-items:end; }
-.bento__title{ max-width:14ch; }
-.bento__body{ max-width:34ch; padding-bottom:.4em; }
 .bgrid{ margin-top:clamp(36px, 4.5vw, 64px); display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }
 
 .btile{
@@ -17,62 +14,27 @@
 }
 .btile:hover{ transform:translateY(-6px); border-color:var(--line-2); box-shadow:0 34px 60px -34px rgba(14,8,32,.32), 0 2px 0 rgba(14,8,32,.02); }
 
-.btile__vis{ position:relative; flex:1; min-height:200px; border-radius:14px; background:var(--paper-2); overflow:hidden; display:flex; align-items:center; justify-content:center; padding:18px; }
 .btile__t{ margin:20px 10px 0; font-family:var(--font-d); font-size:19px; font-weight:600; letter-spacing:-.025em; line-height:1.25; }
 .btile__d{ margin:8px 10px 0; font-size:14px; line-height:1.55; color:var(--text-2); text-wrap:pretty; }
 
 /* night tile */
 .btile--tools{ background:var(--night); border-color:rgba(244,241,248,.12); color:#F4F1F8; }
-.btile--tools .btile__vis{ background:var(--night-2); }
 .btile--tools .btile__d{ color:#B4ACC4; }
 .btile--tools:hover{ border-color:rgba(244,241,248,.24); box-shadow:0 34px 60px -30px rgba(124,77,204,.45); }
 /* violet-tinted tile */
 .btile--ring{ background:var(--violet-4); border-color:rgba(124,77,204,.18); }
-.btile--ring .btile__vis{ background:#fff; }
 
-/* the small check used across tiles */
-.bchk{ width:16px; height:16px; border-radius:50%; background:var(--violet); color:#fff; display:inline-flex; align-items:center; justify-content:center; flex:none; }
-.bchk svg{ width:9px; height:7px; }
-
-/* the reply pill, shared with the systems bento */
-.breply{ position:absolute; right:18px; bottom:18px; display:flex; align-items:center; gap:10px; background:var(--night); color:#F4F1F8; border-radius:999px; padding:9px 14px 9px 9px; font-size:13.5px; font-weight:500; box-shadow:0 14px 30px -16px rgba(14,8,32,.6); }
-.breply__inst{ color:var(--violet-3); }
-
-/* 01 tools */
-.btools{ width:100%; max-width:320px; height:auto; }
-.bwire{ fill:none; stroke:rgba(244,241,248,.28); stroke-width:1.2; }
-.bhub__hex{ fill:var(--violet); }
-.bhub__spokes{ fill:none; stroke:rgba(255,255,255,.35); stroke-width:1; }
-.bhub__core{ fill:#fff; }
-.bhub__pulse{ fill:none; stroke:var(--violet-2); stroke-width:1; opacity:0; }
-.btool__pill{ fill:rgba(244,241,248,.06); stroke:rgba(244,241,248,.22); }
-.btool__lbl{ font-family:var(--font-m); font-size:10px; letter-spacing:.14em; text-transform:uppercase; fill:#F4F1F8; }
-
-/* 02 build: the stamp */
-.bstamp{ width:150px; height:150px; }
-.bstamp__outer{ fill:#fff; stroke:var(--violet); stroke-width:1.5; }
-.bstamp__text{ font-family:var(--font-m); font-size:10.4px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; fill:var(--violet); }
-.bstamp__centre{ font-family:var(--font-d); font-size:34px; font-weight:700; letter-spacing:-.05em; fill:var(--night); }
-.bstamp__unit{ font-family:var(--font-m); font-size:9px; letter-spacing:.18em; text-transform:uppercase; fill:var(--text-3); }
-
-/* 03 guarantee: the ring */
-.btile--ring .btile__vis{ flex-direction:column; gap:12px; }
-.bring{ width:130px; height:130px; }
-.bring__track{ fill:none; stroke:var(--violet-4); stroke-width:6; }
-.bring__arc{ fill:none; stroke:var(--violet); stroke-width:6; stroke-linecap:round; transform:rotate(-90deg); transform-origin:50% 50%; }
-.bring__n{ font-family:var(--font-d); font-size:34px; font-weight:700; letter-spacing:-.05em; fill:var(--night); }
-.bring__u{ font-family:var(--font-m); font-size:9px; letter-spacing:.18em; text-transform:uppercase; fill:var(--text-3); }
-.bring__lbl{ color:var(--text-3); }
+/* the scene each tile carries */
+.btile__scene{ position:relative; flex:1; min-height:210px; }
+.btile--tools .btile__scene{ background:var(--night-2); }
 
 @media (max-width:1024px){
-  .bento__head{ grid-template-columns:1fr; row-gap:20px; }
   .bgrid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
   .btile--tools{ grid-column:1 / -1; }
 }
 @media (max-width:640px){
   .bgrid{ grid-template-columns:1fr; gap:12px; }
   .btile{ padding:12px 12px 20px; }
-  .breply{ right:12px; bottom:14px; font-size:13px; }
 }
 @media (prefers-reduced-motion: reduce){
   .btile{ transition:none; }

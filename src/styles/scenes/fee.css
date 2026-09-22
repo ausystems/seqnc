@@ -1,0 +1,11 @@
+/* fee: the calendar, the two pills */
+.fee .fee__cal{ padding:14px 16px; display:flex; flex-direction:column; gap:12px; }
+.fee .fee__calhead{ display:flex; align-items:center; gap:8px; }
+.fee .fee__calhead .ico{ color:var(--violet); }
+.fee .fee__cells{ display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; }
+.fee .fee__cell{ display:block; height:18px; border-radius:5px; background:var(--violet-4); box-shadow:inset 0 0 0 1px rgba(124,77,204,.18); }
+.fee .fee__cell--last{ background:var(--violet); box-shadow:none; }
+.fee .fee__pill{ display:inline-flex; align-items:baseline; gap:12px; padding:13px 22px 15px; white-space:nowrap; }
+.fee .fee__pill .ob__t{ font-size:22px; letter-spacing:-.03em; }
+.fee .fee__setup .ob__k{ color:var(--violet-3); }
+.fee .fee__ret .ob__k{ color:rgba(255,255,255,.8); }

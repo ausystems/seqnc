@@ -13,7 +13,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useT } from '../i18n.jsx';
 import { useGsap } from '../engine/hooks.js';
 import { reduced } from '../engine/device.js';
-import { Lines, Fade } from '../ui/Reveal.jsx';
+import { Fade } from '../ui/Reveal.jsx';
+import Head from '../ui/Head.jsx';
 import Button from '../ui/Button.jsx';
 import { Digit, rollTo } from '../ui/Roll.jsx';
 
@@ -72,12 +73,7 @@ export default function Method() {
   return (
     <section className="section method" id="method" ref={ref} aria-labelledby="method-title">
       <div className="wrap">
-        <div className="method__head">
-          <Lines as="h2" id="method-title" className="dsp dsp--1 method__title" stagger={.1}>
-            {p.titleStart}<br /><span className="hi">{p.titleAccent}</span>
-          </Lines>
-          <Fade><p className="lead method__body">{p.body}</p></Fade>
-        </div>
+        <Head id="method-title" title={p.titleStart} accent={p.titleAccent} lead={p.body} />
         <ol className="stack">
           {p.steps.map((s, i) => (
             <li className={`mcard mcard--${i + 1}`} key={s.title} style={{ '--i': i }}>

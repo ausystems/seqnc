@@ -4,9 +4,8 @@
    Colour is the brand's own violet, lifted from the published site and the
    logo (#7C4DCC, #A861E6, #C9AEF5, #7C42B4, periwinkle #7E9AF5) and its night
    surface (#0E0820).  The page is paper; night is used for one chapter and
-   the closing panel.  Type is Instrument Sans (display and body), Geist Mono
-   (labels, controls) and Instrument Serif (the accent phrase in italic, the
-   large numerals upright).
+   the closing panel.  Type is two families: Instrument Sans (display, body
+   and the large figures) and Geist Mono (labels, controls).
    ========================================================================= */
 :root{
   /* brand */
@@ -42,9 +41,8 @@
   /* type */
   --font-d:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   --font-m:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --font-s:"Instrument Serif",Georgia,"Times New Roman",serif;
 
-  --t-hero:clamp(44px, 6.6vw, 112px);
+  --t-hero:clamp(44px, 5.6vw, 96px);
   --t-1:clamp(36px, 5.2vw, 84px);
   --t-2:clamp(28px, 3.2vw, 50px);
   --t-3:clamp(21px, 1.7vw, 27px);

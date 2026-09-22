@@ -1,0 +1,11 @@
+/* guarantee: the dial, the arc, the head, the pill */
+.gua .gua__dial{ border-radius:50%; }
+.gua .gua__dial svg{ position:absolute; inset:0; width:100%; height:100%; }
+.gua .gua__track, .gua .gua__arc{ fill:none; stroke-width:8; stroke-linecap:round; transform:rotate(135deg); transform-origin:50% 50%; }
+.gua .gua__track{ stroke:var(--paper-3); }
+.gua .gua__arc{ stroke:var(--violet); }
+.gua .gua__head{ fill:#fff; stroke:var(--violet); stroke-width:3; filter:drop-shadow(0 0 6px rgba(124,77,204,.8)); }
+.gua .gua__fig{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+.gua .gua__n{ font-size:40px; color:var(--night); }
+.gua .gua__pill{ display:flex; align-items:center; gap:9px; padding:0 14px 0 11px; height:38px; max-width:132px; color:var(--violet); }
+.gua .gua__pill .ob__k{ color:var(--night); white-space:normal; line-height:1.2; font-size:9.5px; }

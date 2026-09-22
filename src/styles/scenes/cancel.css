@@ -1,0 +1,16 @@
+/* cancel: the word, the switch that lets go, the lock that leaves and the check that stays.
+   Every rule is scoped under .can so it wins over the shared .ob styles whatever the bundle order. */
+.can .can__word{ display:block; font-size:40px; color:var(--night); white-space:nowrap; }
+
+/* the switch: a paper well with a violet fill that drains, a white knob that glides, one faint dot */
+.can .can__track{ box-shadow:inset 0 2px 6px rgba(14,8,32,.14), inset 0 -1px 0 rgba(255,255,255,.85), 0 0 0 1px rgba(14,8,32,.06); }
+.can .can__track .halo{ opacity:0; }
+.can .can__fill{ position:absolute; inset:0; box-shadow:inset 0 3px 8px rgba(14,8,32,.4), inset 0 -1px 0 rgba(255,255,255,.2), 0 0 0 1px rgba(124,77,204,.45); }
+.can .can__knob{ position:absolute; border-radius:50%; background:linear-gradient(180deg, #FFFFFF 0%, #F5F3F9 100%); box-shadow:inset 0 1px 0 #FFFFFF, inset 0 -1px 0 rgba(14,8,32,.05), 0 1px 2px rgba(14,8,32,.14), 0 10px 20px -8px rgba(14,8,32,.45); }
+.can .can__live{ position:absolute; opacity:0; }
+
+/* the badge: the lock pill, and the check that takes its place */
+.can .can__lock{ display:flex; align-items:center; justify-content:center; color:var(--violet); }
+.can .can__lock .ico{ width:18px; height:18px; }
+.can .can__chk{ position:absolute; opacity:0; box-shadow:0 8px 16px -6px rgba(124,77,204,.7); }
+.can .can__chk svg{ width:13px; height:10px; }

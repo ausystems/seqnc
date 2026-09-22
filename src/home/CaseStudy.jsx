@@ -11,7 +11,8 @@ import { useT } from '../i18n.jsx';
 import { useTile } from '../engine/tile.js';
 import { reduced } from '../engine/device.js';
 import Button, { MonoLink } from '../ui/Button.jsx';
-import { Lines, Fade } from '../ui/Reveal.jsx';
+import { Fade } from '../ui/Reveal.jsx';
+import Head from '../ui/Head.jsx';
 import { Glyph } from '../ui/Mark.jsx';
 
 export default function CaseStudy() {
@@ -45,9 +46,7 @@ export default function CaseStudy() {
   return (
     <section className="section work" id="work" aria-labelledby="work-title">
       <div className="wrap">
-        <div className="work__head">
-          <Lines as="h2" id="work-title" className="dsp dsp--1 work__title" stagger={.1}>{w.titleStart}<br /><span className="hi">{w.titleAccent}</span></Lines>
-        </div>
+        <Head id="work-title" title={w.titleStart} accent={w.titleAccent} />
         <Fade className="work__panel" y={40} start="top 84%">
           <div ref={panel} className="work__in" data-theme="dark">
             <i className="grain" aria-hidden="true" />

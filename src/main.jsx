@@ -11,6 +11,7 @@ import './styles/ui.css';
 import './styles/nav.css';
 import './styles/home.css';
 import './styles/bento.css';
+import './styles/scene.css';
 import './styles/pages.css';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);

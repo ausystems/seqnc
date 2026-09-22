@@ -1,7 +1,7 @@
 /* =========================================================================
-   The opening.  A short lede and two actions at the top left, the ribbon
-   resolving from a loose loop into a ring at the right, and the headline
-   set large across the bottom of the fold.
+   The opening.  The headline first, then the reason and the two actions,
+   all on the left; the ring on the right, turning.  One line at the foot
+   says who this is for.
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
@@ -21,23 +21,23 @@ export default function Hero() {
     gsap.from(el.querySelector('.hero__obj'), { opacity: 0, scale: .94, duration: 1.8, ease: 'expo.out', delay: d + .25 });
     gsap.from(el.querySelector('.hero__strip'), { opacity: 0, duration: 1.2, delay: d + 1.1 });
     gsap.from(el.querySelectorAll('.hero__who, .hero__stmt, .hero__chips li'), { y: 10, opacity: 0, duration: .9, ease: 'expo.out', stagger: .06, delay: d + 1.2, clearProps: 'transform' });
-    gsap.to(el.querySelector('.hero__top'), { yPercent: -14, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to(el.querySelector('.hero__copy'), { yPercent: -10, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true } });
   }, []);
   return (
     <section className="hero" ref={ref} aria-labelledby="hero-title">
       <div className="hero__obj"><i className="hero__shadow" aria-hidden="true" /><Ribbon variant="hero" /></div>
       <div className="wrap hero__body">
-        <div className="hero__top">
-          <Fade now delay={.2}><p className="hero__lede">{t.hero.lede}</p></Fade>
-          <Fade now delay={.3} className="hero__actions">
+        <div className="hero__copy">
+          <Lines as="h1" id="hero-title" className="dsp dsp--hero hero__title" now delay={.2} stagger={.09}>
+            {t.hero.titleStart}<br /><span className="hi">{t.hero.titleMuted}</span>
+          </Lines>
+          <Fade now delay={.55}><p className="hero__lede">{t.hero.lede}</p></Fade>
+          <Fade now delay={.65} className="hero__actions">
             <Button href={t.calendly} calendly>{t.hero.cta}</Button>
             <MonoLink href="#systems" dim>{t.hero.secondary}</MonoLink>
           </Fade>
-          <Fade now delay={.4}><p className="hero__note">{t.hero.note}</p></Fade>
+          <Fade now delay={.75}><p className="hero__note">{t.hero.note}</p></Fade>
         </div>
-        <Lines as="h1" id="hero-title" className="dsp dsp--hero hero__title" now delay={.5} stagger={.1}>
-          {t.hero.titleStart}<br /><span className="hi">{t.hero.titleMuted}</span>
-        </Lines>
       </div>
       <div className="hero__strip">
         <div className="wrap hero__stripin">

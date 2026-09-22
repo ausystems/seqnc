@@ -5,6 +5,7 @@
    ========================================================================= */
 import { useEffect, useRef } from 'react';
 import { reduced, finePointer } from './device.js';
+import { bindScene } from './scene.js';
 
 export function useTile(build, threshold = .45) {
   const ref = useRef(null);
@@ -23,5 +24,17 @@ export function useTile(build, threshold = .45) {
     else el.addEventListener('click', replay);
     return () => { io.disconnect(); el.removeEventListener('pointerenter', replay); el.removeEventListener('click', replay); tl.kill(); };
   }, [build, threshold]);
+  return ref;
+}
+
+/* A tile whose picture is a scene: the same play-and-replay, and the
+   scene inside answers the pointer. */
+export function useScene(build, threshold = .45) {
+  const ref = useTile(build, threshold);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    return bindScene(el.classList.contains('scene') ? el : el.querySelector('.scene'));
+  }, [ref]);
   return ref;
 }
