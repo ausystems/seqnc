@@ -1,9 +1,8 @@
 /* =========================================================================
-   The four systems as a bento.  Each tile carries a scene, a small
-   working picture of its system that plays as the tile arrives and
-   replays on hover: the channels landing in one inbox, the handoffs
-   triggering each other, the follow-ups leaving on their days, the
-   invoice getting itself paid.
+   The three systems as a bento.  Each tile carries a scene, a small
+   working picture of its system that plays once as the tile arrives and
+   then stays: the channels landing in one inbox, the handoffs triggering
+   each other, the follow-ups leaving on their days.
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
@@ -16,7 +15,6 @@ import { Glyph } from '../ui/Mark.jsx';
 import Inbound from './scenes/Inbound.jsx';
 import Operations from './scenes/Operations.jsx';
 import Outbound from './scenes/Outbound.jsx';
-import Billing from './scenes/Billing.jsx';
 
 /* the shared lower half of a tile: numeral, title, body, the three points, the demo */
 function Text({ i, sys, demo, t }) {
@@ -41,8 +39,7 @@ function Text({ i, sys, demo, t }) {
 const TILES = [
   { key: 'inbound', Scene: Inbound, pick: (s) => s },
   { key: 'operations', Scene: Operations, pick: (s) => ({ steps: s.steps }) },
-  { key: 'outbound', Scene: Outbound, pick: (s) => ({ sequence: s.sequence }) },
-  { key: 'billing', Scene: Billing, pick: (s) => ({ stages: s.stages }) },
+  { key: 'outbound', Scene: Outbound, pick: (s) => ({ sequence: s.sequence }), wide: true },
 ];
 
 export default function Systems() {
@@ -57,9 +54,9 @@ export default function Systems() {
       <div className="wrap">
         <Head id="systems-title" title={`${s.titleLines[0]} ${s.titleLines[1]}`} accent={s.titleLines[2]} lead={s.body} />
         <div className="sgrid">
-          {TILES.map(({ key, Scene, pick }, i) => (
+          {TILES.map(({ key, Scene, pick, wide }, i) => (
             <article className={`sys sys--${key}`} id={key} key={key}>
-              <Scene d={pick(s[key])} className="sys__scene" />
+              <Scene d={pick(s[key])} className="sys__scene" wide={wide} />
               <Text i={i} sys={s[key]} demo={d[key]} t={t} />
             </article>
           ))}

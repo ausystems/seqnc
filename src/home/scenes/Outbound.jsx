@@ -7,20 +7,29 @@
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useScene } from '../../engine/tile.js';
+import { useMedia } from '../../engine/hooks.js';
+import { DESKTOP } from '../../engine/device.js';
 import { Star, Team, Gift, Sun } from './icons.jsx';
 import '../../styles/scenes/outbound.css';
 
-const CW = 340, CH = 260;
 const ICONS = [Star, Team, Gift, Sun];
-const TRACK = { x: 22, y: 214, w: 296 };
+const CH = 260;
+/* the comp comes in two widths: the tile's own on phones and tablets, a wide one on desktop */
+const layout = (wide) => {
+  const CW = wide ? 560 : 340;
+  const TRACK = { x: 22, y: 214, w: CW - 44 };
+  const BUB = wide ? { w: 124, h: 58 } : { w: 158, h: 58 };
+  return { CW, TRACK, BUB };
+};
 /* markers spaced by the log of the day, so 1, 7, 30, 90 read as time */
-const posOf = (n, max) => TRACK.x + (Math.log(n + 1) / Math.log(max + 1)) * (TRACK.w - 8) + 4;
-const BUB = { w: 158, h: 58 };
+const posOf = (n, max, TRACK) => TRACK.x + (Math.log(n + 1) / Math.log(max + 1)) * (TRACK.w - 8) + 4;
 
-export default function Outbound({ d, className = '' }) {
+export default function Outbound({ d, className = '', wide = false }) {
+  const isWide = useMedia(DESKTOP) && wide;
+  const { CW, TRACK, BUB } = layout(isWide);
   const seq = d.sequence.slice(0, 4);
   const max = Math.max(...seq.map((m) => m.n || 1));
-  const xs = seq.map((m) => posOf(m.n || 1, max));
+  const xs = seq.map((m) => posOf(m.n || 1, max, TRACK));
   const ref = useScene((el) => {
     const tl = gsap.timeline();
     const head = el.querySelector('.out__head');
@@ -57,10 +66,10 @@ export default function Outbound({ d, className = '' }) {
           {seq.map((m, i) => {
             const Icon = ICONS[i];
             const sent = i < 2;
-            /* four bubbles in two rows: the early two on the left, the later two on the right,
-               the odd days above and the even ones below, so they rise in order and read as time */
-            const top = i % 2 ? 22 : 106;
-            const left = i < 2 ? 8 : CW - BUB.w - 8;
+            /* on desktop the four bubbles stand in one evenly spaced row above the track; on
+               smaller stages they take two rows, the early two left and the later two right */
+            const top = isWide ? 92 : (i % 2 ? 22 : 106);
+            const left = isWide ? 8 + i * ((CW - 16 - BUB.w) / 3) : (i < 2 ? 8 : CW - BUB.w - 8);
             return (
               <div className="lyr" data-depth="2" key={`b${m.day}`} style={{ left, top }}>
                 <div className={`ob out__bub ${sent ? 'ob--night' : 'ob--ghost out__bub--later'}`} style={{ width: BUB.w }}>

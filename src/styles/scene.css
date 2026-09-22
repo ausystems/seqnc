@@ -5,7 +5,9 @@
    and a light that follows the pointer.  On it stand objects: white cards
    and pills lit from above, one night object and one violet object at
    most per scene, marks (dots, checks, glows) and a mono voice for keys.
-   Layers carry data-depth (1 far, 3 near) and move with the pointer.
+   Layers carry data-depth (1 far, 3 near) and move with the pointer.  A
+   scene plays once and then stays; the pointer only moves the light and
+   the depth, never the story.
    ========================================================================= */
 .scene{
   --mx:50%; --my:40%;

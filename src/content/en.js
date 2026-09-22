@@ -99,9 +99,9 @@ export default {
 
   systems: {
     label: 'The framework',
-    title: 'Four Systems. We Start With Whichever One Is Costing You Most.',
-    titleLines: ['Four Systems.', 'We Start With Whichever One', 'Is Costing You Most.'],
-    body: 'You are never required to take all four.',
+    title: 'Three Systems. We Start With Whichever One Is Costing You Most.',
+    titleLines: ['Three Systems.', 'We Start With Whichever One', 'Is Costing You Most.'],
+    body: 'You are never required to take all three.',
     inbound: {
       tag: 'Inbound',
       title: 'Never Miss a Lead',
@@ -136,17 +136,6 @@ export default {
         { day: 'Day 90', n: 90, msg: 'Seasonal check-in', badge: 'Queued' },
       ],
       bullets: ['Reviews asked for every job, not the ones you remember', 'Past clients hear from you without a campaign to write', 'Repeat work that used to depend on luck'],
-    },
-    billing: {
-      tag: 'Billing',
-      title: 'Get Paid Without Chasing',
-      body: 'The invoice goes out the moment the work is done, and reminders follow on their own until it is paid.',
-      stages: [
-        { label: 'Invoice sent', when: 'Job closed' },
-        { label: 'Reminder sent', when: 'Day 7' },
-        { label: 'Paid', when: 'In full' },
-      ],
-      bullets: ['The invoice goes out when the work does, not when someone remembers', 'Reminders keep going until the payment lands', 'Nothing left to chase at the end of the month'],
     },
   },
 
@@ -236,7 +225,7 @@ export default {
     title: 'Every Build Is Scoped to Your Business.',
     titleStart: 'Every Build Is Scoped',
     titleAccent: 'to Your Business.',
-    body: "We don't publish a price list, because a one-system build and a full four-system rebuild aren't the same job. Here is exactly how it works instead.",
+    body: "We don't publish a price list, because a one-system build and a full three-system rebuild aren't the same job. Here is exactly how it works instead.",
     cta: 'Get your number on the call',
     /* the words each pricing picture sets large, each lifted from its term */
     vis: { setup: 'Setup', once: 'One-time', retainer: 'Retainer', monthly: 'Monthly', cancel: 'Cancel', days: 'days', full: 'In full' },
@@ -252,10 +241,11 @@ export default {
     title: 'Questions People Ask Before Booking.',
     titleStart: 'Questions People Ask',
     titleAccent: 'Before Booking.',
+    more: 'Still have a question? Ask it on the call.',
     items: [
       { q: 'How long does it take to see results?', a: 'Most clients see impact from the Inbound system in the first week, because leads stop going unanswered right away. Operations and Outbound compound, and usually show meaningful time savings within 30 days.' },
       { q: 'Do I need to be technical?', a: "No. We build everything and your team doesn't touch it. Once it's live it runs in the background." },
-      { q: 'What if I only need one system?', a: "That's fine. We start with whatever is costing you the most and build from there. You're never required to take all four." },
+      { q: 'What if I only need one system?', a: "That's fine. We start with whatever is costing you the most and build from there. You're never required to take all three." },
       { q: 'What happens if something breaks?', a: 'Monitoring and bug fixes are included in your monthly retainer. If something stops working, we fix it.' },
       { q: 'Is there a contract?', a: 'Agreements run 12 months, but you can cancel any time with no questions asked and no penalty. Every retainer also comes with a 90-day money-back guarantee.' },
       { q: 'How much does it cost?', a: "It depends on the scope and complexity of your systems, so there's no one-size-fits-all number. Book a free review and you'll get exactly what you need and what it costs." },

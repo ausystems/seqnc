@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
 import { reduced } from '../engine/device.js';
 import { Lines, Fade } from '../ui/Reveal.jsx';
+import Button from '../ui/Button.jsx';
 
 function Item({ i, q, a, open, onToggle }) {
   const id = useId();
@@ -45,11 +46,17 @@ export default function Faq() {
         <div className="faq__head">
           <Lines as="h2" id="faq-title" className="dsp dsp--1">{t.faq.titleStart}<br /><span className="hi">{t.faq.titleAccent}</span></Lines>
         </div>
-        <Fade as="ul" className="acc faq__list" y={16} stagger={.06}>
-          {t.faq.items.map((it, i) => (
-            <Item key={it.q} i={i} q={it.q} a={it.a} open={open === i} onToggle={(v) => setOpen(v ? i : -1)} />
-          ))}
-        </Fade>
+        <div className="faq__list">
+          <Fade as="ul" className="acc" y={16} stagger={.06}>
+            {t.faq.items.map((it, i) => (
+              <Item key={it.q} i={i} q={it.q} a={it.a} open={open === i} onToggle={(v) => setOpen(v ? i : -1)} />
+            ))}
+          </Fade>
+          <Fade className="cta-row faq__cta">
+            <p className="cta-row__lead">{t.faq.more}</p>
+            <Button href={t.calendly} calendly>{t.hero.cta}</Button>
+          </Fade>
+        </div>
       </div>
     </section>
   );

@@ -98,9 +98,9 @@ export default {
 
   systems: {
     label: 'Le cadre',
-    title: 'Quatre systèmes. On commence par celui qui vous coûte le plus cher.',
-    titleLines: ['Quatre systèmes.', 'On commence par celui', 'qui vous coûte le plus cher.'],
-    body: "Vous n'êtes jamais obligé de prendre les quatre.",
+    title: 'Trois systèmes. On commence par celui qui vous coûte le plus cher.',
+    titleLines: ['Trois systèmes.', 'On commence par celui', 'qui vous coûte le plus cher.'],
+    body: "Vous n'êtes jamais obligé de prendre les trois.",
     inbound: {
       tag: 'Entrant',
       title: 'Ne manquez plus une demande',
@@ -135,17 +135,6 @@ export default {
         { day: 'Jour 90', n: 90, msg: 'Suivi saisonnier', badge: 'En attente' },
       ],
       bullets: ['Des avis demandés pour chaque contrat, pas seulement ceux dont vous vous souvenez', 'Vos anciens clients ont de vos nouvelles sans campagne à rédiger', 'Du travail récurrent qui ne dépend plus de la chance'],
-    },
-    billing: {
-      tag: 'Facturation',
-      title: 'Soyez payé sans courir après',
-      body: "La facture part dès que le travail est terminé, et les rappels suivent tout seuls jusqu'au paiement.",
-      stages: [
-        { label: 'Facture envoyée', when: 'Travail terminé' },
-        { label: 'Rappel envoyé', when: 'Jour 7' },
-        { label: 'Payée', when: 'En entier' },
-      ],
-      bullets: ["La facture part en même temps que le travail, pas quand quelqu'un y pense", "Les rappels continuent jusqu'à ce que le paiement arrive", 'Plus rien à courir après à la fin du mois'],
     },
   },
 
@@ -235,7 +224,7 @@ export default {
     title: 'Chaque système est adapté à votre entreprise.',
     titleStart: 'Chaque système est adapté',
     titleAccent: 'à votre entreprise.',
-    body: "Nous ne publions pas de liste de prix, parce qu'un seul système et une refonte complète des quatre ne sont pas le même mandat. Voici plutôt exactement comment ça fonctionne.",
+    body: "Nous ne publions pas de liste de prix, parce qu'un seul système et une refonte complète des trois ne sont pas le même mandat. Voici plutôt exactement comment ça fonctionne.",
     cta: "Obtenez votre prix lors de l'appel",
     vis: { setup: 'Installation', once: 'Une fois', retainer: 'Forfait', monthly: 'Mensuel', cancel: 'Annulez', days: 'jours', full: 'En entier' },
     items: [
@@ -250,10 +239,11 @@ export default {
     title: "Les questions qu'on nous pose avant de réserver.",
     titleStart: "Les questions qu'on nous pose",
     titleAccent: 'avant de réserver.',
+    more: "Il vous reste une question? Posez-la lors de l'appel.",
     items: [
       { q: 'Combien de temps avant de voir des résultats?', a: "La plupart des clients voient l'effet du système Entrant dès la première semaine, parce que les demandes cessent de rester sans réponse. Les systèmes Opérations et Sortant s'accumulent, et donnent généralement des gains de temps notables en moins de 30 jours." },
       { q: 'Faut-il être technique?', a: "Non. Nous bâtissons tout et votre équipe n'y touche pas. Une fois en ligne, ça fonctionne en arrière-plan." },
-      { q: "Et si je n'ai besoin que d'un seul système?", a: "Aucun problème. On commence par ce qui vous coûte le plus cher et on bâtit à partir de là. Vous n'êtes jamais obligé de prendre les quatre." },
+      { q: "Et si je n'ai besoin que d'un seul système?", a: "Aucun problème. On commence par ce qui vous coûte le plus cher et on bâtit à partir de là. Vous n'êtes jamais obligé de prendre les trois." },
       { q: 'Que se passe-t-il si quelque chose brise?', a: 'La surveillance et la correction des bogues sont incluses dans votre forfait mensuel. Si quelque chose cesse de fonctionner, on le répare.' },
       { q: 'Y a-t-il un contrat?', a: 'Les ententes durent 12 mois, mais vous pouvez annuler à tout moment, sans question et sans pénalité. Chaque forfait vient aussi avec une garantie de remboursement de 90 jours.' },
       { q: 'Combien ça coûte?', a: "Ça dépend de la portée et de la complexité de vos systèmes, donc il n'y a pas de prix unique. Réservez un diagnostic gratuit et vous saurez exactement ce dont vous avez besoin et ce que ça coûte." },
