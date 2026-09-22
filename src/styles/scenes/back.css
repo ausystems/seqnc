@@ -1,9 +1,12 @@
-/* back: the figure, the field, the chip */
-.back .back__fig{ display:flex; align-items:baseline; gap:12px; }
-.back .back__n{ font-size:88px; color:var(--violet-3); }
+/* back: the figure, the field, the chip, the packet, on the night stage */
+.back .back__fig{ position:relative; display:flex; align-items:baseline; gap:12px; }
+.back .back__n{ font-size:88px; color:var(--violet-3); text-shadow:0 0 40px rgba(201,174,245,.35); }
 .back .back__u{ color:#B4ACC4; }
+/* the bloom behind the figure */
+.back .back__glow{ position:absolute; left:-30%; top:-40%; width:150%; height:170%; border-radius:50%; background:radial-gradient(closest-side, rgba(124,77,204,.42), rgba(124,77,204,0)); opacity:.7; pointer-events:none; }
 .back .back__cells{ display:grid; gap:4px; }
 .back .back__cell{ display:block; width:8px; height:8px; border-radius:2px; background:var(--violet-3); opacity:.85; }
-.back .back__cell--last{ background:var(--violet-2); opacity:1; box-shadow:0 0 8px rgba(168,97,230,.8); }
-.back .halo{ opacity:0; }
+.back .back__cell--last{ background:#fff; opacity:1; box-shadow:0 0 10px rgba(201,174,245,.95), 0 0 0 1px rgba(255,255,255,.4); }
+.back .halo{ inset:-45% -30%; background:radial-gradient(closest-side, rgba(168,97,230,.6), rgba(124,77,204,0)); opacity:0; }
 .back .back__chip{ display:inline-flex; align-items:center; gap:9px; padding:8px 14px 8px 8px; white-space:nowrap; }
+.back .back__pkt{ left:-4px; top:-4px; background:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.18), 0 0 14px rgba(201,174,245,.9); }

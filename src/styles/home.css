@@ -156,7 +156,7 @@
 .work__acts{ display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
 
 /* ----- pricing ----- */
-/* the three terms as a tonal bento: paper, lavender, night */
+/* the three terms as a tonal bento: paper, lavender, night tiles, each holding a night picture */
 .pgrid{ margin-top:clamp(40px, 5vw, 72px); display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); gap:14px; align-items:stretch; }
 .pt{
   position:relative; display:flex; flex-direction:column; padding:14px 14px 24px;
