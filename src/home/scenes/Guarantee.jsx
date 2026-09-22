@@ -30,7 +30,8 @@ export default function Guarantee({ d, className = '' }) {
     const lap = gsap.timeline({ repeat: -1, repeatDelay: .4 })
       .fromTo(glow, { strokeDashoffset: ARC * .18 }, { strokeDashoffset: -ARC, duration: LAP, ease: 'none' }, 0)
       .fromTo(o, { t: 0 }, { t: 1, duration: LAP, ease: 'none', onUpdate: place }, 0)
-      .fromTo(head, { attr: { r: 6 } }, { attr: { r: 9 }, duration: .5, ease: 'sine.inOut', yoyo: true, repeat: Math.round(LAP / .5) - 1 }, 0);
+      /* an even number of half-beats, so the head is back at rest when the lap restarts */
+      .fromTo(head, { attr: { r: 6 } }, { attr: { r: 9 }, duration: .5, ease: 'sine.inOut', yoyo: true, repeat: 7 }, 0);
     tl.add(lap, 0)
       .to(fig, { scale: 1.03, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, 0)
       .to(pill, { y: -3, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);

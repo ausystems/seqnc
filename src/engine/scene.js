@@ -13,7 +13,7 @@ export function fitComp(scene) {
   const ch = parseFloat(getComputedStyle(comp).getPropertyValue('--ch')) || 240;
   const fit = () => {
     const r = scene.getBoundingClientRect();
-    const pad = 36;
+    const pad = 22;
     const k = Math.min(1, (r.width - pad) / cw, (r.height - pad) / ch);
     comp.style.setProperty('--k', String(Math.max(.4, k)));
   };
