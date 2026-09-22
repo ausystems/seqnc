@@ -1,9 +1,9 @@
-/* cancel: the word, the switch that lets go, the check that stays, on the night stage */
-.can .can__word{ display:block; font-size:40px; color:#F4F1F8; white-space:nowrap; letter-spacing:-.06em; }
+/* cancel: the word, the switch that lets go, the check that stays */
+.can .can__word{ display:block; font-size:40px; white-space:nowrap; letter-spacing:-.06em; }
 /* the switch: a deep well with a violet fill that drains, a white knob that glides, one faint dot */
-.scene--night .can__track{ background:linear-gradient(180deg, #080512 0%, #100A20 100%); box-shadow:inset 0 2px 8px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,255,255,.07), 0 0 0 1px rgba(255,255,255,.1); }
-.can .can__track .halo{ inset:-80% -50%; background:radial-gradient(closest-side, rgba(168,97,230,.55), rgba(124,77,204,0)); opacity:0; }
-.can .can__fill{ position:absolute; inset:0; opacity:0; box-shadow:inset 0 3px 8px rgba(14,8,32,.4), inset 0 -1px 0 rgba(255,255,255,.2), 0 0 0 1px rgba(168,97,230,.6), 0 0 24px rgba(124,77,204,.55); }
+.can .can__track{ background:linear-gradient(180deg, #070411 0%, #0F0A1F 100%); -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:inset 0 2px 8px rgba(0,0,0,.85), inset 0 -1px 0 rgba(255,255,255,.07), 0 0 0 1px var(--sc-ring); }
+.can .can__track .halo{ inset:-80% -50%; opacity:0; }
+.can .can__fill{ position:absolute; inset:0; border-radius:999px; opacity:0; background:linear-gradient(180deg, #8F63EC 0%, #7444C6 100%); box-shadow:inset 0 3px 8px rgba(14,8,32,.4), inset 0 -1px 0 rgba(255,255,255,.2), 0 0 0 1px rgba(168,97,230,.6), 0 0 24px rgba(124,77,204,.55); }
 .can .can__knob{ position:absolute; border-radius:50%; background:linear-gradient(180deg, #FFFFFF 0%, #EFEAF9 100%); box-shadow:inset 0 1px 0 #FFFFFF, inset 0 -1px 0 rgba(14,8,32,.08), 0 1px 2px rgba(0,0,0,.4), 0 10px 22px -8px rgba(0,0,0,.8); }
 .can .can__live{ position:absolute; opacity:.55; }
 /* the light the switch spills onto the stage while it is on */

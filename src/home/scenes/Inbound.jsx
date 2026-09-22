@@ -57,7 +57,7 @@ export default function Inbound({ d, className = '' }) {
             );
           })}
           <div className="lyr" style={{ left: BOX.x, top: BOX.y }}>
-            <div className="ob ob--night inb__box" style={{ width: BOX.w, height: BOX.h }}>
+            <div className="ob inb__box" style={{ width: BOX.w, height: BOX.h }}>
               <div className="inb__head"><Inbox /><span className="ob__t">{d.inbox}</span><i className="mk mk--live" /></div>
               <p className="ob__k inb__when">{d.when}</p>
               <div className="inb__slots">{SLOT.map((s, i) => <i className="inb__slot" key={i} style={{ left: s.x, top: s.y }} />)}</div>
@@ -65,7 +65,7 @@ export default function Inbound({ d, className = '' }) {
             </div>
           </div>
           <div className="lyr inb__replylyr" style={{ left: 0, right: 0, top: 200 }}>
-            <div className="ob ob--violet ob--pill inb__reply"><i className="halo" /><span className="chk chk--white"><Check /></span><span className="ob__v">{d.reply}</span><span className="ob__k inb__inst">{d.instantly}</span></div>
+            <div className="ob ob--lit ob--pill inb__reply"><i className="halo" /><span className="chk"><Check /></span><span className="ob__v">{d.reply}</span><span className="ob__k inb__inst">{d.instantly}</span></div>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 /* =========================================================================
-   Cancel: a switch that lets go, any time, and keeps showing it, on the
-   night stage.  The word, the switch and the check stand from the start.  The switch turns
+   Cancel: a switch that lets go, any time, and keeps showing it.  The word, the switch and the check stand from the start.  The switch turns
    itself on, holds, and turns itself off again without end: the knob
    glides with a small stretch and settles, the violet drains to paper,
    and the check pulses each time it lets go.  While the switch is on,
@@ -52,7 +51,7 @@ export default function Cancel({ d, className = '' }) {
       .to(word, { y: -2, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);
   });
   return (
-    <div className={`scene scene--night ${className}`} ref={ref}>
+    <div className={`scene ${className}`} ref={ref}>
       <div className="scene__stage">
         <div className="comp can" style={{ '--cw': CW, '--ch': CH }}>
           <div className="lyr" style={{ left: WORD.x, top: WORD.y }}>
@@ -65,7 +64,7 @@ export default function Cancel({ d, className = '' }) {
             <i className="can__spill" aria-hidden="true" />
             <div className="ob ob--pill can__track" style={{ width: SW.w, height: SW.h }}>
               <i className="halo" />
-              <i className="ob ob--pill ob--violet can__fill" />
+              <i className="can__fill" />
               <i className="mk mk--live can__live" style={{ left: LIVE.x, top: LIVE.y }} />
               <i className="can__knob" style={{ top: SW.pad, left: SW.pad, width: SW.knob, height: SW.knob }} />
             </div>

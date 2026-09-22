@@ -72,7 +72,7 @@ export default function Outbound({ d, className = '', wide = false }) {
             const left = isWide ? 8 + i * ((CW - 16 - BUB.w) / 3) : (i < 2 ? 8 : CW - BUB.w - 8);
             return (
               <div className="lyr" key={`b${m.day}`} style={{ left, top }}>
-                <div className={`ob out__bub ${sent ? 'ob--night' : 'ob--ghost out__bub--later'}`} style={{ width: BUB.w }}>
+                <div className={`ob out__bub${sent ? '' : ' ob--ghost out__bub--later'}`} style={{ width: BUB.w }}>
                   <Icon />
                   <span className="out__text">
                     <span className="ob__v">{m.msg}</span>

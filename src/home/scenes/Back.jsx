@@ -1,5 +1,5 @@
 /* =========================================================================
-   Back: ninety days, refunded in full, on the night stage.  The figure,
+   Back: ninety days, refunded in full.  The figure,
    the field of ninety cells and the chip stand from the start; a wave of
    light keeps crossing the field from the top left, the last cell flares
    as it arrives and sends a packet across to the chip, whose check
@@ -48,7 +48,7 @@ export default function Back({ d, className = '' }) {
       .to(glow, { scale: 1.18, opacity: 1, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, 0);
   });
   return (
-    <div className={`scene scene--night ${className}`} ref={ref}>
+    <div className={`scene ${className}`} ref={ref}>
       <div className="scene__stage">
         <div className="comp back" style={{ '--cw': CW, '--ch': CH }}>
           <div className="lyr" style={{ left: 22, top: 14 }}>
@@ -61,7 +61,7 @@ export default function Back({ d, className = '' }) {
             </div>
           )}
           <div className="lyr" style={{ left: CHIP.x, top: CHIP.y }}>
-            <div className="ob ob--violet ob--pill back__chip"><i className="halo" /><span className="chk chk--white"><Check /></span><span className="ob__v">{d.full}</span></div>
+            <div className="ob ob--lit ob--pill back__chip"><i className="halo" /><span className="chk"><Check /></span><span className="ob__v">{d.full}</span></div>
           </div>
           <i className="pkt back__pkt" />
         </div>

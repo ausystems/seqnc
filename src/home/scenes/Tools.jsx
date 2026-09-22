@@ -44,7 +44,7 @@ export default function Tools({ d, className = '' }) {
     return tl;
   });
   return (
-    <div className={`scene scene--night ${className}`} ref={ref}>
+    <div className={`scene ${className}`} ref={ref}>
       <div className="scene__stage">
         <div className="comp tools" style={{ '--cw': CW, '--ch': CH }}>
           {nodes.map((n, i) => {

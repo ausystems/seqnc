@@ -2,6 +2,8 @@
    Homepage compositions.  Seven chapters, one idea each.
    ========================================================================= */
 
+/* the split target is a block so a resize observer sees its width change and the lines re-split */
+.lines{ display:block; }
 .sl-mask, .sl{ padding-bottom:.14em; margin-bottom:-.14em; }
 
 /* ----- the ribbon host ----- */

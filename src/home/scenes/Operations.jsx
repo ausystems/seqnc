@@ -48,7 +48,7 @@ export default function Operations({ d, className = '' }) {
             const isLast = i === rows.length - 1;
             return (
               <div className="lyr" key={s.label} style={{ left: CARD.x, top: yOf(i) }}>
-                <div className={`ob ops__card${isLast ? ' ops__card--last' : ''}`} style={{ width: CARD.w, height: CARD.h }}>
+                <div className={`ob ops__card${isLast ? ' ob--lit ops__card--last' : ''}`} style={{ width: CARD.w, height: CARD.h }}>
                   {isLast && <i className="halo" />}
                   <span className="chk ops__chk"><Check /></span>
                   <Icon />

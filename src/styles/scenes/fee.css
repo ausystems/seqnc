@@ -1,18 +1,15 @@
-/* fee: the calendar, the two pills, the packet, on the night stage */
+/* fee: the calendar, the two pills, the packet */
 .fee .fee__cal{ padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
 .fee .fee__calhead{ display:flex; align-items:center; gap:8px; }
-.fee .fee__calhead .ico{ color:var(--violet-3); }
-.fee .fee__calhead .ob__k{ color:rgba(244,241,248,.66); }
 .fee .fee__live{ margin-left:auto; }
 /* the month bar under the head: a hairline the year fills */
 .fee .fee__bar{ display:block; height:2px; border-radius:2px; background:rgba(244,241,248,.1); overflow:hidden; }
-.fee .fee__barfill{ display:block; height:100%; width:100%; background:linear-gradient(90deg, var(--violet-2), var(--violet-3)); transform-origin:0 50%; box-shadow:0 0 8px rgba(168,97,230,.8); }
+.fee .fee__barfill{ display:block; height:100%; width:100%; background:linear-gradient(90deg, var(--sc-accent), var(--sc-key)); transform-origin:0 50%; box-shadow:0 0 8px rgba(168,97,230,.8); }
 .fee .fee__cells{ display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; }
 .fee .fee__cell{ display:block; height:16px; border-radius:5px; background:rgba(201,174,245,.16); box-shadow:0 0 0 rgba(168,97,230,0); }
 .fee .fee__cell--last{ background:#A861E6; box-shadow:0 0 12px rgba(168,97,230,.9); }
 /* the pills: figure over key */
 .fee .fee__pill{ display:inline-flex; flex-direction:column; align-items:flex-start; gap:3px; padding:12px 20px 13px; white-space:nowrap; }
 .fee .fee__pill .ob__t{ font-size:20px; letter-spacing:-.03em; line-height:1; }
-.fee .fee__ret .ob__k{ color:rgba(255,255,255,.8); }
-.fee .halo{ inset:-45% -30%; background:radial-gradient(closest-side, rgba(168,97,230,.6), rgba(124,77,204,0)); opacity:0; }
+.fee .halo{ inset:-45% -30%; opacity:0; }
 .fee .fee__pkt{ left:-4px; top:-4px; }

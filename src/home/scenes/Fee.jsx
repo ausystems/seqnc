@@ -1,7 +1,7 @@
 /* =========================================================================
-   Fee: a one-time setup, then a monthly retainer, on the night stage.
-   The two pills and the calendar stand from the start: the setup in
-   paper (paid once), the retainer in violet (paid monthly).  The months
+   Fee: a one-time setup, then a monthly retainer.  The two pills and
+   the calendar stand from the start, the retainer lit (it is the one
+   that keeps coming round).  The months
    light up one after another around the calendar while a bar beneath
    its head fills, and each time the year closes a packet leaves the
    calendar for the retainer, which answers with a ring of light.  The
@@ -60,7 +60,7 @@ export default function Fee({ d, className = '' }) {
     return tl;
   });
   return (
-    <div className={`scene scene--night ${className}`} ref={ref}>
+    <div className={`scene ${className}`} ref={ref}>
       <div className="scene__stage">
         <div className="comp fee" style={{ '--cw': CW, '--ch': CH }}>
           <div className="lyr" style={{ left: CAL.x, top: CAL.y }}>
@@ -71,10 +71,10 @@ export default function Fee({ d, className = '' }) {
             </div>
           </div>
           <div className="lyr" style={{ left: SETUP.x, top: SETUP.y }}>
-            <div className="ob ob--light ob--pill fee__pill fee__setup"><span className="ob__t">{d.setup}</span><span className="ob__k">{d.once}</span></div>
+            <div className="ob ob--pill fee__pill fee__setup"><span className="ob__t">{d.setup}</span><span className="ob__k">{d.once}</span></div>
           </div>
           <div className="lyr" style={{ left: RET.x, top: RET.y }}>
-            <div className="ob ob--violet ob--pill fee__pill fee__ret"><i className="halo" /><span className="ob__t">{d.retainer}</span><span className="ob__k">{d.monthly}</span></div>
+            <div className="ob ob--lit ob--pill fee__pill fee__ret"><i className="halo" /><span className="ob__t">{d.retainer}</span><span className="ob__k">{d.monthly}</span></div>
           </div>
           <i className="pkt fee__pkt" />
         </div>

@@ -1,16 +1,15 @@
 /* =========================================================================
    Guarantee: ninety days, money back, as a dial that stays lit.  The
    arc is full from the start and reads ninety; a bright segment travels
-   the arc without end with a lit head riding it, the figure breathes, and
-   the label beside it floats.
+   the arc without end with a lit head riding it, and the figure breathes.
    ========================================================================= */
 import { gsap } from 'gsap';
 import { useScene } from '../../engine/tile.js';
-import { Check } from './icons.jsx';
 import '../../styles/scenes/guarantee.css';
 
 const CW = 340, CH = 200;
-const DIAL = { x: 26, y: 18, s: 164 };
+const DIAL = { s: 172 };
+DIAL.x = (CW - DIAL.s) / 2; DIAL.y = (CH - DIAL.s) / 2;
 const R = 66, SWEEP = 270;
 const C = 2 * Math.PI * R, ARC = C * SWEEP / 360;
 const A0 = 135; /* the arc starts at the lower left */
@@ -23,7 +22,6 @@ export default function Guarantee({ d, className = '' }) {
     const glow = el.querySelector('.gua__glow');
     const head = el.querySelector('.gua__head');
     const fig = el.querySelector('.gua__fig');
-    const pill = el.querySelector('.gua__pill');
     const o = { t: 0 };
     const place = () => { const p = pt(A0 + o.t * SWEEP); head.setAttribute('cx', p.x); head.setAttribute('cy', p.y); };
     place();
@@ -36,8 +34,7 @@ export default function Guarantee({ d, className = '' }) {
       .to(head, { opacity: 0, duration: .3, ease: 'power2.in' }, LAP - .3)
       .fromTo(head, { attr: { r: 6 } }, { attr: { r: 9 }, duration: LAP / 8, ease: 'sine.inOut', yoyo: true, repeat: 7 }, 0);
     tl.add(lap, 0)
-      .to(fig, { scale: 1.03, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, 0)
-      .to(pill, { y: -3, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 0);
+      .to(fig, { scale: 1.03, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, 0);
     return tl;
   });
   return (
@@ -53,9 +50,6 @@ export default function Guarantee({ d, className = '' }) {
               </svg>
               <div className="gua__fig"><span className="ob__big gua__n">{d.ringValue}</span><span className="ob__k gua__u">{d.ringUnit}</span></div>
             </div>
-          </div>
-          <div className="lyr" style={{ left: 196, top: 84 }}>
-            <div className="ob ob--pill gua__pill"><span className="chk"><Check /></span><span className="ob__k">{d.ringLabel}</span></div>
           </div>
         </div>
       </div>

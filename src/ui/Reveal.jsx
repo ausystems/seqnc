@@ -19,13 +19,17 @@ export function Lines({ as: Tag = 'div', className = '', children, now = false, 
   useEffect(() => {
     const el = ref.current;
     if (!el || !fonts || reduced) return undefined;
-    let tween;
+    let tween, shown = false;
+    /* autoSplit re-splits the lines whenever the block's width changes (a window resize, a
+       tablet turned); once the reveal has played, the fresh lines simply stand */
     const split = SplitText.create(el, {
       type: 'lines', mask: 'lines', linesClass: 'sl', autoSplit: true,
       onSplit(self) {
+        if (shown) return undefined;
         tween = gsap.from(self.lines, {
           yPercent: 112, duration: 1.25, ease: 'expo.out', stagger, delay: delay + (now ? introDelay() : 0),
           scrollTrigger: now ? undefined : { trigger: el, start, once: true },
+          onComplete: () => { shown = true; },
         });
         return tween;
       },
