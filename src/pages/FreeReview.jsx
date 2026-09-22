@@ -19,7 +19,7 @@ export default function FreeReview() {
         <div className="review__obj" aria-hidden="true"><img src="/ring.webp" alt="" width="1200" height="1200" decoding="async" /></div>
         <div className="wrap">
           <Lines as="h1" id="review-title" className="dsp dsp--hero review__title" now delay={.2}>
-            {r.titleStart} <em className="accent">{r.titleAccent}</em>
+            {r.titleStart} <span className="hi">{r.titleAccent}</span>
           </Lines>
           <Fade now delay={.7}><p className="lead review__lede">{r.lede}</p></Fade>
           <div className="review__grid">

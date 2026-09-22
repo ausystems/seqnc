@@ -14,7 +14,7 @@ h1,h2,h3,h4,p,figure{ margin:0; font-weight:inherit; }
 button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
 img,svg,canvas,video{ display:block; max-width:100%; }
 strong{ font-weight:700; }
-em{ font-style:italic; }
+em{ font-style:normal; font-weight:600; }
 ::selection{ background:var(--violet); color:#fff; }
 :focus-visible{ outline:2px solid var(--focus); outline-offset:4px; border-radius:2px; }
 :focus:not(:focus-visible){ outline:none; }
@@ -46,7 +46,11 @@ main{ position:relative; z-index:1; }
 .tnum{ font-variant-numeric:tabular-nums; }
 
 /* ----- structure ----- */
-.wrap{ padding-left:var(--gutter); padding-right:var(--gutter); max-width:var(--max); margin:0 auto; }
+/* the frame: everything on the page lives between two rails, and every
+   chapter is separated from the next by one line of the same weight */
+.frame{ position:relative; width:calc(100% - 2 * var(--rail)); max-width:var(--max); margin:0 auto; border-left:1px solid var(--rule); border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); background:var(--surface); }
+.frame > main > * + *{ border-top:1px solid var(--rule); }
+.wrap{ padding-left:var(--gutter); padding-right:var(--gutter); }
 .grid{ display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:var(--gap); }
 .rule{ height:1px; background:var(--line); }
 .section{ position:relative; padding:var(--pad) 0; }

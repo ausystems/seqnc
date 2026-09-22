@@ -53,8 +53,14 @@
   --t-mono:11.5px;
   --t-num:clamp(72px, 9.6vw, 164px);
 
-  /* layout */
-  --gutter:max(clamp(20px, 4.6vw, 88px), env(safe-area-inset-left), env(safe-area-inset-right));
+  /* layout: the frame.  Two charcoal rails run down the page at --rail from
+     the viewport edge (or centred at --max on very wide screens); every
+     chapter sits inside them and text starts --inset in from the rail. */
+  --rule:#1A1A1A;
+  --rail:max(clamp(16px, 3vw, 56px), env(safe-area-inset-left), env(safe-area-inset-right));
+  --inset:clamp(18px, 2.8vw, 48px);
+  --edge:max(var(--rail), calc((100% - var(--max)) / 2));
+  --gutter:var(--inset);
   --max:1680px;
   --pad:clamp(72px, 9vw, 140px);
   --pad-s:clamp(56px, 6vw, 96px);

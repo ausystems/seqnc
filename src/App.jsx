@@ -34,16 +34,18 @@ function Shell() {
     <TransitionProvider>
       <Intro />
       <Nav />
-      <main id="main" tabIndex={-1}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/free-review" element={<FreeReview />} />
-          <Route path="/privacy" element={<Legal kind="privacy" />} />
-          <Route path="/terms" element={<Legal kind="terms" />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+      <div className="frame">
+        <main id="main" tabIndex={-1}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/free-review" element={<FreeReview />} />
+            <Route path="/privacy" element={<Legal kind="privacy" />} />
+            <Route path="/terms" element={<Legal kind="terms" />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
       <Refresh />
     </TransitionProvider>
   );

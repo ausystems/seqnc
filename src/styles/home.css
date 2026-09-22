@@ -22,7 +22,7 @@
 .hero__lede{ margin-top:clamp(24px, 3vh, 36px); font-size:var(--t-lead); font-weight:500; line-height:1.4; letter-spacing:-.012em; color:var(--text-2); max-width:38ch; text-wrap:pretty; }
 .hero__actions{ margin-top:28px; display:flex; align-items:center; gap:26px; flex-wrap:wrap; }
 .hero__note{ margin-top:18px; font-size:var(--t-small); line-height:1.5; color:var(--text-3); max-width:40ch; text-wrap:pretty; }
-.hero__strip{ position:relative; z-index:2; border-top:1px solid var(--line); }
+.hero__strip{ position:relative; z-index:2; border-top:1px solid var(--rule); }
 .hero__stripin{ display:grid; grid-template-columns:150px 1fr auto; gap:32px; align-items:center; padding-top:20px; padding-bottom:22px; }
 .hero__who{ color:var(--text-3); }
 .hero__stmt{ font-size:var(--t-small); font-weight:500; color:var(--text-2); }
@@ -63,7 +63,9 @@
 .sgrid{ margin-top:clamp(36px, 4.5vw, 64px); display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); gap:14px; }
 .sys{
   position:relative; display:flex; flex-direction:column; padding:14px 14px 26px;
-  background:var(--surface-2); border:1px solid var(--line); border-radius:24px; color:var(--text);
+  background:rgba(255,255,255,.72); -webkit-backdrop-filter:blur(16px) saturate(1.2); backdrop-filter:blur(16px) saturate(1.2);
+  border:1px solid var(--line); border-radius:24px; color:var(--text);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
   transition:transform .7s var(--ease-out), box-shadow .7s var(--ease-out), border-color .7s var(--ease-out);
 }
 .sys:hover{ transform:translateY(-6px); border-color:var(--line-2); box-shadow:0 34px 60px -34px rgba(14,8,32,.32), 0 2px 0 rgba(14,8,32,.02); }
@@ -78,7 +80,7 @@
 .sys__scene{ position:relative; flex:1; min-height:300px; }
 .sys--inbound .sys__text, .sys--outbound .sys__text{ padding:20px 10px 0 6px; }
 .sys__text{ padding:24px 12px 0; display:flex; flex-direction:column; align-items:flex-start; }
-.sys__n{ font-size:44px; color:var(--violet); line-height:1; }
+.sys__n{ font-size:44px; color:var(--violet); line-height:1.1; }
 .sys__t{ margin-top:14px; max-width:14ch; }
 .sys__d{ margin-top:12px; font-size:var(--t-body); line-height:1.5; color:var(--text-2); max-width:42ch; text-wrap:pretty; }
 .sys__ticks{ margin-top:18px; gap:8px; }
@@ -92,19 +94,22 @@
 .mcard{ position:sticky; top:calc(var(--nav-h) + 12px + var(--i) * 14px); }
 .mcard__in{
   position:relative; min-height:clamp(320px, 46vh, 480px); display:flex;
-  border-radius:28px; padding:clamp(28px, 3.5vw, 52px); background:var(--surface-2); color:var(--text);
-  box-shadow:0 1px 0 rgba(14,8,32,.03), 0 30px 70px -44px rgba(14,8,32,.3); will-change:transform;
+  border-radius:28px; padding:clamp(28px, 3.5vw, 52px); color:var(--text);
+  /* a touch of glass: the surface lets a little of what is behind it through, blurred */
+  background:rgba(255,255,255,.8); -webkit-backdrop-filter:blur(18px) saturate(1.25); backdrop-filter:blur(18px) saturate(1.25);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 0 0 1px rgba(14,8,32,.06), 0 30px 70px -44px rgba(14,8,32,.3); will-change:transform;
 }
 .mcard__grid{ flex:1; display:grid; grid-template-columns:5fr 7fr; grid-template-rows:1fr auto; column-gap:var(--gap); row-gap:40px; }
-.mcard--2 .mcard__in{ background:var(--violet-4); }
-.mcard--3 .mcard__in{ background:var(--violet); --text:#fff; --text-2:rgba(255,255,255,.8); --text-3:rgba(255,255,255,.6); }
+.mcard--2 .mcard__in{ background:rgba(239,234,249,.8); box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 0 0 1px rgba(124,77,204,.12), 0 30px 70px -44px rgba(14,8,32,.3); }
+.mcard--3 .mcard__in{ background:rgba(124,77,204,.88); --text:#fff; --text-2:rgba(255,255,255,.8); --text-3:rgba(255,255,255,.6); box-shadow:inset 0 1px 0 rgba(255,255,255,.28), 0 0 0 1px rgba(90,45,170,.4), 0 30px 70px -40px rgba(124,77,204,.5); }
 .mcard--3 .mcard__n{ color:var(--violet-3); }
-.mcard--4 .mcard__in{ background:var(--night); --text:#F4F1F8; --text-2:#B4ACC4; --text-3:#8F86A8; }
+.mcard--4 .mcard__in{ background:rgba(14,8,32,.88); --text:#F4F1F8; --text-2:#B4ACC4; --text-3:#8F86A8; box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 1px rgba(14,8,32,.6), 0 30px 70px -40px rgba(14,8,32,.6); }
 .mcard--4 .mcard__n{ color:var(--violet-2); }
-.mcard__n{ grid-column:1; grid-row:1; display:flex; font-size:clamp(120px, 15vw, 240px); line-height:.9; color:var(--violet); margin-top:-.08em; }
-.roll{ display:inline-block; height:.9em; overflow:hidden; }
+.mcard__n{ grid-column:1; grid-row:1; display:flex; font-size:clamp(120px, 15vw, 240px); line-height:1; color:var(--violet); margin-top:-.06em; }
+/* each digit rolls inside a full em of room; the window is clipped above and below only, so no glyph is ever cut at its sides */
+.roll{ display:inline-block; height:1em; overflow:visible; clip-path:inset(0 -.2em); }
 .roll__col{ display:flex; flex-direction:column; }
-.roll__col span{ display:block; height:.9em; line-height:.9; }
+.roll__col span{ display:block; height:1em; line-height:1; }
 .mcard__body{ grid-column:2; grid-row:1; max-width:34ch; }
 .mcard__t{ max-width:16ch; }
 .mcard__d{ margin-top:16px; font-size:var(--t-lead); line-height:1.45; letter-spacing:-.012em; color:var(--text-2); max-width:36ch; text-wrap:pretty; }
