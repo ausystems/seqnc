@@ -5,10 +5,7 @@
    switch that lets go, the ninety days that fill in.  Tiles rise in on
    scroll, lift on hover, and their scenes replay on hover.
    ========================================================================= */
-import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
-import { useGsap } from '../engine/hooks.js';
-import { reduced } from '../engine/device.js';
 import Button from '../ui/Button.jsx';
 import Head from '../ui/Head.jsx';
 import Fee from './scenes/Fee.jsx';
@@ -29,19 +26,8 @@ export default function Pricing() {
   const { t } = useT();
   const p = t.pricing, v = p.vis;
   const [fee, cancel, back] = p.items;
-  /* the three tiles rise in together, staggered, once; the lift transition is
-     switched on only after they land so it never fights the rise */
-  const ref = useGsap((_, el) => {
-    const grid = el.querySelector('.pgrid');
-    if (reduced) { grid.classList.add('is-in'); return; }
-    gsap.from(el.querySelectorAll('.pt'), {
-      y: 40, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .12, clearProps: 'transform',
-      scrollTrigger: { trigger: grid, start: 'top 82%', once: true },
-      onComplete: () => grid.classList.add('is-in'),
-    });
-  }, []);
   return (
-    <section className="section pricing" id="pricing" ref={ref} aria-labelledby="pricing-title">
+    <section className="section pricing" id="pricing" aria-labelledby="pricing-title">
       <div className="wrap">
         <Head id="pricing-title" title={p.titleStart} accent={p.titleAccent} lead={p.body} action={<Button href={t.calendly} calendly>{p.cta}</Button>} />
         <ul className="pgrid">

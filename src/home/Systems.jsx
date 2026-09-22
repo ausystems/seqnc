@@ -1,13 +1,10 @@
 /* =========================================================================
    The three systems as a bento.  Each tile carries a scene, a small
-   working picture of its system that plays once as the tile arrives and
-   then stays: the channels landing in one inbox, the handoffs triggering
-   each other, the follow-ups leaving on their days.
+   working picture of its system, complete from the first paint: the
+   channels landed in one inbox, the handoffs triggered, the follow-ups
+   out on their days.
    ========================================================================= */
-import { gsap } from 'gsap';
 import { useT } from '../i18n.jsx';
-import { useGsap } from '../engine/hooks.js';
-import { reduced } from '../engine/device.js';
 import { Fade } from '../ui/Reveal.jsx';
 import Head from '../ui/Head.jsx';
 import Button, { MonoLink } from '../ui/Button.jsx';
@@ -45,12 +42,8 @@ const TILES = [
 export default function Systems() {
   const { t } = useT();
   const s = t.systems, d = t.demos;
-  const ref = useGsap((_, el) => {
-    if (reduced) return;
-    gsap.from(el.querySelectorAll('.sys'), { y: 40, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .1, clearProps: 'transform', scrollTrigger: { trigger: el.querySelector('.sgrid'), start: 'top 82%', once: true } });
-  }, []);
   return (
-    <section className="section systems" id="systems" ref={ref} aria-labelledby="systems-title">
+    <section className="section systems" id="systems" aria-labelledby="systems-title">
       <div className="wrap">
         <Head id="systems-title" title={`${s.titleLines[0]} ${s.titleLines[1]}`} accent={s.titleLines[2]} lead={s.body} />
         <div className="sgrid">

@@ -53,7 +53,7 @@ export default function CaseStudy() {
     <section className="section work" id="work" aria-labelledby="work-title">
       <div className="wrap">
         <Head id="work-title" title={w.titleStart} accent={w.titleAccent} />
-        <Fade className="work__panel" y={40} start="top 84%">
+        <div className="work__panel">
           <div ref={panel} className="work__in" data-theme="dark">
             <i className="grain" aria-hidden="true" />
             <i className="work__glow" aria-hidden="true" />
@@ -96,7 +96,7 @@ export default function CaseStudy() {
               </div>
             </div>
           </div>
-        </Fade>
+        </div>
       </div>
     </section>
   );

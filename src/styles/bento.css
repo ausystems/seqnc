@@ -1,7 +1,7 @@
 /* =========================================================================
    Included with every build: three tiles.  White on paper, a soft inset
    panel for each illustration, one night tile, one violet-tinted tile.
-   Tiles lift on hover; their illustrations replay.  The small check and
+   Each tile's scene is complete from the first paint.  The small check and
    the reply pill are shared with the systems bento.
    ========================================================================= */
 .bgrid{ margin-top:clamp(36px, 4.5vw, 64px); display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }
@@ -9,10 +9,9 @@
 .btile{
   position:relative; display:flex; flex-direction:column; gap:0; padding:14px 14px 22px;
   background:var(--surface-2); border:1px solid var(--line); border-radius:20px; color:var(--text);
-  transition:transform .7s var(--ease-out), box-shadow .7s var(--ease-out), border-color .7s var(--ease-out);
-  will-change:transform;
+  transition:box-shadow .7s var(--ease-out), border-color .7s var(--ease-out);
 }
-.btile:hover{ transform:translateY(-6px); border-color:var(--line-2); box-shadow:0 34px 60px -34px rgba(14,8,32,.32), 0 2px 0 rgba(14,8,32,.02); }
+.btile:hover{ border-color:var(--line-2); box-shadow:0 34px 60px -34px rgba(14,8,32,.28); }
 
 .btile__t{ margin:20px 10px 0; font-family:var(--font-d); font-size:19px; font-weight:600; letter-spacing:-.025em; line-height:1.25; }
 .btile__d{ margin:8px 10px 0; font-size:14px; line-height:1.55; color:var(--text-2); text-wrap:pretty; }
@@ -38,5 +37,4 @@
 }
 @media (prefers-reduced-motion: reduce){
   .btile{ transition:none; }
-  .btile:hover{ transform:none; }
 }

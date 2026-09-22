@@ -5,9 +5,8 @@
    and a light that follows the pointer.  On it stand objects: white cards
    and pills lit from above, one night object and one violet object at
    most per scene, marks (dots, checks, glows) and a mono voice for keys.
-   Layers carry data-depth (1 far, 3 near) and move with the pointer.  A
-   scene plays once and then stays; the pointer only moves the light and
-   the depth, never the story.
+   Every scene is complete from its first paint and nothing in it moves;
+   the pointer only moves the light.
    ========================================================================= */
 .scene{
   --mx:50%; --my:40%;
@@ -19,8 +18,8 @@
 .scene::after{ content:""; position:absolute; inset:-30%; z-index:0; background:radial-gradient(closest-side at var(--mx) var(--my), var(--sc-light), rgba(255,255,255,0) 70%); opacity:.9; pointer-events:none; transition:opacity .6s var(--ease-out); }
 .scene--night{ --sc-dot:rgba(244,241,248,.14); --sc-light:rgba(124,77,204,.42); background:var(--night-2); color:#F4F1F8; }
 .scene--night::after{ opacity:.8; }
-.scene__stage{ position:relative; z-index:1; width:100%; height:100%; min-height:inherit; display:flex; align-items:center; justify-content:center; padding:22px; transform-style:preserve-3d; will-change:transform; }
-.lyr{ position:absolute; will-change:transform; }
+.scene__stage{ position:relative; z-index:1; width:100%; height:100%; min-height:inherit; display:flex; align-items:center; justify-content:center; padding:22px; }
+.lyr{ position:absolute; }
 /* a composition: drawn at --cw by --ch, zoomed to fit the stage */
 .comp{ --k:1; position:relative; width:calc(var(--cw) * 1px); height:calc(var(--ch) * 1px); zoom:var(--k); flex:none; }
 
