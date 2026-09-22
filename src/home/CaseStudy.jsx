@@ -1,9 +1,10 @@
 /* =========================================================================
    The case study, as one night panel.  The client on the left; on the
-   right the old way, held for three seconds when the panel arrives, then
-   turned line by line into the new one, and what was built follows.  The
-   switch above the lines is the only place the two words appear, and the
-   only way to turn it again.  The panel ends on the two ways forward.
+   right where things stood, held for three seconds when the panel
+   arrives, then turned line by line into what runs now, and what was
+   built follows.  The switch above the lines is the only place the two
+   words appear, and the only way to turn it again.  The panel ends on
+   the two ways forward.
    ========================================================================= */
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
@@ -60,12 +61,11 @@ export default function CaseStudy() {
             <div className="work__grid">
               <div className="work__side">
                 <div className="work__client">
-                  <img src="/divos-logo.jpg" alt="" width="56" height="56" loading="lazy" />
+                  <span className="work__mark" aria-hidden="true">{w.mark}</span>
                   <p className="mono work__meta">{w.meta}</p>
                 </div>
                 <h3 className="dsp dsp--2 work__name">{w.client}</h3>
-                <p className="mono work__url"><i className="work__live" aria-hidden="true" /><span className="vh">{w.live}: </span>{w.url}</p>
-                <p className="work__soon">{w.comingSoon}</p>
+                <p className="work__partner"><i className="work__live" aria-hidden="true" />{w.partner}</p>
               </div>
               <div className="work__main">
                 <div className="work__toggle" role="group" aria-label={`${w.beforeLabel} / ${w.afterLabel}`}>
@@ -92,7 +92,7 @@ export default function CaseStudy() {
               <p className="work__lead">{t.offer.work}</p>
               <div className="work__acts">
                 <Button href={t.calendly} calendly>{t.hero.cta}</Button>
-                <MonoLink href={w.liveUrl}>{w.link}</MonoLink>
+                <MonoLink to="/free-review" name={t.review.label}>{t.hero.noteLink}</MonoLink>
               </div>
             </div>
           </div>
